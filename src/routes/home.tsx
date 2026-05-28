@@ -58,7 +58,8 @@ function Navbar() {
 }
 
 function Hero() {
-  const heroImg = 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1600&q=80'; 
+  // Cinematic HD image (replace with Lakshmi later)
+  const heroImg = '/images/lakshmiintemple.png?auto=format&fit=crop&w=1600&q=80'; 
   return (
     <section
       className="hero saga-hero"
@@ -69,7 +70,7 @@ function Hero() {
         right: '50%',
         marginLeft: '-50vw',
         marginRight: '-50vw',
-        minHeight: '75vh', // Changed from vw to vh to fix mobile cropping
+        minHeight: '75vh', // Fixed viewport calculation for responsive displays
         display: 'flex',
         alignItems: 'flex-end',
         background: '#141414',
@@ -82,7 +83,7 @@ function Hero() {
           width: '100%',
           height: '100%',
           objectFit: 'cover',
-          objectPosition: 'center top', // Better focus for portraits
+          objectPosition: 'center top',
           position: 'absolute',
           top: 0,
           left: 0,
@@ -138,7 +139,7 @@ function Hero() {
           position: 'relative',
           zIndex: 5,
           color: 'white',
-          padding: 'clamp(2rem, 5vw, 4rem) clamp(1.5rem, 5vw, 6vw)', // Fluid padding
+          padding: 'clamp(2rem, 5vw, 4rem) clamp(1.5rem, 5vw, 6vw)',
           maxWidth: '800px',
           textShadow: '0 2px 16px #000, 0 1px 2px #000',
         }}
@@ -182,7 +183,7 @@ function CharacterCarousel() {
 
   const scroll = (dir: 'left' | 'right') => {
     if (!trackRef.current) return
-    const amount = window.innerWidth > 768 ? 700 : 300 // Responsive scroll amount
+    const amount = window.innerWidth > 768 ? 700 : 300
     trackRef.current.scrollBy({ left: dir === 'right' ? amount : -amount, behavior: 'smooth' })
   }
 
@@ -216,7 +217,7 @@ function CharacterCarousel() {
                   borderRadius: '8px', 
                   background: '#18181b', 
                   flex: '0 0 clamp(200px, 45vw, 280px)', 
-                  aspectRatio: '2/3', // Cinematic portrait ratio
+                  aspectRatio: '2/3',
                   transition: 'transform 0.3s cubic-bezier(.4,2,.3,1), box-shadow 0.3s', 
                   border: '1px solid rgba(255,255,255,0.05)',
                   boxShadow: '0 4px 15px rgba(0,0,0,0.5)'
@@ -236,7 +237,6 @@ function CharacterCarousel() {
                   <div style={{ fontStyle: 'italic', fontSize: 'clamp(0.8rem, 2vw, 0.9rem)', opacity: 0.9, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
                     &ldquo;{char.quote}&rdquo;
                   </div>
-                  {/* YELLOW WISH MESSAGE HAS BEEN REMOVED FROM HERE */}
                 </div>
               </div>
             ))}
