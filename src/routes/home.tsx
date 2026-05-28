@@ -58,7 +58,6 @@ function Navbar() {
 }
 
 function Hero() {
-  // Cinematic HD image (replace with Lakshmi later)
   const heroImg = '/images/lakshmiintemple.png?auto=format&fit=crop&w=1600&q=80'; 
   return (
     <section
@@ -70,7 +69,7 @@ function Hero() {
         right: '50%',
         marginLeft: '-50vw',
         marginRight: '-50vw',
-        minHeight: '75vh', // Fixed viewport calculation for responsive displays
+        minHeight: '75vh',
         display: 'flex',
         alignItems: 'flex-end',
         background: '#141414',
@@ -310,18 +309,18 @@ function WishesSection() {
   const wishes = [
     {
       icon: '🦀',
-      title: 'A Crab\'s Wisdom',
+      title: "A Crab's Wisdom",
       text: 'The crab\'s greatest power is its sideways walk — it was NOT the plan. But it worked. Just like every "detour" in your career that somehow landed you at the highest package. The crab nods. The crab approves. The crab has been watching your glow-up from the ocean floor. Happy Birthday! 🦀',
     },
     {
       icon: '🌊',
       title: 'The Ocean Wrote In',
-      text: 'You are the ocean. Deep, mysterious, and absolutely capable of wrecking things when underestimated. The ocean didn\'t ask for a performance review. It didn\'t need validation. It just... went. Big. Forever. That\'s you. Happy Birthday from the deep end — you magnificent, chaotic, beautiful wave.',
+      text: 'You really give ‘beach person trapped in corporate life’ energy. Not every person looks this natural near sunsets and sea views. Happy Birthday Lakshmi. Hope life gives you more peaceful trips and less unnecessary stress. 🌊',
     },
     {
       icon: '🐚',
       title: 'Shell Philosophy',
-      text: 'The shell carries its entire home everywhere it goes and never apologizes for its existence. Put one to your ear — it whispers: "You got the bag, queen. You always had it." The ocean agrees. The crab endorses this message. The whale has left a reaction. 🐚',
+      text: 'Somehow your random photos always look like they belong in Pinterest boards 😭 Even casual moments become aesthetic around you. Wishing you a year full of good memories, beautiful places, and better chapters ahead. 🐚',
     },
     {
       icon: '🐋',
@@ -331,7 +330,12 @@ function WishesSection() {
     {
       icon: '🌌',
       title: 'The Sky Reacted',
-      text: 'The sky said: "I am infinite, above everything, limitless and vast." You said: "That\'s cute." *sky has left the chat.* Seriously though — you\'ve outgrown every ceiling they built. Every room that was "too advanced" for you became your lobby. The sky is not the limit. It\'s your starting point.',
+      text: 'The sky said: "You genuinely look like someone who should be travelling more than working. That’s it, that’s the wish 😭 Happy Birthday Lakshmi. Hope your life becomes bigger than your routine." 🌌',
+    },
+    {
+      icon: '🍞',
+      title: 'Bread says',
+      text: 'I seriously don’t know what personal problem you have with me 😭 I’ve been ignored for years for absolutely no reason. Still… Happy Birthday Lakshmi. May your future be softer than your food choices. 🍞',
     },
     {
       icon: '🧠',
@@ -403,9 +407,6 @@ function Footer() {
 export default function HomePage() {
   return (
     <div style={{ minHeight: '100vh', background: '#141414', overflowX: 'hidden' }}>
-      {/* INJECTED RESPONSIVE STYLES 
-        This completely fixes mobile zooming, crops, hidden scrollbars, and makes cards look cinematic.
-      */}
       <style>{`
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
@@ -421,13 +422,13 @@ export default function HomePage() {
         }
         @media (max-width: 768px) {
           .responsive-nav-links {
-            display: none !important; /* Hides text links on small phones to stop overlap */
+            display: none !important;
           }
           .desktop-only-btn {
-            display: none !important; /* Forces users to swipe horizontally on mobile */
+            display: none !important;
           }
           .search-icon {
-            display: none !important; /* Cleans up navbar real estate */
+            display: none !important;
           }
         }
       `}</style>
