@@ -30,27 +30,35 @@ function Navbar() {
   }, [])
 
   return (
-    <nav className={`lx-nav ${scrolled ? 'scrolled' : ''}`}>
-      <div className="lx-logo" style={{ cursor: 'pointer' }} onClick={() => navigate({ to: '/home' })}>LAKSHMIX</div>
-      <div className="lx-nav-links">
+    <nav className={`lx-nav ${scrolled ? 'scrolled' : ''}`} style={{ 
+      display: 'flex', 
+      alignItems: 'center', 
+      justifyContent: 'space-between',
+      padding: 'clamp(10px, 2vw, 20px) clamp(15px, 4vw, 40px)'
+    }}>
+      <div className="lx-logo" style={{ cursor: 'pointer', fontSize: 'clamp(1.2rem, 3vw, 1.5rem)', fontWeight: 'bold', color: 'var(--lx-red, #E50914)' }} onClick={() => navigate({ to: '/home' })}>
+        LAKSHMIX
+      </div>
+      <div className="lx-nav-links responsive-nav-links" style={{ display: 'flex', gap: 'clamp(10px, 2vw, 20px)' }}>
         <a className="lx-nav-link" href="#characters">Universe</a>
         <a className="lx-nav-link" href="#wishes">Wishes</a>
         <a className="lx-nav-link" href="#wishes">Tribute</a>
         <a className="lx-nav-link" onClick={e => { e.preventDefault(); navigate({ to: '/my-wishes' }) }} href="/my-wishes">My Wishes</a>
       </div>
-      <div className="lx-nav-right">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ opacity: 0.7, cursor: 'pointer' }}>
+      <div className="lx-nav-right" style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+        <svg className="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ opacity: 0.7, cursor: 'pointer' }}>
           <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
         </svg>
-        <div className="lx-nav-avatar" onClick={() => navigate({ to: '/' })}>L</div>
+        <div className="lx-nav-avatar" onClick={() => navigate({ to: '/' })} style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#333', borderRadius: '4px', cursor: 'pointer' }}>
+          L
+        </div>
       </div>
     </nav>
   )
 }
 
 function Hero() {
-  // Cinematic HD image (replace with Lakshmi later)
-  const heroImg = 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1600&q=80'; // Example: elegant portrait
+  const heroImg = 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1600&q=80'; 
   return (
     <section
       className="hero saga-hero"
@@ -61,15 +69,12 @@ function Hero() {
         right: '50%',
         marginLeft: '-50vw',
         marginRight: '-50vw',
-        minHeight: '56vw', // 21:9 aspect ratio
-        maxHeight: '80vh',
-        overflow: 'hidden',
+        minHeight: '75vh', // Changed from vw to vh to fix mobile cropping
         display: 'flex',
         alignItems: 'flex-end',
         background: '#141414',
       }}
     >
-      {/* Cinematic HD image */}
       <img
         src={heroImg}
         alt="Cinematic Heroine"
@@ -77,17 +82,16 @@ function Hero() {
           width: '100%',
           height: '100%',
           objectFit: 'cover',
-          objectPosition: 'center',
+          objectPosition: 'center top', // Better focus for portraits
           position: 'absolute',
           top: 0,
           left: 0,
           zIndex: 1,
-          filter: 'brightness(0.7) saturate(1.1) contrast(1.1)',
+          filter: 'brightness(0.6) saturate(1.2) contrast(1.1)',
           transition: 'filter 0.5s',
         }}
         loading="lazy"
       />
-      {/* Movie grain overlay */}
       <div
         style={{
           position: 'absolute',
@@ -99,15 +103,7 @@ function Hero() {
           mixBlendMode: 'overlay',
         }}
       />
-      {/* Floating particles (simple, subtle) */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          zIndex: 3,
-          pointerEvents: 'none',
-        }}
-      >
+      <div style={{ position: 'absolute', inset: 0, zIndex: 3, pointerEvents: 'none' }}>
         {[...Array(18)].map((_, i) => (
           <div
             key={i}
@@ -125,7 +121,6 @@ function Hero() {
           />
         ))}
       </div>
-      {/* Gradient overlays for text readability */}
       <div
         style={{
           position: 'absolute',
@@ -134,48 +129,46 @@ function Hero() {
           bottom: 0,
           top: 0,
           zIndex: 4,
-          background:
-            'linear-gradient(180deg, rgba(20,20,20,0.1) 40%, rgba(20,20,20,0.88) 100%)',
+          background: 'linear-gradient(180deg, rgba(20,20,20,0) 20%, rgba(20,20,20,0.95) 90%, #141414 100%)',
         }}
       />
-      {/* Cinematic text overlay */}
       <div
         className="saga-hero-content"
         style={{
           position: 'relative',
           zIndex: 5,
           color: 'white',
-          padding: '3vw 6vw 6vw 6vw',
-          maxWidth: '700px',
+          padding: 'clamp(2rem, 5vw, 4rem) clamp(1.5rem, 5vw, 6vw)', // Fluid padding
+          maxWidth: '800px',
           textShadow: '0 2px 16px #000, 0 1px 2px #000',
         }}
       >
-        <div className="saga-hero-category fade-in-up stagger-1" style={{ fontSize: '1.1rem', opacity: 0.85 }}>
+        <div className="saga-hero-category fade-in-up stagger-1" style={{ fontSize: 'clamp(0.8rem, 2vw, 1.1rem)', opacity: 0.85, letterSpacing: '2px' }}>
           LAKSHMI SAGA
         </div>
-        <h1 className="saga-hero-title fade-in-up stagger-2" style={{ fontSize: '3.2rem', fontWeight: 700, letterSpacing: '-1px', margin: '0.5rem 0' }}>
+        <h1 className="saga-hero-title fade-in-up stagger-2" style={{ fontSize: 'clamp(2.5rem, 8vw, 4rem)', fontWeight: 800, letterSpacing: '-1px', margin: '0.2rem 0' }}>
           Season 22
         </h1>
-        <div className="saga-hero-subtitle fade-in-up stagger-3" style={{ fontSize: '1.3rem', fontFamily: 'var(--font-serif)', fontStyle: 'italic', marginBottom: '1.5rem' }}>
+        <div className="saga-hero-subtitle fade-in-up stagger-3" style={{ fontSize: 'clamp(1.1rem, 3vw, 1.4rem)', fontFamily: 'var(--font-serif)', fontStyle: 'italic', marginBottom: 'clamp(1rem, 3vw, 1.5rem)' }}>
           Under Exploration
         </div>
-        <div className="saga-hero-actions fade-in-up stagger-4" style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem' }}>
+        <div className="saga-hero-actions fade-in-up stagger-4" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
           <button
             className="saga-btn saga-btn-primary"
-            style={{ fontSize: '1.1rem', padding: '0.7em 2em', borderRadius: '0.4em', fontWeight: 600 }}
+            style={{ fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', padding: '0.6em 1.5em', borderRadius: '4px', fontWeight: 600, background: 'white', color: 'black', border: 'none', display: 'flex', alignItems: 'center', cursor: 'pointer' }}
             onClick={() => document.getElementById('characters')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            <span style={{ fontSize: 20, marginRight: 8 }}>▶</span> Play
+            <span style={{ fontSize: '1.2em', marginRight: 8 }}>▶</span> Play
           </button>
           <button
             className="saga-btn saga-btn-secondary"
-            style={{ fontSize: '1.1rem', padding: '0.7em 2em', borderRadius: '0.4em', fontWeight: 600 }}
+            style={{ fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', padding: '0.6em 1.5em', borderRadius: '4px', fontWeight: 600, background: 'rgba(109, 109, 110, 0.7)', color: 'white', border: 'none', display: 'flex', alignItems: 'center', cursor: 'pointer' }}
             onClick={() => alert('Added to your list!')}
           >
-            <span style={{ fontSize: 20, marginRight: 8 }}>＋</span> My List
+            <span style={{ fontSize: '1.2em', marginRight: 8 }}>＋</span> My List
           </button>
         </div>
-        <div className="saga-hero-description fade-in-up" style={{ fontSize: '1.1rem', opacity: 0.92, marginBottom: '1.5rem', fontFamily: 'var(--font-body, Inter, sans-serif)' }}>
+        <div className="saga-hero-description fade-in-up" style={{ fontSize: 'clamp(0.9rem, 2.5vw, 1.1rem)', opacity: 0.92, marginBottom: '1.5rem', fontFamily: 'var(--font-body, Inter, sans-serif)', lineHeight: 1.5 }}>
           A series containing unexpected plot twists, emotional damage, good outfits, delayed success arcs, whale dreams, and strong main-character energy.
         </div>
       </div>
@@ -189,89 +182,96 @@ function CharacterCarousel() {
 
   const scroll = (dir: 'left' | 'right') => {
     if (!trackRef.current) return
-    const amount = 700
+    const amount = window.innerWidth > 768 ? 700 : 300 // Responsive scroll amount
     trackRef.current.scrollBy({ left: dir === 'right' ? amount : -amount, behavior: 'smooth' })
   }
 
   return (
-    <div id="characters">
-      <div className="content-section">
-        <h2 className="section-title">
+    <div id="characters" style={{ paddingTop: '2rem' }}>
+      <div className="content-section" style={{ marginBottom: '3rem' }}>
+        <h2 className="section-title" style={{ padding: '0 clamp(1rem, 4vw, 4%)', fontSize: 'clamp(1.5rem, 4vw, 2rem)', fontWeight: 700 }}>
           She Contains Multitudes
-          <span className="section-title-accent">· Icons of Strength</span>
+          <span className="section-title-accent" style={{ color: 'var(--lx-muted, #888)', fontSize: '0.8em', marginLeft: '10px' }}>· Icons of Strength</span>
         </h2>
-        <p style={{ padding: '0 4%', fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: '0.95rem', color: 'var(--lx-muted)', marginBottom: '1rem' }}>
+        <p style={{ padding: '0 clamp(1rem, 4vw, 4%)', fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: 'var(--lx-muted, #aaa)', marginBottom: '1.5rem' }}>
           Click any card to discover which part of Lakshmi lives in each legend
         </p>
-        <div className="carousel-container">
-          <button className="carousel-btn carousel-btn-left" onClick={() => scroll('left')}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+        <div className="carousel-container" style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+          <button className="carousel-btn carousel-btn-left desktop-only-btn" onClick={() => scroll('left')} style={{ position: 'absolute', left: '1vw', zIndex: 10, background: 'rgba(0,0,0,0.5)', border: 'none', color: 'white', borderRadius: '50%', padding: '10px', cursor: 'pointer' }}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <polyline points="15,18 9,12 15,6"/>
             </svg>
           </button>
 
-          <div className="carousel-track" ref={trackRef}>
+          <div className="carousel-track hide-scrollbar" ref={trackRef} style={{ display: 'flex', overflowX: 'auto', gap: 'clamp(10px, 2vw, 20px)', padding: '10px clamp(1rem, 4vw, 4%)', scrollBehavior: 'smooth' }}>
             {characters.map((char) => (
               <div
                 key={char.id}
-                className="char-card"
+                className="char-card cinematic-card"
                 onClick={() => navigate({ to: '/character/$id', params: { id: char.id } })}
-                style={{ cursor: 'pointer', position: 'relative', overflow: 'hidden', borderRadius: '1.2em', boxShadow: '0 4px 32px #0007', background: '#18181b', margin: '0 1.5vw', minWidth: 260, maxWidth: 320, flex: '0 0 280px', transition: 'transform 0.3s cubic-bezier(.4,2,.3,1)', border: '2px solid #222', }}
-                onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.08) translateY(-8px)'}
-                onMouseLeave={e => e.currentTarget.style.transform = ''}
+                style={{ 
+                  cursor: 'pointer', 
+                  position: 'relative', 
+                  overflow: 'hidden', 
+                  borderRadius: '8px', 
+                  background: '#18181b', 
+                  flex: '0 0 clamp(200px, 45vw, 280px)', 
+                  aspectRatio: '2/3', // Cinematic portrait ratio
+                  transition: 'transform 0.3s cubic-bezier(.4,2,.3,1), box-shadow 0.3s', 
+                  border: '1px solid rgba(255,255,255,0.05)',
+                  boxShadow: '0 4px 15px rgba(0,0,0,0.5)'
+                }}
               >
                 <img
                   src={char.thumbnail}
                   alt={char.name}
-                  style={{ width: '100%', height: 180, objectFit: 'cover', objectPosition: 'center', borderTopLeftRadius: '1.2em', borderTopRightRadius: '1.2em', filter: 'brightness(0.92) saturate(1.1)', transition: 'filter 0.3s' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', filter: 'brightness(0.85) saturate(1.1)', transition: 'filter 0.3s' }}
                   loading="lazy"
                 />
-                <div className="char-card-gradient" style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: '60%', background: 'linear-gradient(0deg, #18181b 80%, transparent 100%)', zIndex: 2 }} />
-                <div className="char-card-content" style={{ position: 'absolute', left: 0, right: 0, bottom: 0, zIndex: 3, color: 'white', padding: '1.2em 1.2em 1.5em 1.2em', textShadow: '0 2px 12px #000' }}>
-                  <div className="char-card-type" style={{ fontSize: '0.95em', opacity: 0.7, marginBottom: 2 }}>{char.type}</div>
-                  <div className="char-card-name" style={{ fontWeight: 700, fontSize: '1.3em', marginBottom: 2 }}>{char.name}</div>
-                  <div className="char-card-series" style={{ fontSize: '1em', opacity: 0.8, marginBottom: 6 }}>{char.series}</div>
-                  <div className="char-card-quote" style={{ fontStyle: 'italic', fontSize: '1em', opacity: 0.9, marginBottom: 6 }}>&ldquo;{char.quote}&rdquo;</div>
-                  {char.whatTheyShare && <div className="char-card-share" style={{ fontSize: '0.97em', color: '#e5e5e5', marginBottom: 6 }}>{char.whatTheyShare}</div>}
-                  <div className="char-card-wish" style={{ fontSize: '0.97em', color: '#ffd700', marginTop: 8 }}>{char.wishMessage}</div>
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(0deg, rgba(20,20,20,1) 0%, rgba(20,20,20,0.6) 40%, transparent 100%)', zIndex: 2 }} />
+                <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, zIndex: 3, color: 'white', padding: 'clamp(1rem, 3vw, 1.5rem)' }}>
+                  <div style={{ fontSize: 'clamp(0.75rem, 2vw, 0.85rem)', opacity: 0.8, textTransform: 'uppercase', letterSpacing: '1px' }}>{char.type}</div>
+                  <div style={{ fontWeight: 800, fontSize: 'clamp(1.1rem, 3vw, 1.4rem)', margin: '4px 0' }}>{char.name}</div>
+                  <div style={{ fontSize: 'clamp(0.85rem, 2vw, 1rem)', opacity: 0.7, marginBottom: 8 }}>{char.series}</div>
+                  <div style={{ fontStyle: 'italic', fontSize: 'clamp(0.8rem, 2vw, 0.9rem)', opacity: 0.9, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                    &ldquo;{char.quote}&rdquo;
+                  </div>
+                  {/* YELLOW WISH MESSAGE HAS BEEN REMOVED FROM HERE */}
                 </div>
               </div>
             ))}
           </div>
 
-          <button className="carousel-btn carousel-btn-right" onClick={() => scroll('right')}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <button className="carousel-btn carousel-btn-right desktop-only-btn" onClick={() => scroll('right')} style={{ position: 'absolute', right: '1vw', zIndex: 10, background: 'rgba(0,0,0,0.5)', border: 'none', color: 'white', borderRadius: '50%', padding: '10px', cursor: 'pointer' }}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <polyline points="9,18 15,12 9,6"/>
             </svg>
           </button>
         </div>
       </div>
 
-      {/* Second row — different grouping */}
-      <div className="content-section">
-        <h2 className="section-title">
+      <div className="content-section" style={{ marginBottom: '3rem' }}>
+        <h2 className="section-title" style={{ padding: '0 clamp(1rem, 4vw, 4%)', fontSize: 'clamp(1.5rem, 4vw, 2rem)', fontWeight: 700 }}>
           Anime Legends
-          <span className="section-title-accent">· From the East</span>
+          <span className="section-title-accent" style={{ color: 'var(--lx-muted, #888)', fontSize: '0.8em', marginLeft: '10px' }}>· From the East</span>
         </h2>
         <div className="carousel-container">
-          <div className="carousel-track">
+          <div className="carousel-track hide-scrollbar" style={{ display: 'flex', overflowX: 'auto', gap: 'clamp(10px, 2vw, 20px)', padding: '10px clamp(1rem, 4vw, 4%)' }}>
             {characters.filter(c => c.type === 'Anime' || c.type === 'Manga').map((char) => {
               const colors = cardColors[char.id] ?? { bg: 'linear-gradient(135deg, #1a1a1a, #333)', accent: '#e5e5e5', icon: '✦' }
               return (
                 <div
                   key={char.id}
-                  className="char-card"
-                  style={{ flex: '0 0 200px', height: '300px' }}
+                  className="char-card cinematic-card"
+                  style={{ flex: '0 0 clamp(160px, 40vw, 220px)', aspectRatio: '2/3', position: 'relative', borderRadius: '8px', overflow: 'hidden', cursor: 'pointer', boxShadow: '0 4px 15px rgba(0,0,0,0.5)' }}
                   onClick={() => navigate({ to: '/character/$id', params: { id: char.id } })}
                 >
-                  <div className="char-card-bg" style={{ background: colors.bg }} />
-                  <div className="char-card-gradient" />
-                  <div className="char-card-type">{char.type}</div>
-                  <div className="char-card-icon" style={{ fontSize: '4rem', color: colors.accent }}>{colors.icon}</div>
-                  <div className="char-card-content">
-                    <div className="char-card-series">{char.series}</div>
-                    <div className="char-card-name">{char.name}</div>
-                    <div className="char-card-quote">&ldquo;{char.quote}&rdquo;</div>
+                  <div style={{ position: 'absolute', inset: 0, background: colors.bg }} />
+                  <div style={{ position: 'absolute', top: '15px', right: '15px', fontSize: 'clamp(2rem, 5vw, 3rem)', color: colors.accent, opacity: 0.3 }}>{colors.icon}</div>
+                  <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, padding: 'clamp(1rem, 3vw, 1.5rem)', background: 'linear-gradient(0deg, rgba(0,0,0,0.9) 0%, transparent 100%)', color: 'white' }}>
+                    <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>{char.type}</div>
+                    <div style={{ fontSize: 'clamp(1rem, 3vw, 1.2rem)', fontWeight: 'bold', margin: '4px 0' }}>{char.name}</div>
+                    <div style={{ fontSize: '0.85rem', opacity: 0.9, fontStyle: 'italic', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>&ldquo;{char.quote}&rdquo;</div>
                   </div>
                 </div>
               )
@@ -288,22 +288,16 @@ function FeaturedBanner() {
   return (
     <div
       className="featured-banner"
+      style={{ margin: 'clamp(1rem, 4vw, 3rem) clamp(1rem, 4vw, 4%)', position: 'relative', borderRadius: '8px', overflow: 'hidden', cursor: 'pointer', background: '#0a0a0a', display: 'flex', alignItems: 'center', padding: 'clamp(1.5rem, 4vw, 3rem)', border: '1px solid #333' }}
       onClick={() => navigate({ to: '/character/$id', params: { id: 'arya-stark' } })}
     >
-      <div className="featured-banner-bg" />
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'radial-gradient(ellipse at 80% 50%, rgba(229,9,20,0.15) 0%, transparent 60%)',
-        }}
-      />
-      <div className="featured-banner-content">
-        <div className="featured-banner-icon">⚔️</div>
+      <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 80% 50%, rgba(229,9,20,0.15) 0%, transparent 60%)' }} />
+      <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(1rem, 3vw, 2rem)', position: 'relative', zIndex: 2 }}>
+        <div style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)', background: 'rgba(255,255,255,0.05)', borderRadius: '50%', padding: 'clamp(10px, 2vw, 20px)' }}>⚔️</div>
         <div>
-          <div className="featured-banner-label">Featured Character · Editor's Pick</div>
-          <div className="featured-banner-title">ARYA STARK</div>
-          <div className="featured-banner-text">
+          <div style={{ color: '#E50914', fontSize: 'clamp(0.75rem, 2vw, 0.9rem)', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '8px' }}>Featured Character · Editor's Pick</div>
+          <div style={{ color: 'white', fontSize: 'clamp(1.5rem, 4vw, 2.5rem)', fontWeight: 800, marginBottom: '8px' }}>ARYA STARK</div>
+          <div style={{ color: '#aaa', fontSize: 'clamp(0.9rem, 2.5vw, 1.1rem)', fontStyle: 'italic', maxWidth: '600px' }}>
             &ldquo;She walked into rooms that were not built for her, and left them changed forever.&rdquo;
           </div>
         </div>
@@ -352,24 +346,24 @@ function WishesSection() {
   ]
 
   return (
-    <section id="wishes" className="wishes-section">
-      <h2 className="wishes-title fade-in-up">
-        <span style={{ color: 'var(--lx-red)' }}>W</span>ishes From Around The World
+    <section id="wishes" style={{ padding: 'clamp(3rem, 6vw, 5rem) clamp(1rem, 4vw, 4%)', background: '#0a0a0a' }}>
+      <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', color: 'white', textAlign: 'center', marginBottom: '10px' }}>
+        <span style={{ color: '#E50914' }}>W</span>ishes From Around The World
       </h2>
-      <p className="wishes-subtitle">The ocean, the sky, the crab, the whale, and Jesus — they all showed up</p>
+      <p style={{ color: '#aaa', textAlign: 'center', fontSize: 'clamp(1rem, 2.5vw, 1.2rem)', marginBottom: 'clamp(2rem, 5vw, 4rem)' }}>The ocean, the sky, the crab, the whale, and Jesus — they all showed up</p>
 
-      <div className="wish-cards-grid">
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(clamp(250px, 30vw, 350px), 1fr))', gap: 'clamp(1rem, 3vw, 2rem)', marginBottom: '4rem' }}>
         {wishes.map((wish, i) => (
-          <div key={i} className="wish-card fade-in-up" style={{ animationDelay: `${i * 0.1}s` }}>
-            <div className="wish-card-icon" style={{ color: 'var(--lx-red)' }}>{wish.icon}</div>
-            <div className="wish-card-title">{wish.title}</div>
-            <p className="wish-card-text">{wish.text}</p>
+          <div key={i} style={{ background: '#141414', padding: 'clamp(1.5rem, 4vw, 2rem)', borderRadius: '8px', border: '1px solid #222' }}>
+            <div style={{ fontSize: '2rem', marginBottom: '15px' }}>{wish.icon}</div>
+            <div style={{ color: 'white', fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '10px' }}>{wish.title}</div>
+            <p style={{ color: '#ccc', fontSize: '0.95rem', lineHeight: 1.6 }}>{wish.text}</p>
           </div>
         ))}
       </div>
 
-      <div className="main-wish fade-in-up" style={{ animationDelay: '0.6s' }}>
-        <p className="main-wish-text">
+      <div style={{ background: 'linear-gradient(135deg, #1a0505, #000)', padding: 'clamp(2rem, 5vw, 4rem)', borderRadius: '12px', border: '1px solid #330000', textAlign: 'center' }}>
+        <p style={{ color: 'white', fontSize: 'clamp(1rem, 3vw, 1.3rem)', lineHeight: 1.8, fontStyle: 'italic', maxWidth: '800px', margin: '0 auto' }}>
           The crab walked sideways to get here.<br />
           The ocean sent its deepest waves.<br />
           The shell held its breath and whispered your name.<br />
@@ -378,12 +372,12 @@ function WishesSection() {
           The brain sent a 47-tab report.<br />
           And Jesus Christ personally confirmed:<br />
           <br />
-          <em>You are the miracle this year.</em><br />
+          <span style={{ fontSize: '1.2em', fontWeight: 'bold', color: '#E50914' }}>You are the miracle this year.</span><br />
           <br />
           Happy Birthday, Lakshmi.<br />
           The universe is taking notes.
         </p>
-        <div className="main-wish-signature">— From Everyone Who Watched You Become This —</div>
+        <div style={{ color: '#888', marginTop: '2rem', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '2px' }}>— From Everyone Who Watched You Become This —</div>
       </div>
     </section>
   )
@@ -392,14 +386,14 @@ function WishesSection() {
 function Footer() {
   const navigate = useNavigate()
   return (
-    <footer className="lx-footer">
-      <div className="lx-footer-logo" onClick={() => navigate({ to: '/' })} style={{ cursor: 'pointer' }}>
+    <footer style={{ background: '#000', padding: 'clamp(2rem, 5vw, 4rem) 4%', textAlign: 'center', borderTop: '1px solid #222' }}>
+      <div onClick={() => navigate({ to: '/' })} style={{ cursor: 'pointer', color: '#E50914', fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
         LAKSHMIX
       </div>
-      <div className="lx-footer-text" style={{ marginBottom: '0.5rem' }}>
+      <div style={{ color: '#888', fontSize: 'clamp(0.85rem, 2vw, 1rem)', marginBottom: '0.5rem' }}>
         A cinematic tribute to courage, intelligence, and the decade&apos;s highest package.
       </div>
-      <div className="lx-footer-text">
+      <div style={{ color: '#555', fontSize: '0.8rem' }}>
         Made with love · 2025 · Lakshmi&apos;s Universe
       </div>
     </footer>
@@ -408,7 +402,36 @@ function Footer() {
 
 export default function HomePage() {
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--lx-bg)' }}>
+    <div style={{ minHeight: '100vh', background: '#141414', overflowX: 'hidden' }}>
+      {/* INJECTED RESPONSIVE STYLES 
+        This completely fixes mobile zooming, crops, hidden scrollbars, and makes cards look cinematic.
+      */}
+      <style>{`
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .cinematic-card:hover {
+          transform: scale(1.05) translateY(-5px);
+          box-shadow: 0 10px 30px rgba(229, 9, 20, 0.4) !important;
+          border-color: rgba(229, 9, 20, 0.5) !important;
+        }
+        @media (max-width: 768px) {
+          .responsive-nav-links {
+            display: none !important; /* Hides text links on small phones to stop overlap */
+          }
+          .desktop-only-btn {
+            display: none !important; /* Forces users to swipe horizontally on mobile */
+          }
+          .search-icon {
+            display: none !important; /* Cleans up navbar real estate */
+          }
+        }
+      `}</style>
+      
       <Navbar />
       <Hero />
       <FeaturedBanner />
