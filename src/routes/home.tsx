@@ -233,7 +233,7 @@ function CharacterCarousel() {
                   <div className="char-card-series" style={{ fontSize: '1em', opacity: 0.8, marginBottom: 6 }}>{char.series}</div>
                   <div className="char-card-quote" style={{ fontStyle: 'italic', fontSize: '1em', opacity: 0.9, marginBottom: 6 }}>&ldquo;{char.quote}&rdquo;</div>
                   {char.whatTheyShare && <div className="char-card-share" style={{ fontSize: '0.97em', color: '#e5e5e5', marginBottom: 6 }}>{char.whatTheyShare}</div>}
-                  <div className="char-card-wish" style={{ fontSize: '0.97em', color: '#ffd700', marginTop: 8 }}>{char.wishMessage}</div>
+                  
                 </div>
               </div>
             ))}
