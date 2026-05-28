@@ -160,7 +160,7 @@ function MyWishesPage() {
             }}
           >
             <video
-              src="/lakshmi-video.mp4"
+              src="https://www.youtube.com/watch?v=GsbU9hQSC_I&pp=ygUcbmV0ZmxpeCBzdHlsZSBiaXJ0aGRheSB2aWRlbw%3D%3D"
               autoPlay
               loop
               muted
