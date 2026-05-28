@@ -1,42 +1,44 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { useEffect, useRef, useState } from 'react'
 
 export const Route = createFileRoute('/my-wishes')({
   component: MyWishesPage,
 })
 
-const galleryPhotos = [
-  { src: '/lakshmi-photo.jpg', alt: 'Lakshmi', span: 'large' },
-  { src: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80', alt: 'Memory', span: 'small' },
-  { src: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=600&q=80', alt: 'Moment', span: 'small' },
-  { src: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80', alt: 'Journey', span: 'small' },
-  { src: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=600&q=80', alt: 'Adventure', span: 'small' },
-]
-
 function MyWishesPage() {
   const navigate = useNavigate()
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--lx-bg)', color: 'var(--lx-text)' }}>
+    <div style={{ minHeight: '100vh', background: '#141414', color: 'white', overflowX: 'hidden' }}>
       {/* Navbar */}
-      <nav className="lx-nav scrolled">
-        <div className="lx-logo" style={{ cursor: 'pointer' }} onClick={() => navigate({ to: '/home' })}>LAKSHMIX</div>
-        <div className="lx-nav-links">
+      <nav className="lx-nav scrolled" style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'space-between',
+        padding: 'clamp(10px, 2vw, 20px) clamp(15px, 4vw, 40px)'
+      }}>
+        <div className="lx-logo" style={{ cursor: 'pointer', fontSize: 'clamp(1.2rem, 3vw, 1.5rem)', fontWeight: 'bold', color: '#E50914' }} onClick={() => navigate({ to: '/home' })}>
+          LAKSHMIX
+        </div>
+        <div className="lx-nav-links responsive-nav-links" style={{ display: 'flex', gap: 'clamp(10px, 2vw, 20px)' }}>
           <a className="lx-nav-link" onClick={(e) => { e.preventDefault(); navigate({ to: '/home' }) }} href="/home">Home</a>
-          <a className="lx-nav-link" onClick={(e) => { e.preventDefault(); navigate({ to: '/home' }) }} href="/home#characters">Universe</a>
-          <a className="lx-nav-link" onClick={(e) => { e.preventDefault(); navigate({ to: '/home' }) }} href="/home#wishes">Wishes</a>
+          <a className="lx-nav-link" onClick={(e) => { e.preventDefault(); navigate({ to: '/home#characters' }) }} href="/home#characters">Universe</a>
+          <a className="lx-nav-link" onClick={(e) => { e.preventDefault(); navigate({ to: '/home#wishes' }) }} href="/home#wishes">Wishes</a>
         </div>
         <div className="lx-nav-right">
-          <div className="lx-nav-avatar" onClick={() => navigate({ to: '/' })}>L</div>
+          <div className="lx-nav-avatar" onClick={() => navigate({ to: '/' })} style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#333', borderRadius: '4px', cursor: 'pointer' }}>
+            L
+          </div>
         </div>
       </nav>
 
       {/* Hero Intro */}
       <section
         style={{
-          paddingTop: '120px',
-          paddingBottom: '60px',
-          paddingLeft: '6vw',
-          paddingRight: '6vw',
+          paddingTop: 'clamp(100px, 15vh, 140px)',
+          paddingBottom: 'clamp(30px, 8vw, 60px)',
+          paddingLeft: 'clamp(1rem, 5vw, 6vw)',
+          paddingRight: 'clamp(1rem, 5vw, 6vw)',
           textAlign: 'center',
           position: 'relative',
           overflow: 'hidden',
@@ -46,7 +48,7 @@ function MyWishesPage() {
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'radial-gradient(ellipse at 50% 0%, rgba(229,9,20,0.12) 0%, transparent 60%)',
+            background: 'radial-gradient(ellipse at 50% 0%, rgba(229,9,20,0.15) 0%, transparent 60%)',
             pointerEvents: 'none',
           }}
         />
@@ -55,7 +57,7 @@ function MyWishesPage() {
             display: 'inline-block',
             background: 'rgba(229,9,20,0.12)',
             border: '1px solid rgba(229,9,20,0.35)',
-            color: 'var(--lx-red)',
+            color: '#E50914',
             fontSize: '0.7rem',
             fontWeight: 700,
             letterSpacing: '0.25em',
@@ -69,15 +71,14 @@ function MyWishesPage() {
         </div>
         <h1
           style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(3rem, 8vw, 7rem)',
-            lineHeight: 1,
-            letterSpacing: '0.02em',
+            fontSize: 'clamp(2.5rem, 7vw, 5.5rem)',
+            fontWeight: 800,
+            lineHeight: 1.1,
+            letterSpacing: '-1px',
             marginBottom: '1.5rem',
-            color: 'var(--lx-text)',
           }}
         >
-          My <span style={{ color: 'var(--lx-red)' }}>Wishes</span>
+          My <span style={{ color: '#E50914' }}>Wishes</span>
         </h1>
         <p
           style={{
@@ -97,7 +98,7 @@ function MyWishesPage() {
           style={{
             fontFamily: 'var(--font-serif)',
             fontStyle: 'italic',
-            fontSize: 'clamp(1rem, 1.8vw, 1.2rem)',
+            fontSize: 'clamp(0.95rem, 1.8vw, 1.2rem)',
             fontWeight: 300,
             lineHeight: 1.8,
             color: 'rgba(229,229,229,0.6)',
@@ -109,69 +110,69 @@ function MyWishesPage() {
         </p>
       </section>
 
-      {/* Photo Gallery */}
+      {/* Photo & Video Gallery Grid */}
       <section
         style={{
-          padding: '0 4vw 5rem',
+          padding: '0 clamp(1rem, 4vw, 4%) 5rem',
           maxWidth: '1200px',
           margin: '0 auto',
         }}
       >
         <div
           style={{
-            display: 'flex',
+            display: 'inline-flex',
             alignItems: 'center',
             gap: '1rem',
             marginBottom: '2rem',
-            paddingLeft: '2vw',
           }}
         >
-          <div style={{ width: '2rem', height: '2px', background: 'var(--lx-red)' }} />
+          <div style={{ width: '2rem', height: '2px', background: '#E50914' }} />
           <h2
             style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(1.1rem, 2.5vw, 1.6rem)',
+              fontSize: 'clamp(1.1rem, 2.5vw, 1.4rem)',
+              fontWeight: 'bold',
               letterSpacing: '0.1em',
-              color: 'var(--lx-text)',
+              textTransform: 'uppercase'
             }}
           >
             OUR GALLERY
           </h2>
         </div>
 
+        {/* CSS GRID SYSTEM: Responsive on mobile devices */}
         <div
+          className="gallery-responsive-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gridTemplateRows: 'repeat(2, 220px)',
-            gap: '12px',
+            gap: '16px',
           }}
         >
-          {/* Main large photo — spans 2 cols × 2 rows */}
+          {/* Main Large Item: Local Video Embedding */}
           <div
+            className="main-large-item"
             style={{
-              gridColumn: '1 / 3',
-              gridRow: '1 / 3',
               borderRadius: '8px',
               overflow: 'hidden',
               position: 'relative',
               boxShadow: '0 8px 40px rgba(0,0,0,0.6)',
+              background: '#000',
+              aspectRatio: '16/10'
             }}
           >
-            <img
-              src="/lakshmi-photo.jpg"
-              alt="Lakshmi"
+            <video
+              src="/lakshmi-video.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              controls
               style={{
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
-                objectPosition: 'center top',
                 display: 'block',
-                filter: 'brightness(0.95) saturate(1.1)',
-                transition: 'transform 0.5s ease',
+                filter: 'brightness(0.9) contrast(1.05)'
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLImageElement).style.transform = 'scale(1.04)' }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLImageElement).style.transform = '' }}
             />
             <div
               style={{
@@ -180,31 +181,32 @@ function MyWishesPage() {
                 left: 0,
                 right: 0,
                 padding: '1.5rem',
-                background: 'linear-gradient(to top, rgba(0,0,0,0.85), transparent)',
-                color: 'white',
+                background: 'linear-gradient(to top, rgba(0,0,0,0.95), transparent)',
+                zIndex: 3,
+                pointerEvents: 'none'
               }}
             >
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', letterSpacing: '0.1em' }}>LAKSHMI</div>
+              <div style={{ fontWeight: 800, fontSize: '1.3rem', letterSpacing: '1px' }}>LAKSHMI</div>
               <div style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: '0.85rem', opacity: 0.8 }}>The main character. Always was.</div>
             </div>
           </div>
 
-          {/* Grid photos — 4 smaller */}
+          {/* Secondary Carousel Memory Assets */}
           {[
             {
-              src: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80',
+              src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80',
               label: 'The Journey',
             },
             {
-              src: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=600&q=80',
+              src: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=600&q=80',
               label: 'The Moments',
             },
             {
-              src: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80',
+              src: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80',
               label: 'The Dreams',
             },
             {
-              src: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=600&q=80',
+              src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80',
               label: 'The Horizon',
             },
           ].map((photo, i) => (
@@ -215,6 +217,8 @@ function MyWishesPage() {
                 overflow: 'hidden',
                 position: 'relative',
                 boxShadow: '0 4px 20px rgba(0,0,0,0.5)',
+                aspectRatio: '4/3',
+                background: '#18181b'
               }}
             >
               <img
@@ -225,31 +229,31 @@ function MyWishesPage() {
                   height: '100%',
                   objectFit: 'cover',
                   display: 'block',
-                  filter: 'brightness(0.8) saturate(1.1)',
+                  filter: 'brightness(0.75) saturate(1.1)',
                   transition: 'transform 0.4s ease, filter 0.4s ease',
                 }}
                 onMouseEnter={(e) => {
                   const img = e.currentTarget as HTMLImageElement
-                  img.style.transform = 'scale(1.06)'
-                  img.style.filter = 'brightness(1) saturate(1.2)'
+                  img.style.transform = 'scale(1.05)'
+                  img.style.filter = 'brightness(0.95) saturate(1.15)'
                 }}
                 onMouseLeave={(e) => {
                   const img = e.currentTarget as HTMLImageElement
                   img.style.transform = ''
-                  img.style.filter = 'brightness(0.8) saturate(1.1)'
+                  img.style.filter = 'brightness(0.75) saturate(1.1)'
                 }}
               />
               <div
                 style={{
                   position: 'absolute',
-                  bottom: '0.75rem',
-                  left: '0.75rem',
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '0.65rem',
+                  bottom: '0.85rem',
+                  left: '0.85rem',
+                  fontSize: '0.7rem',
                   fontWeight: 600,
                   letterSpacing: '0.15em',
                   textTransform: 'uppercase',
-                  color: 'rgba(255,255,255,0.7)',
+                  color: 'rgba(255,255,255,0.75)',
+                  textShadow: '0 2px 4px rgba(0,0,0,0.8)'
                 }}
               >
                 {photo.label}
@@ -259,10 +263,10 @@ function MyWishesPage() {
         </div>
       </section>
 
-      {/* Speech / Message */}
+      {/* Speech Section */}
       <section
         style={{
-          padding: '4rem 6vw 6rem',
+          padding: '4rem clamp(1rem, 4vw, 4%) 6rem',
           maxWidth: '900px',
           margin: '0 auto',
         }}
@@ -275,13 +279,13 @@ function MyWishesPage() {
             marginBottom: '3rem',
           }}
         >
-          <div style={{ width: '2rem', height: '2px', background: 'var(--lx-red)' }} />
+          <div style={{ width: '2rem', height: '2px', background: '#E50914' }} />
           <h2
             style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(1.1rem, 2.5vw, 1.6rem)',
+              fontSize: 'clamp(1.1rem, 2.5vw, 1.4rem)',
+              fontWeight: 'bold',
               letterSpacing: '0.1em',
-              color: 'var(--lx-text)',
+              textTransform: 'uppercase'
             }}
           >
             MY SPEECH
@@ -291,19 +295,19 @@ function MyWishesPage() {
         <div
           style={{
             position: 'relative',
-            borderLeft: '3px solid var(--lx-red)',
-            paddingLeft: '2.5rem',
+            borderLeft: '3px solid #E50914',
+            paddingLeft: 'clamp(1.2rem, 4vw, 2.5rem)',
           }}
         >
           <div
             style={{
               position: 'absolute',
-              top: '-1rem',
+              top: '-1.5rem',
               left: '-0.5rem',
               fontFamily: 'var(--font-serif)',
               fontSize: '5rem',
-              color: 'var(--lx-red)',
-              opacity: 0.3,
+              color: '#E50914',
+              opacity: 0.25,
               lineHeight: 1,
               userSelect: 'none',
             }}
@@ -323,14 +327,13 @@ function MyWishesPage() {
             <p
               key={i}
               style={{
-                fontFamily: i === 0 ? 'var(--font-body)' : 'var(--font-serif)',
+                fontFamily: i === 0 ? 'var(--font-body, inherit)' : 'var(--font-serif)',
                 fontStyle: i === 0 ? 'normal' : 'italic',
                 fontSize: i === 0 ? '1.05rem' : 'clamp(1rem, 1.8vw, 1.25rem)',
                 fontWeight: 300,
-                lineHeight: 1.9,
-                color: i === 6 ? 'rgba(229,229,229,1)' : 'rgba(229,229,229,0.85)',
+                lineHeight: 1.8,
+                color: i === 6 ? 'white' : 'rgba(229,229,229,0.85)',
                 marginBottom: i === 6 ? 0 : '1.75rem',
-                letterSpacing: i > 0 ? '0.01em' : '0',
               }}
             >
               {para}
@@ -345,60 +348,81 @@ function MyWishesPage() {
               gap: '1rem',
             }}
           >
-            <div style={{ flex: 1, height: '1px', background: 'var(--lx-border)' }} />
+            <div style={{ flex: 1, height: '1px', background: '#333' }} />
             <span
               style={{
                 fontFamily: 'var(--font-serif)',
                 fontStyle: 'italic',
                 fontSize: '1rem',
-                color: 'var(--lx-red)',
+                color: '#E50914',
               }}
             >
               — With everything —
             </span>
-            <div style={{ flex: 1, height: '1px', background: 'var(--lx-border)' }} />
+            <div style={{ flex: 1, height: '1px', background: '#333' }} />
           </div>
         </div>
       </section>
 
-      {/* Back to Universe */}
-      <section
-        style={{
-          textAlign: 'center',
-          padding: '2rem 4% 6rem',
-        }}
-      >
+      {/* Back Loop Navigation Button */}
+      <section style={{ textAlign: 'center', padding: '2rem 4% 6rem' }}>
         <button
           onClick={() => navigate({ to: '/home' })}
           style={{
             display: 'inline-flex',
             alignItems: 'center',
             gap: '0.75rem',
-            background: 'var(--lx-red)',
+            background: '#E50914',
             color: 'white',
             border: 'none',
             padding: '0.85rem 2.5rem',
-            borderRadius: '3px',
-            fontFamily: 'var(--font-body)',
+            borderRadius: '4px',
             fontWeight: 700,
             fontSize: '0.9rem',
-            letterSpacing: '0.08em',
             cursor: 'pointer',
-            transition: 'all 0.2s ease',
+            transition: 'background 0.2s ease',
           }}
           onMouseEnter={(e) => { e.currentTarget.style.background = '#b20710' }}
-          onMouseLeave={(e) => { e.currentTarget.style.background = 'var(--lx-red)' }}
+          onMouseLeave={(e) => { e.currentTarget.style.background = '#E50914' }}
         >
           ← Back to Lakshmi&apos;s Universe
         </button>
       </section>
 
+      {/* Injection of Global Layout Styles */}
+      <style>{`
+        .gallery-responsive-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        .main-large-item {
+          grid-column: 1 / 3;
+          grid-row: 1 / 3;
+        }
+        @media (max-width: 850px) {
+          .gallery-responsive-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .main-large-item {
+            grid-column: 1 / 3 !important;
+            grid-row: auto !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .gallery-responsive-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .main-large-item {
+            grid-column: auto !important;
+          }
+        }
+      `}</style>
+
       {/* Footer */}
-      <footer className="lx-footer">
-        <div className="lx-footer-logo" onClick={() => navigate({ to: '/' })} style={{ cursor: 'pointer' }}>
+      <footer style={{ background: '#000', padding: '3rem 4%', textAlign: 'center', borderTop: '1px solid #222' }}>
+        <div className="lx-footer-logo" onClick={() => navigate({ to: '/' })} style={{ cursor: 'pointer', color: '#E50914', fontWeight: 'bold', fontSize: '1.3rem' }}>
           LAKSHMIX
         </div>
-        <div className="lx-footer-text">Made with love · 2025 · Lakshmi&apos;s Universe</div>
+        <div style={{ color: '#666', fontSize: '0.85rem', marginTop: '0.5rem' }}>Made with love · 2026 · Lakshmi&apos;s Universe</div>
       </footer>
     </div>
   )

@@ -147,7 +147,7 @@ function Hero() {
           LAKSHMI SAGA
         </div>
         <h1 className="saga-hero-title fade-in-up stagger-2" style={{ fontSize: 'clamp(2.5rem, 8vw, 4rem)', fontWeight: 800, letterSpacing: '-1px', margin: '0.2rem 0' }}>
-          Season 22
+          Season 23
         </h1>
         <div className="saga-hero-subtitle fade-in-up stagger-3" style={{ fontSize: 'clamp(1.1rem, 3vw, 1.4rem)', fontFamily: 'var(--font-serif)', fontStyle: 'italic', marginBottom: 'clamp(1rem, 3vw, 1.5rem)' }}>
           Under Exploration
@@ -398,7 +398,7 @@ function Footer() {
         A cinematic tribute to courage, intelligence, and the decade&apos;s highest package.
       </div>
       <div style={{ color: '#555', fontSize: '0.8rem' }}>
-        Made with love · 2025 · Lakshmi&apos;s Universe
+        Made with love · 2026 · Lakshmi&apos;s Universe
       </div>
     </footer>
   )
