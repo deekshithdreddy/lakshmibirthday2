@@ -50,7 +50,7 @@ function Navbar() {
 
 function Hero() {
   // Cinematic HD image (replace with Lakshmi later)
-  const heroImg = 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1600&q=80'; // Example: elegant portrait
+  const heroImg = '/images/lakshmiintemple.png?auto=format&fit=crop&w=1600&q=80'; // Example: elegant portrait
   return (
     <section
       className="hero saga-hero"
