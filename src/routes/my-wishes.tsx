@@ -33,25 +33,24 @@ function MyWishesPage() {
     return `${window.location.origin}${path}`
   }
 
-  // Snappy Explosive Particle Pipeline Engine
+  // High-Energy Particle Pipeline Engine
   const executeRatingImpact = (selectedScore: number) => {
     setRating(selectedScore)
     if (!canvasRef.current) return
     const canvas = canvasRef.current
     
-    // Calculate layout scaling boundaries safely
     const startX = window.innerWidth / 2
     const startY = window.innerHeight * 0.72
     const clusterQueue: SpecialParticle[] = []
 
     if (selectedScore === 1 || selectedScore === 2) {
       setFlashActive(true)
-      setTimeout(() => setFlashActive(false), 800) // Fast, satisfying overlay flash
+      setTimeout(() => setFlashActive(false), 800)
 
       const redTones = ['#E50914', '#b20710', '#ff4d4d', '#ff1a1a']
       for (let i = 0; i < 80; i++) {
         const angle = Math.random() * Math.PI * 2
-        const velocity = 6 + Math.random() * 14 // Energetic, snappy speed vectors
+        const velocity = 6 + Math.random() * 14
         clusterQueue.push({
           x: startX,
           y: startY,
@@ -86,21 +85,26 @@ function MyWishesPage() {
       }
     } 
     else if (selectedScore === 5) {
+      // 🐋 TIER 5: MAXIMUM SPEED WHALE ENERGY BLAST
       const seaEmojis = ['🐋', '🐚', '🦀', '🌊', '🐳', '✨', '💖']
-      for (let i = 0; i < 100; i++) {
+      for (let i = 0; i < 120; i++) {
         const angle = Math.random() * Math.PI * 2
-        const velocity = 9 + Math.random() * 18
+        
+        // --- SPEED TUNING PARAMETERS ---
+        const velocity = 18 + Math.random() * 25 // MASSIVE base speed velocity boost
+        const upwardKick = 14 // Forceful launch upward factor
+        
         clusterQueue.push({
           x: startX,
           y: startY,
-          size: 24 + Math.random() * 20, // Crisp, bold rendering dimensions
+          size: 24 + Math.random() * 18,
           type: 'emoji',
           char: seaEmojis[Math.floor(Math.random() * seaEmojis.length)],
           color: '#ffffff',
           speedX: Math.cos(angle) * velocity,
-          speedY: (Math.sin(angle) * velocity) - 7,
+          speedY: (Math.sin(angle) * velocity) - upwardKick,
           rotation: Math.random() * 360,
-          rotationSpeed: -10 + Math.random() * 20,
+          rotationSpeed: -15 + Math.random() * 30, // Faster spinning action
           opacity: 1
         })
       }
@@ -134,7 +138,7 @@ function MyWishesPage() {
     ctx.fill()
   }
 
-  // Master Canvas Lifecycle Loop with high-DPI structural anti-aliasing overrides
+  // High-DPI Anti-Aliasing Canvas Controller Loop
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -143,12 +147,12 @@ function MyWishesPage() {
 
     const handleResize = () => {
       if (canvas && ctx) {
-        const dpr = window.devicePixelRatio || 1 // Checks screen pixel density properties
+        const dpr = window.devicePixelRatio || 1
         canvas.width = window.innerWidth * dpr
         canvas.height = window.innerHeight * dpr
         canvas.style.width = `${window.innerWidth}px`
         canvas.style.height = `${window.innerHeight}px`
-        ctx.scale(dpr, dpr) // Rescales canvas coordinates to look razor sharp
+        ctx.scale(dpr, dpr)
       }
     }
     window.addEventListener('resize', handleResize)
@@ -160,10 +164,10 @@ function MyWishesPage() {
       particlesRef.current = particlesRef.current.filter((p) => {
         p.x += p.speedX
         p.y += p.speedY
-        p.speedY += 0.38 // Snappy gravity fall acceleration rate
-        p.speedX *= 0.965 // Modern crisp air dampening air drag drag 
+        p.speedY += 0.42 // Crisp snappier acceleration fall rate
+        p.speedX *= 0.97 // Smooth friction dampening matrix
         p.rotation += p.rotationSpeed
-        p.opacity -= 0.018 // Crisp decay timeline parameters
+        p.opacity -= 0.016 // Faster fade decay timeline for responsiveness
 
         if (p.opacity <= 0) return false
 
@@ -175,7 +179,6 @@ function MyWishesPage() {
         if (p.type === 'star') {
           renderVectorStar(ctx, 0, 0, 5, p.size, p.size / 2, p.color)
         } else if (p.type === 'emoji' && p.char) {
-          // Sharp High-DPI typography layout context mapping configurations
           ctx.font = `bold ${p.size}px Arial, sans-serif`
           ctx.textAlign = 'center'
           ctx.textBaseline = 'middle'
@@ -200,10 +203,10 @@ function MyWishesPage() {
   return (
     <div style={{ minHeight: '100vh', background: '#0a0a0a', color: 'white', overflowX: 'hidden' }}>
       
-      {/* Immersive Graphics Overlapping Layer Context Canvas */}
+      {/* High-DPI Overlay Canvas Element */}
       <canvas ref={canvasRef} style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 9999, width: '100%', height: '100%' }} />
 
-      {/* Tier 1 Crimson Pulse Flash Overlay Block Widget */}
+      {/* Tier 1 Flash Overlay Block Widget */}
       {flashActive && (
         <div style={{
           position: 'fixed',
@@ -215,7 +218,7 @@ function MyWishesPage() {
         }} />
       )}
 
-      {/* Application Animations Matrix Keyframe Container Styles */}
+      {/* Style Interceptor Layer */}
       <style>{`
         @keyframes subtleGlow {
           0% { box-shadow: 0 0 15px rgba(229, 9, 20, 0.4), 0 4px 20px rgba(0,0,0,0.8); }
@@ -395,7 +398,7 @@ function MyWishesPage() {
 
         <div className="gallery-responsive-grid">
           
-          {/* 🌟 GRAND HORIZONTAL FEATURED PICTURE: Lakshmi Dream */}
+          {/* GRAND HORIZONTAL FEATURED PICTURE: Lakshmi Dream */}
           <div
             className="featured-dream-item grand-featured-card"
             style={{
@@ -515,7 +518,7 @@ function MyWishesPage() {
             { src: '/images/lakshmi-temple.jpg', label: 'The Sanctuary' },
             { src: '/images/lakshmilaugh.jpg', label: 'Pure Laughter' },
             { src: '/images/lakshmi-beach.jpg', label: 'The Sunset Waves' },
-            { src: '/images/lakshmiintemple.png', label: 'The Core Memory' }
+            { src: '/images/lakshmiinteemple.png', label: 'The Core Memory' }
           ].map((photo, i) => (
             <div
               key={i}
@@ -669,7 +672,6 @@ function MyWishesPage() {
             Happy Birthday Lakshmi ❤️
           </p>
 
-          {/* 🌟 RE-ENGINEERED HIGH-DPI INTERACTIVE ENGINE */}
           <div
             style={{
               marginTop: '2.5rem',
@@ -679,12 +681,59 @@ function MyWishesPage() {
               gap: '0.5rem',
             }}
           >
-           { /* your comment here
-           
-           
-           
-           
-           */}
+            <div style={{ display: 'flex', width: '100%', alignItems: 'center', gap: '1rem' }}>
+              <div style={{ flex: 1, height: '1px', background: '#222' }} />
+              <span
+                style={{
+                  fontFamily: 'var(--font-serif)',
+                  fontStyle: 'italic',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  color: '#E50914',
+                }}
+              >
+                — Lakshman
+              </span>
+              <div style={{ flex: 1, height: '1px', background: '#222' }} />
+            </div>
+
+            {/* Premium HD Anti-Aliased Interactive Star Node Matrix */}
+            <div style={{ display: 'flex', gap: '8px', marginTop: '14px', justifyContent: 'center' }}>
+              {[1, 2, 3, 4, 5].map((starValue) => {
+                const isLit = starValue <= (hoverRating || rating)
+                let starColor = '#222'
+                if (isLit) {
+                  if (hoverRating <= 2 && rating <= 2 && starValue <= 2 && hoverRating > 0) {
+                    starColor = '#E50914'
+                  } else if (rating === 1 || rating === 2) {
+                    starColor = '#E50914'
+                  } else {
+                    starColor = '#ffcc02'
+                  }
+                }
+                
+                return (
+                  <span
+                    key={starValue}
+                    onClick={() => executeRatingImpact(starValue)}
+                    onMouseEnter={() => setHoverRating(starValue)}
+                    onMouseLeave={() => setHoverRating(0)}
+                    style={{
+                      fontSize: '2.4rem',
+                      cursor: 'pointer',
+                      color: starColor,
+                      transition: 'color 0.15s, transform 0.1s',
+                      transform: starValue === hoverRating ? 'scale(1.18)' : 'scale(1)',
+                      textShadow: isLit ? '0 0 12px rgba(255,204,2,0.4)' : 'none'
+                    }}
+                  >
+                    ★
+                  </span>
+                )
+              })}
+            </div>
+            <div style={{ color: '#444', fontSize: '0.68rem', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '4px' }}>[ CELEBRATE SEASON 23 ]</div>
+          </div>
         </div>
       </section>
 
