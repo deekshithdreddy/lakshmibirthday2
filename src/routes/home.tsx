@@ -63,7 +63,7 @@ function Navbar() {
 }
 
 function Hero() {
-  const heroImg = '/images/lakshmilaugh.jpg'; 
+  const heroImg = '/images/lakshmi-temple-bluedress.jpg'; 
   return (
     <section
       className="hero saga-hero"
