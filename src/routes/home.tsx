@@ -52,7 +52,7 @@ function Navbar() {
           LAKSHMIX
         </div>
         
-        {/* Unbreakable Android Navbar Navigation Links */}
+        {/* High-Visibility Android & Laptop Navigation Link Bar */}
         <div className="responsive-mobile-nav" style={{ display: 'flex', gap: 'clamp(12px, 3vw, 22px)', alignItems: 'center' }}>
           <span style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600, color: '#e5e5e5' }} onClick={() => handleScrollToSection('characters')}>Universe</span>
           <span style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600, color: '#e5e5e5' }} onClick={() => handleScrollToSection('wishes')}>Wishes</span>
@@ -105,7 +105,7 @@ function Hero() {
         overflow: 'hidden'
       }}
     >
-      {/* High-Definition Underlay aligned right-top to center her face clearly */}
+      {/* Elevated clear focus asset backdrop framing her face up cleanly */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: '#141414' }}>
         <img
           src={heroImg}
@@ -114,7 +114,7 @@ function Hero() {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            objectPosition: 'right top', // Pulled up perfectly to ensure her face stays prominent on mobile and laptop screens
+            objectPosition: 'right top', 
             filter: 'brightness(0.88) contrast(1.02)'
           }}
         />
@@ -214,7 +214,7 @@ function CharacterCarousel() {
                   overflow: 'hidden', 
                   borderRadius: '4px', 
                   background: '#181818', 
-                  // Grand Portrait Aspect Ratio Formats Restored Perfectly
+                  // Premium Grand Portrait Aspect Dimensions Fixed Perfectly
                   flex: '0 0 clamp(190px, 45vw, 250px)', 
                   aspectRatio: '2/3',
                   transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease',
@@ -325,7 +325,7 @@ Enjoy every moment, making a lot of friends, exploring as far as it goes, and ne
         ))}
       </div>
 
-      {/* 🎬 HIGH-END NETFLIX ORIGINAL FEATURED BILLBOARD SECTION */}
+      {/* 🎬 PREMIUM SUMMARY EDITORIAL EXPERIENTIAL BILLBOARD */}
       <div 
         className="netflix-billboard-container"
         style={{ 
@@ -344,7 +344,7 @@ Enjoy every moment, making a lot of friends, exploring as far as it goes, and ne
           TOP 10 SUMMARY FEATURE
         </div>
         
-        {/* Editorial Serif Layout Design */}
+        {/* Editorial Netflix Premium Serif Layout Design Script */}
         <p style={{ 
           color: '#ffffff', 
           fontSize: 'clamp(1.05rem, 2.5vw, 1.35rem)', 
@@ -393,106 +393,6 @@ function Footer() {
 }
 
 export default function HomePage() {
-  const [profileScreen, setProfileScreen] = useState<boolean>(true)
-  const [toastMessage, setToastMessage] = useState<string>('')
-  const [profileAnimate, setProfileAnimate] = useState<boolean>(false)
-
-  const handleLakshmiProfile = () => {
-    setProfileAnimate(true)
-    setTimeout(() => {
-      setProfileScreen(false)
-    }, 600)
-  }
-
-  const triggerToast = (msg: string) => {
-    setToastMessage(msg)
-    setTimeout(() => setToastMessage(''), 2400)
-  }
-
-  // Master Dashboard profiles mapping configuration
-  const profilesList = [
-    { id: 'lakshmi', name: 'Lakshmi', bg: '#E50914', label: 'L', marker: '[ Main Character ]', action: handleLakshmiProfile },
-    { id: 'peetha', name: 'Peetha', bg: '#1565c0', label: 'P', marker: '[ Core Memory Partner ]', action: () => triggerToast('Nice try, Peetha! 😂') },
-    { id: 'gajini-sister', name: "Gajini's Sister", bg: '#6a1b9a', label: 'G', marker: '[ Short-term Memory ]', action: () => triggerToast("Nice try, Gajini's Sister! 😂") },
-    { id: 'nolan', name: 'Photographer Nolan', bg: '#2e7d32', label: 'N', marker: '[ Director of Photo ]', action: () => triggerToast('Nice try, Photographer Nolan! 😂') },
-    { id: 'guest', name: 'Guest Account', bg: '#333333', label: '?', marker: '[ Stranger Danger ]', action: () => triggerToast('Evanivi ra nuvvu... 😂') }
-  ]
-
-  if (profileScreen) {
-    return (
-      <div style={{ 
-        position: 'fixed', 
-        inset: 0, 
-        zIndex: 999999, 
-        background: '#141414', 
-        color: 'white', 
-        display: 'flex', 
-        flexDirection: 'column', 
-        alignItems: 'center', 
-        justifyContent: 'center',
-        fontFamily: 'sans-serif',
-        opacity: profileAnimate ? 0 : 1,
-        transform: profileAnimate ? 'scale(1.08)' : 'scale(1)',
-        transition: 'all 0.55s cubic-bezier(0.2, 0.8, 0.2, 1)'
-      }}>
-        
-        {/* Custom Toast Alerts Display Container */}
-        {toastMessage && (
-          <div style={{
-            position: 'absolute',
-            top: '8%',
-            background: toastMessage.includes('Evanivi') ? '#b20710' : '#222225',
-            color: 'white',
-            padding: '12px 24px',
-            borderRadius: '4px',
-            fontSize: '0.95rem',
-            fontWeight: 700,
-            border: toastMessage.includes('Evanivi') ? 'none' : '1px solid #444',
-            boxShadow: '0 8px 24px rgba(0,0,0,0.5)',
-            zIndex: 1000000,
-            animation: 'subtleGlow 0.3s ease-out'
-          }}>
-            {toastMessage}
-          </div>
-        )}
-
-        <h1 style={{ fontSize: 'clamp(1.4rem, 4.5vw, 2.4rem)', fontWeight: 500, color: '#fff', marginBottom: '2.5rem', textAlign: 'center', letterSpacing: '0.5px' }}>
-          Who&apos;s watching LAKSHMIX?
-        </h1>
-
-        <div style={{ display: 'flex', gap: 'clamp(15px, 3.5vw, 30px)', justifyContent: 'center', flexWrap: 'wrap', padding: '0 24px', maxWidth: '800px' }}>
-          {profilesList.map((prof) => (
-            <div key={prof.id} onClick={prof.action} style={{ textAlign: 'center', cursor: 'pointer' }} className="profile-box-card">
-              <div style={{ width: 'clamp(85px, 12vw, 110px)', aspectRatio: '1/1', background: prof.bg, borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.6rem', fontWeight: 900, color: 'white', boxShadow: '0 4px 15px rgba(0,0,0,0.5)', transition: 'all 0.15s ease' }} className="p-box-glow">
-                {prof.label}
-              </div>
-              <div style={{ marginTop: '10px', fontSize: '0.85rem', color: '#808080', fontWeight: 600, transition: 'color 0.2s' }} className="p-text-glow">{prof.name}</div>
-              <div style={{ fontSize: '0.62rem', color: prof.id === 'lakshmi' ? '#46d369' : '#555', fontWeight: 700, marginTop: '2px' }}>{prof.marker}</div>
-            </div>
-          ))}
-        </div>
-
-        <button 
-          onClick={handleLakshmiProfile}
-          style={{ 
-            marginTop: '4rem', 
-            background: 'none', 
-            border: '1px solid #666', 
-            color: '#666', 
-            padding: '8px 24px', 
-            fontSize: '0.8rem', 
-            letterSpacing: '1px', 
-            textTransform: 'uppercase',
-            fontWeight: 600,
-            cursor: 'pointer'
-          }}
-        >
-          Manage Profiles
-        </button>
-      </div>
-    )
-  }
-
   return (
     <div style={{ minHeight: '100vh', background: '#141414', overflowX: 'hidden' }}>
       
@@ -511,13 +411,6 @@ export default function HomePage() {
           transform: translate3d(0, -5px, 0) !important;
           border-color: #E50914 !important;
           box-shadow: 0 8px 20px rgba(0,0,0,0.6) !important;
-        }
-        .profile-box-card:hover .p-box-glow {
-          outline: 3px solid #ffffff;
-          transform: scale(1.04);
-        }
-        .profile-box-card:hover .p-text-glow {
-          color: #ffffff !important;
         }
         .netflix-btn-white:active, .netflix-btn-gray:active {
           transform: scale(0.96);
