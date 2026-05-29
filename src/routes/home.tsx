@@ -33,9 +33,9 @@ function Navbar() {
       top: 0,
       left: 0,
       right: 0,
-      zIndex: 10000,
-      background: scrolled ? '#141414' : 'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%)',
-      transition: 'all 0.35s ease',
+      zIndex: 20000, // Explicit layout priority layer lock
+      background: scrolled ? '#141414' : 'linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, transparent 100%)',
+      transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
       borderBottom: scrolled ? '1px solid #252525' : 'none'
     }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(15px, 4vw, 40px)' }}>
@@ -52,17 +52,17 @@ function Navbar() {
           LAKSHMIX
         </div>
         
-        {/* High-Visibility Android & Laptop Navigation Link Bar */}
+        {/* Mobile & Desktop High-Visibility Navigation Stream Link Grid */}
         <div className="responsive-mobile-nav" style={{ display: 'flex', gap: 'clamp(12px, 3vw, 22px)', alignItems: 'center' }}>
-          <span style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600, color: '#e5e5e5' }} onClick={() => handleScrollToSection('characters')}>Universe</span>
-          <span style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600, color: '#e5e5e5' }} onClick={() => handleScrollToSection('wishes')}>Wishes</span>
-          <span style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 700, color: '#E50914' }} onClick={() => navigate({ to: '/my-wishes' })}>My Wishes</span>
+          <span style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600, color: '#e5e5e5', transition: 'color 0.2s' }} className="nav-hover-link" onClick={() => handleScrollToSection('characters')}>Universe</span>
+          <span style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600, color: '#e5e5e5', transition: 'color 0.2s' }} className="nav-hover-link" onClick={() => handleScrollToSection('wishes')}>Wishes</span>
+          <span style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 700, color: '#E50914', transition: 'color 0.2s' }} className="nav-hover-link" onClick={() => navigate({ to: '/my-wishes' })}>My Wishes</span>
         </div>
       </div>
       
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <div 
-          onClick={() => navigate({ to: '/' })} // FIXED: Navigates straight from /home back to the root application link
+          onClick={() => navigate({ to: '/' })} // Navigates straight from /home back to the root profile directory
           style={{ 
             width: '32px', 
             height: '32px', 
@@ -105,7 +105,7 @@ function Hero() {
         overflow: 'hidden'
       }}
     >
-      {/* Background Frame Setup */}
+      {/* Background Hero Frame - Specially adjusted to shift her profile right and clear text elements */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: '#141414' }}>
         <img
           src={heroImg}
@@ -114,19 +114,19 @@ function Hero() {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            objectPosition: '42% 15%', // FIXED: Tweak parameters to shift her face cleanly to the right side of the viewport screen layout away from text
+            objectPosition: '78% 12%', // Shifts her face nicely to the right-center while keeping it centered vertically
             filter: 'brightness(0.85) contrast(1.03)'
           }}
         />
       </div>
 
-      {/* Netflix Cinematic Multi-Stage Shadow Gradient Scrim */}
+      {/* Netflix Cinematic Multi-Stage Shadow Gradient Scrim Overlay */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
           zIndex: 2,
-          background: 'linear-gradient(to right, rgba(20,20,20,0.95) 0%, rgba(20,20,20,0.6) 40%, rgba(20,20,20,0) 80%), linear-gradient(to top, #141414 0%, rgba(20,20,20,0.3) 25%, transparent 60%)',
+          background: 'linear-gradient(to right, rgba(20,20,20,0.96) 0%, rgba(20,20,20,0.65) 45%, rgba(20,20,20,0) 85%), linear-gradient(to top, #141414 0%, rgba(20,20,20,0.2) 20%, transparent 60%)',
         }}
       />
 
@@ -146,7 +146,7 @@ function Hero() {
           <span style={{ fontSize: '0.65rem', background: 'rgba(229, 9, 20, 0.35)', border: '1px solid rgba(229, 9, 20, 0.5)', padding: '1px 6px', borderRadius: '2px', fontWeight: 700, color: '#fff' }}>Est. 2003</span>
         </div>
         
-        <h1 style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', fontWeight: 900, letterSpacing: '-1.5px', margin: '0 0 6px 0', lineHeight: 1.05 }}>
+        <h1 style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', fontWeight: 900, letterSpacing: '-1px', margin: '0 0 6px 0', lineHeight: 1.05 }}>
           Season 23
         </h1>
         
@@ -154,7 +154,7 @@ function Hero() {
           The Story is Still being Written...
         </div>
 
-        {/* CTA Buttons Row */}
+        {/* Action Controls Group Row */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '20px' }}>
           <button
             className="netflix-btn-white"
@@ -214,6 +214,7 @@ function CharacterCarousel() {
                   overflow: 'hidden', 
                   borderRadius: '4px', 
                   background: '#181818', 
+                  // Original portrait size constraints preserved perfectly
                   flex: '0 0 clamp(190px, 45vw, 250px)', 
                   aspectRatio: '2/3',
                   transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease',
@@ -300,7 +301,7 @@ Enjoy every moment, making a lot of friends, exploring as far as it goes, and ne
         Wishes From Around The World
       </h2>
 
-      {/* Floating Masonry Layout Matrix Cards with hardware lifters */}
+      {/* Floating Modern Animated Wish Cards Grid Layout */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(clamp(250px, 22vw, 310px), 1fr))', gap: '14px', marginBottom: '3.5rem' }}>
         {wishes.map((wish, i) => (
           <div 
@@ -402,14 +403,18 @@ export default function HomePage() {
         .touch-scroll-enabled { -webkit-overflow-scrolling: touch; }
         
         .netflix-thumbnail-card:hover {
-          transform: translate3d(0, -6px, 0) scale(1.05) !important;
+          transform: translate3d(0, -8px, 0) scale(1.05) !important;
           box-shadow: 0 14px 28px rgba(0,0,0,0.85) !important;
           z-index: 99;
         }
         .netflix-wish-card:hover {
-          transform: translate3d(0, -5px, 0) !important;
-          border-color: #E50914 !important;
-          box-shadow: 0 8px 20px rgba(0,0,0,0.6) !important;
+          transform: translate3d(0, -6px, 0) !important; /* Premium 3D movement lift acceleration */
+          border-color: rgba(229, 9, 20, 0.5) !important;
+          background-color: #202023 !important;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.65) !important;
+        }
+        .nav-hover-link:hover {
+          color: #b3b3b3 !important;
         }
         .netflix-btn-white:active, .netflix-btn-gray:active {
           transform: scale(0.96);
@@ -418,7 +423,7 @@ export default function HomePage() {
           .desktop-only-btn { display: none !important; }
           .lx-nav {
             padding: 14px 16px !important;
-            background-color: rgba(20, 20, 20, 0.98) !important;
+            background-color: rgba(20, 20, 20, 0.98) !important; /* Solid back constraint layout anchor */
             border-bottom: 1px solid #252525 !important;
           }
           .responsive-mobile-nav {
