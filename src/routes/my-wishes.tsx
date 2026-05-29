@@ -8,7 +8,7 @@ export const Route = createFileRoute('/my-wishes')({
 function MyWishesPage() {
   const navigate = useNavigate()
 
-  // Base URL fallback handler to prevent router route nesting path breaks
+  // Base URL fallback handler to prevent router routing nesting path breaks
   const getAssetPath = (path: string) => {
     return `${window.location.origin}${path}`
   }
@@ -93,11 +93,11 @@ function MyWishesPage() {
             fontWeight: 300,
             lineHeight: 1.8,
             color: 'rgba(229,229,229,0.85)',
-            maxWidth: '680px',
-            margin: '0 auto 0.75rem',
+            maxWidth: '750px',
+            margin: '0 auto 1rem',
           }}
         >
-          You didn&apos;t just turn 22. You turned the whole game around.
+          23 seasons later, still under exploration... and that&apos;s what makes the story interesting
         </p>
         <p
           style={{
@@ -111,7 +111,7 @@ function MyWishesPage() {
             margin: '0 auto',
           }}
         >
-          Here is everything I couldn&apos;t fit in a text message.
+          a small tribute to one of my favorite people
         </p>
       </section>
 
@@ -196,17 +196,80 @@ function MyWishesPage() {
             </div>
           </div>
 
-          {/* Cleaned root asset mappings utilizing absolute domain rendering updates */}
+          {/* ⭐ SPECIAL FEATURED FORMAT: Lakshmi Dream (Your Favorite Pic) */}
+          <div
+            className="featured-dream-item"
+            style={{
+              borderRadius: '8px',
+              overflow: 'hidden',
+              position: 'relative',
+              boxShadow: '0 0 25px rgba(229, 9, 20, 0.45), 0 8px 30px rgba(0,0,0,0.7)',
+              border: '2px solid rgba(229, 9, 20, 0.6)',
+              background: '#18181b',
+              aspectRatio: '4/5'
+            }}
+          >
+            <img
+              src={getAssetPath('/images/lakshmi-dream.png')}
+              alt="The Dream"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block',
+                filter: 'brightness(0.95) saturate(1.15)',
+                transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.04)' }}
+              onMouseLeave={(e) => { e.currentTarget.style.transform = '' }}
+            />
+            <div
+              style={{
+                position: 'absolute',
+                top: '12px',
+                left: '12px',
+                background: '#E50914',
+                color: 'white',
+                fontSize: '0.65rem',
+                fontWeight: 'bold',
+                padding: '4px 10px',
+                borderRadius: '3px',
+                letterSpacing: '1px',
+                textTransform: 'uppercase',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.5)'
+              }}
+            >
+              ★ Featured
+            </div>
+            <div
+              style={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                padding: '1.5rem',
+                background: 'linear-gradient(to top, rgba(0,0,0,0.9), transparent)',
+              }}
+            >
+              <div style={{ fontWeight: 800, fontSize: '1.2rem', letterSpacing: '0.5px', color: '#ffcc02' }}>THE DREAM ARCHIVE</div>
+              <div style={{ fontSize: '0.8rem', opacity: 0.85, marginTop: '2px' }}>A landscape context perfectly holding main character values.</div>
+            </div>
+          </div>
+
+          {/* Standard Gallery Items mapped precisely from your upload directory checklist */}
           {[
-            { src: '/images/lakshmi-dream-photo.png', label: 'The Dream' },
-            { src: '/images/lakshmi-dream-photo2.png', label: 'The Horizon' },
+            { src: '/images/lakshmi-dream2.png', label: 'The Horizon' },
             { src: '/images/lakshmi-weird-photo.jpg', label: 'The Weird Moments' },
-            { src: '/images/lakshmi-and-me-in-museum.jpg', label: 'The Museum' },
-            { src: '/images/lakshmi-and-me-temple-bw-photo.jpg', label: 'The Temple (B&W)' },
-            { src: '/images/lakshmi-and-me-temple-photo.jpg', label: 'The Journey' },
-            { src: '/images/lakshmi-and-me-temple-photo2.jpg', label: 'The Shared Paths' },
+            { src: '/images/lakshmi-and-me-museum.jpg', label: 'The Museum Day' },
+            { src: '/images/lakshmi-and-me-temple-bw-photo.jpg', label: 'The Temple (B&W Classic)' },
+            { src: '/images/lakshmi-and-me-temple-bw.jpg', label: 'The Heritage Frame' },
+            { src: '/images/lakshmi-and-me-temple.jpg', label: 'The Shared Paths' },
+            { src: '/images/lakshmi-and-me-temple-2.jpg', label: 'The Sacred Ground' },
+            { src: '/images/lakshmi-temple-bluedress.jpg', label: 'The Blue Dress Portrait' },
             { src: '/images/lakshmi-temple.jpg', label: 'The Sanctuary' },
-            { src: '/images/lakshmiintemple.png', label: 'The Core Memory' }
+            { src: '/images/lakshmilaugh.jpg', label: 'Pure Laughter' },
+            { src: '/images/lakshmi-beach.jpg', label: 'The Sunset Waves' },
+            { src: '/images/lakshmiinteemple.png', label: 'The Core Memory' }
           ].map((photo, i) => (
             <div
               key={i}
@@ -216,7 +279,8 @@ function MyWishesPage() {
                 position: 'relative',
                 boxShadow: '0 4px 20px rgba(0,0,0,0.5)',
                 aspectRatio: '4/3',
-                background: '#18181b'
+                background: '#18181b',
+                border: '1px solid rgba(255,255,255,0.05)'
               }}
             >
               <img
@@ -227,18 +291,18 @@ function MyWishesPage() {
                   height: '100%',
                   objectFit: 'cover',
                   display: 'block',
-                  filter: 'brightness(0.8) saturate(1.05)',
+                  filter: 'brightness(0.82) saturate(1.05)',
                   transition: 'transform 0.4s ease, filter 0.4s ease',
                 }}
                 onMouseEnter={(e) => {
                   const img = e.currentTarget as HTMLImageElement
                   img.style.transform = 'scale(1.05)'
-                  img.style.filter = 'brightness(0.95) saturate(1.15)'
+                  img.style.filter = 'brightness(0.95) saturate(1.12)'
                 }}
                 onMouseLeave={(e) => {
                   const img = e.currentTarget as HTMLImageElement
                   img.style.transform = ''
-                  img.style.filter = 'brightness(0.8) saturate(1.05)'
+                  img.style.filter = 'brightness(0.82) saturate(1.05)'
                 }}
               />
               <div
@@ -396,11 +460,15 @@ function MyWishesPage() {
           grid-column: 1 / 3;
           grid-row: 1 / 3;
         }
+        .featured-dream-item {
+          grid-column: 3 / 5;
+          grid-row: 1 / 3;
+        }
         @media (max-width: 950px) {
           .gallery-responsive-grid {
             grid-template-columns: repeat(2, 1fr) !important;
           }
-          .main-large-item {
+          .main-large-item, .featured-dream-item {
             grid-column: 1 / 3 !important;
             grid-row: auto !important;
           }
@@ -409,7 +477,7 @@ function MyWishesPage() {
           .gallery-responsive-grid {
             grid-template-columns: 1fr !important;
           }
-          .main-large-item {
+          .main-large-item, .featured-dream-item {
             grid-column: auto !important;
           }
         }
