@@ -5,7 +5,6 @@ export const Route = createFileRoute('/my-wishes')({
   component: MyWishesPage,
 })
 
-// Structured programmatic data schema for particle physics tracking matrix
 interface SpecialParticle {
   x: number
   y: number
@@ -26,7 +25,6 @@ function MyWishesPage() {
   const particlesRef = useRef<SpecialParticle[]>([])
   const animationFrameRef = useRef<number | null>(null)
   
-  // Custom interactive states tracking
   const [rating, setRating] = useState<number>(0)
   const [hoverRating, setHoverRating] = useState<number>(0)
   const [flashActive, setFlashActive] = useState<boolean>(false)
@@ -35,78 +33,74 @@ function MyWishesPage() {
     return `${window.location.origin}${path}`
   }
 
-  // 🎭 Programmatic Multi-Tier Asset Particle Engine Pipeline Trigger
+  // Snappy Explosive Particle Pipeline Engine
   const executeRatingImpact = (selectedScore: number) => {
     setRating(selectedScore)
     if (!canvasRef.current) return
     const canvas = canvasRef.current
     
-    const startX = canvas.width / 2
-    const startY = window.innerHeight * 0.72 // Coordinates centered straight behind the tracking node array
+    // Calculate layout scaling boundaries safely
+    const startX = window.innerWidth / 2
+    const startY = window.innerHeight * 0.72
     const clusterQueue: SpecialParticle[] = []
 
-    // TIER 1: Level 1 & 2 — Red Warning Matrix Sparklers + Screen Gradient Flash
     if (selectedScore === 1 || selectedScore === 2) {
       setFlashActive(true)
-      setTimeout(() => setFlashActive(false), 1600) // Self-cleaning timeout callback loop
+      setTimeout(() => setFlashActive(false), 800) // Fast, satisfying overlay flash
 
       const redTones = ['#E50914', '#b20710', '#ff4d4d', '#ff1a1a']
-      for (let i = 0; i < 100; i++) {
+      for (let i = 0; i < 80; i++) {
         const angle = Math.random() * Math.PI * 2
-        const velocity = 3 + Math.random() * 7
+        const velocity = 6 + Math.random() * 14 // Energetic, snappy speed vectors
         clusterQueue.push({
           x: startX,
           y: startY,
-          size: 8 + Math.random() * 10,
+          size: 10 + Math.random() * 12,
           type: 'star',
           color: redTones[Math.floor(Math.random() * redTones.length)],
           speedX: Math.cos(angle) * velocity,
-          speedY: (Math.sin(angle) * velocity) - 2,
+          speedY: (Math.sin(angle) * velocity) - 5,
           rotation: Math.random() * 360,
-          rotationSpeed: -8 + Math.random() * 16,
+          rotationSpeed: -15 + Math.random() * 30,
           opacity: 1
         })
       }
     } 
-    
-    // TIER 2: Level 3 & 4 — Massive Sparkling Cosmic Star Fields
     else if (selectedScore === 3 || selectedScore === 4) {
       const cosmicTones = ['#ffcc02', '#ffea00', '#fffc7f', '#4fc3f7', '#e040fb', '#ffffff']
-      for (let i = 0; i < 220; i++) { // Boosted density particle allocation fields
+      for (let i = 0; i < 180; i++) {
         const angle = Math.random() * Math.PI * 2
-        const velocity = 4 + Math.random() * 10
+        const velocity = 8 + Math.random() * 16
         clusterQueue.push({
           x: startX,
           y: startY,
-          size: 6 + Math.random() * 12,
+          size: 8 + Math.random() * 14,
           type: 'star',
           color: cosmicTones[Math.floor(Math.random() * cosmicTones.length)],
           speedX: Math.cos(angle) * velocity,
-          speedY: (Math.sin(angle) * velocity) - 4,
+          speedY: (Math.sin(angle) * velocity) - 6,
           rotation: Math.random() * 360,
-          rotationSpeed: -12 + Math.random() * 24,
+          rotationSpeed: -20 + Math.random() * 40,
           opacity: 1
         })
       }
     } 
-    
-    // TIER 3: Level 5 — The Whale Energy Marine Blast
     else if (selectedScore === 5) {
-      const seaEmojis = ['🐋', '🐚', '🦀', '🌊', '🐳', '⭐']
-      for (let i = 0; i < 120; i++) {
+      const seaEmojis = ['🐋', '🐚', '🦀', '🌊', '🐳', '✨', '💖']
+      for (let i = 0; i < 100; i++) {
         const angle = Math.random() * Math.PI * 2
-        const velocity = 5 + Math.random() * 9
+        const velocity = 9 + Math.random() * 18
         clusterQueue.push({
           x: startX,
           y: startY,
-          size: 20 + Math.random() * 18, // Enlarged scale bounding layout matrices for clear visibility
+          size: 24 + Math.random() * 20, // Crisp, bold rendering dimensions
           type: 'emoji',
           char: seaEmojis[Math.floor(Math.random() * seaEmojis.length)],
           color: '#ffffff',
           speedX: Math.cos(angle) * velocity,
-          speedY: (Math.sin(angle) * velocity) - 5,
+          speedY: (Math.sin(angle) * velocity) - 7,
           rotation: Math.random() * 360,
-          rotationSpeed: -5 + Math.random() * 10,
+          rotationSpeed: -10 + Math.random() * 20,
           opacity: 1
         })
       }
@@ -115,7 +109,6 @@ function MyWishesPage() {
     particlesRef.current = [...particlesRef.current, ...clusterQueue]
   }
 
-  // Helper geometric script mapping five-point vectors inside canvas tracking slots
   const renderVectorStar = (ctx: CanvasRenderingContext2D, cx: number, cy: number, points: number, outer: number, inner: number, fillStyle: string) => {
     let rotationAngle = (Math.PI / 2) * 3
     let x = cx
@@ -141,7 +134,7 @@ function MyWishesPage() {
     ctx.fill()
   }
 
-  // Master Particle Update Lifecycle Vector Loop Configuration
+  // Master Canvas Lifecycle Loop with high-DPI structural anti-aliasing overrides
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -149,24 +142,28 @@ function MyWishesPage() {
     if (!ctx) return
 
     const handleResize = () => {
-      if (canvas) {
-        canvas.width = window.innerWidth
-        canvas.height = window.innerHeight
+      if (canvas && ctx) {
+        const dpr = window.devicePixelRatio || 1 // Checks screen pixel density properties
+        canvas.width = window.innerWidth * dpr
+        canvas.height = window.innerHeight * dpr
+        canvas.style.width = `${window.innerWidth}px`
+        canvas.style.height = `${window.innerHeight}px`
+        ctx.scale(dpr, dpr) // Rescales canvas coordinates to look razor sharp
       }
     }
     window.addEventListener('resize', handleResize)
     handleResize()
 
     const processingFrameUpdate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
       
       particlesRef.current = particlesRef.current.filter((p) => {
         p.x += p.speedX
         p.y += p.speedY
-        p.speedY += 0.22 // Simulated gravity acceleration factor constant
-        p.speedX *= 0.975 // Structural wind drag multiplier
+        p.speedY += 0.38 // Snappy gravity fall acceleration rate
+        p.speedX *= 0.965 // Modern crisp air dampening air drag drag 
         p.rotation += p.rotationSpeed
-        p.opacity -= 0.012
+        p.opacity -= 0.018 // Crisp decay timeline parameters
 
         if (p.opacity <= 0) return false
 
@@ -178,7 +175,8 @@ function MyWishesPage() {
         if (p.type === 'star') {
           renderVectorStar(ctx, 0, 0, 5, p.size, p.size / 2, p.color)
         } else if (p.type === 'emoji' && p.char) {
-          ctx.font = `${p.size}px Arial, sans-serif`
+          // Sharp High-DPI typography layout context mapping configurations
+          ctx.font = `bold ${p.size}px Arial, sans-serif`
           ctx.textAlign = 'center'
           ctx.textBaseline = 'middle'
           ctx.fillText(p.char, 0, 0)
@@ -202,22 +200,22 @@ function MyWishesPage() {
   return (
     <div style={{ minHeight: '100vh', background: '#0a0a0a', color: 'white', overflowX: 'hidden' }}>
       
-      {/* Immersive Graphics Node Overlapping Canvas Elements Container */}
-      <canvas ref={canvasRef} style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 9999 }} />
+      {/* Immersive Graphics Overlapping Layer Context Canvas */}
+      <canvas ref={canvasRef} style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 9999, width: '100%', height: '100%' }} />
 
-      {/* Tier 1 Level Red Pulse Gradient Matrix Layout Overlay */}
+      {/* Tier 1 Crimson Pulse Flash Overlay Block Widget */}
       {flashActive && (
         <div style={{
           position: 'fixed',
           inset: 0,
-          background: 'linear-gradient(135deg, rgba(229,9,20,0.55) 0%, rgba(15,10,10,0.95) 100%)',
+          background: 'linear-gradient(135deg, rgba(229,9,20,0.4) 0%, rgba(10,10,10,0.98) 100%)',
           zIndex: 9998,
           pointerEvents: 'none',
-          animation: 'flashFadeOverlay 1.6s cubic-bezier(0.1, 0.8, 0.2, 1) forwards'
+          animation: 'flashFadeOverlay 0.8s cubic-bezier(0.1, 0.8, 0.2, 1) forwards'
         }} />
       )}
 
-      {/* Embedded Application Layout Animations Keyframe Matrix */}
+      {/* Application Animations Matrix Keyframe Container Styles */}
       <style>{`
         @keyframes subtleGlow {
           0% { box-shadow: 0 0 15px rgba(229, 9, 20, 0.4), 0 4px 20px rgba(0,0,0,0.8); }
@@ -225,8 +223,8 @@ function MyWishesPage() {
           100% { box-shadow: 0 0 15px rgba(229, 9, 20, 0.4), 0 4px 20px rgba(0,0,0,0.8); }
         }
         @keyframes flashFadeOverlay {
-          0% { opacity: 1; filter: saturate(1.5); }
-          100% { opacity: 0; filter: saturate(1); }
+          0% { opacity: 1; }
+          100% { opacity: 0; }
         }
         .grand-featured-card {
           animation: subtleGlow 4s infinite ease-in-out;
@@ -581,7 +579,7 @@ function MyWishesPage() {
         </div>
       </section>
 
-      {/* Speech Section with Your Beautiful Message */}
+      {/* Speech Section */}
       <section
         style={{
           padding: '3rem clamp(1rem, 4vw, 4%) 5rem',
@@ -671,7 +669,7 @@ function MyWishesPage() {
             Happy Birthday Lakshmi ❤️
           </p>
 
-          {/* 🌟 PREMIUM INTERACTIVE TIED RATING COMPONENT BLOCK */}
+          {/* 🌟 RE-ENGINEERED HIGH-DPI INTERACTIVE ENGINE */}
           <div
             style={{
               marginTop: '2.5rem',
@@ -697,18 +695,18 @@ function MyWishesPage() {
               <div style={{ flex: 1, height: '1px', background: '#222' }} />
             </div>
 
-            {/* Interactive Rating Stars Row Vector Matrix */}
-            <div style={{ display: 'flex', gap: '6px', marginTop: '14px', justifyContent: 'center' }}>
+            {/* Premium, High Definition Interactive Review Node Array */}
+            <div style={{ display: 'flex', gap: '8px', marginTop: '14px', justifyContent: 'center' }}>
               {[1, 2, 3, 4, 5].map((starValue) => {
                 const isLit = starValue <= (hoverRating || rating)
                 let starColor = '#222'
                 if (isLit) {
                   if (hoverRating <= 2 && rating <= 2 && starValue <= 2 && hoverRating > 0) {
-                    starColor = '#E50914' // Crimson highlight indicators for low values
+                    starColor = '#E50914'
                   } else if (rating === 1 || rating === 2) {
                     starColor = '#E50914'
                   } else {
-                    starColor = '#ffcc02' // Elegant gold indicators
+                    starColor = '#ffcc02'
                   }
                 }
                 
@@ -723,7 +721,8 @@ function MyWishesPage() {
                       cursor: 'pointer',
                       color: starColor,
                       transition: 'color 0.15s, transform 0.1s',
-                      transform: starValue === hoverRating ? 'scale(1.2)' : 'scale(1)'
+                      transform: starValue === hoverRating ? 'scale(1.18)' : 'scale(1)',
+                      textShadow: isLit ? '0 0 12px rgba(255,204,2,0.4)' : 'none'
                     }}
                   >
                     ★
@@ -731,7 +730,7 @@ function MyWishesPage() {
                 )
               })}
             </div>
-            <div style={{ color: '#444', fontSize: '0.62rem', textTransform: 'uppercase', letterSpacing: '1.5px', fontWeight: 800, marginTop: '2px' }}>Rate Season 23 for a custom surprise</div>
+            <div style={{ color: '#444', fontSize: '#444', fontSize: '0.68rem', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '4px' }}>[ CELEBRATE SEASON 23 ]</div>
           </div>
         </div>
       </section>
