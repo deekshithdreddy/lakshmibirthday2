@@ -46,7 +46,7 @@ function Navbar() {
         LAKSHMIX
       </div>
       
-      {/* Mobile-Optimized Navigation Core Link Bar */}
+      {/* Mobile-Optimized Navigation Link Bar */}
       <div className="lx-nav-links responsive-mobile-nav" style={{ display: 'flex', gap: 'clamp(12px, 2vw, 24px)' }}>
         <span className="lx-nav-link" style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600, color: '#eee' }} onClick={() => handleScrollToSection('characters')}>Universe</span>
         <span className="lx-nav-link" style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600, color: '#eee' }} onClick={() => handleScrollToSection('wishes')}>Wishes</span>
@@ -76,33 +76,33 @@ function Hero() {
         marginRight: '-50vw',
         minHeight: '85vh',
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'flex-end', // Pushes text down onto the smooth fade zone
         background: '#0a0a0a',
         overflow: 'hidden'
       }}
     >
-      {/* High Contrast Organized Graphic Plate Backing */}
+      {/* Crisp, Beautifully Clear Centerpiece Image Frame */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: '#0a0a0a' }}>
         <img
           src={heroImg}
-          alt="Season 23 Title Graphic"
+          alt="Season 23 Clear Main Artwork"
           style={{
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            objectPosition: 'center 25%',
-            filter: 'brightness(0.45) contrast(1.05)'
+            objectPosition: 'center center', // Centers the whole graphic canvas perfectly
+            filter: 'brightness(0.85) contrast(1.05)' // Removed muddy dimming filters for ultimate clarity
           }}
         />
       </div>
 
-      {/* Structured Multi-Stage Gradient Shield for Maximum Readability */}
+      {/* Cinematic Soft Bottom Vignette Gradient Only */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
           zIndex: 2,
-          background: 'linear-gradient(to right, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.6) 40%, rgba(10,10,10,0.3) 100%), linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.4) 50%, transparent 100%)',
+          background: 'linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.6) 35%, transparent 75%)',
         }}
       />
 
@@ -112,40 +112,40 @@ function Hero() {
           position: 'relative',
           zIndex: 5,
           color: 'white',
-          padding: 'clamp(80px, 12vh, 120px) clamp(1rem, 4vw, 4%) 2rem',
-          maxWidth: '720px',
+          padding: 'clamp(120px, 20vh, 200px) clamp(1rem, 4vw, 4%) clamp(1.5rem, 4vw, 3rem)',
+          maxWidth: '750px',
           width: '100%',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.5rem' }}>
-          <span style={{ fontSize: 'clamp(0.7rem, 2vw, 0.85rem)', color: '#E50914', fontWeight: 800, letterSpacing: '2px' }}>LAKSHMI SAGA</span>
-          <span style={{ fontSize: '0.65rem', background: 'rgba(229, 9, 20, 0.2)', border: '1px solid rgba(229, 9, 20, 0.4)', padding: '1px 6px', borderRadius: '2px', fontWeight: 700, color: '#ff9999' }}>Est. 2003</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.4rem' }}>
+          <span style={{ fontSize: 'clamp(0.7rem, 2vw, 0.85rem)', color: '#E50914', fontWeight: 800, letterSpacing: '2px', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>LAKSHMI SAGA</span>
+          <span style={{ fontSize: '0.65rem', background: 'rgba(229, 9, 20, 0.35)', border: '1px solid rgba(229, 9, 20, 0.5)', padding: '2px 6px', borderRadius: '2px', fontWeight: 700, color: '#fff' }}>Est. 2003</span>
         </div>
         
-        <h1 style={{ fontSize: 'clamp(2.4rem, 7vw, 4.5rem)', fontWeight: 900, letterSpacing: '-1.5px', margin: '0 0 4px 0', lineHeight: 1.1 }}>
+        <h1 style={{ fontSize: 'clamp(2.5rem, 7.5vw, 4.5rem)', fontWeight: 900, letterSpacing: '-1.5px', margin: '0 0 4px 0', lineHeight: 1.1, textShadow: '0 4px 12px rgba(0,0,0,0.9)' }}>
           Season 23
         </h1>
         
-        <div style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', fontFamily: 'var(--font-serif)', fontStyle: 'italic', color: '#ffcc02', marginBottom: '1.5rem', fontWeight: 400 }}>
+        <div style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', fontFamily: 'var(--font-serif)', fontStyle: 'italic', color: '#ffcc02', marginBottom: '1.25rem', fontWeight: 600, textShadow: '0 2px 8px rgba(0,0,0,0.9)' }}>
           Still Under Exploration...
         </div>
 
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.5rem' }}>
           <button
-            style={{ fontSize: '0.9rem', padding: '0.65em 1.5em', borderRadius: '4px', fontWeight: 700, background: '#E50914', color: 'white', border: 'none', display: 'flex', alignItems: 'center', cursor: 'pointer', boxShadow: '0 4px 14px rgba(229,9,20,0.3)' }}
+            style={{ fontSize: '0.9rem', padding: '0.65em 1.5em', borderRadius: '4px', fontWeight: 700, background: '#E50914', color: 'white', border: 'none', display: 'flex', alignItems: 'center', cursor: 'pointer', boxShadow: '0 4px 14px rgba(229,9,20,0.45)' }}
             onClick={() => document.getElementById('characters')?.scrollIntoView({ behavior: 'smooth' })}
           >
             <span style={{ marginRight: 6 }}>▶</span> Explore Multitudes
           </button>
           <button
-            style={{ fontSize: '0.9rem', padding: '0.65em 1.5em', borderRadius: '4px', fontWeight: 700, background: 'rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(10px)', color: 'white', border: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', cursor: 'pointer' }}
+            style={{ fontSize: '0.9rem', padding: '0.65em 1.5em', borderRadius: '4px', fontWeight: 700, background: 'rgba(10, 10, 10, 0.65)', backdropFilter: 'blur(12px)', color: 'white', border: '1px solid rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', cursor: 'pointer', boxShadow: '0 4px 12px rgba(0,0,0,0.5)' }}
             onClick={() => navigate({ to: '/my-wishes' })}
           >
             🎴 Premium Gallery
           </button>
         </div>
 
-        <p style={{ fontSize: 'clamp(0.85rem, 2.2vw, 0.95rem)', opacity: 0.85, lineHeight: 1.6, margin: 0, color: '#dfdfdf', maxWidth: '580px' }}>
+        <p style={{ fontSize: 'clamp(0.85rem, 2.2vw, 0.95rem)', opacity: 0.9, lineHeight: 1.6, margin: 0, color: '#f0f0f0', maxWidth: '600px', fontWeight: 500, textShadow: '0 2px 10px rgba(0,0,0,0.95), 0 1px 3px rgba(0,0,0,0.95)' }}>
           A real-time cinematic sequence featuring structural plot twists, extreme empathy traits, outstanding dressing combinations, corporate package miracles, and unparalleled main-character energy.
         </p>
       </div>
