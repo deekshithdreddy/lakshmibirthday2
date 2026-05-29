@@ -139,7 +139,7 @@ function MyWishesPage() {
           </h2>
         </div>
 
-        {/* CSS GRID SYSTEM: Responsive on mobile devices */}
+        {/* CSS GRID SYSTEM: Responsive Layout */}
         <div
           className="gallery-responsive-grid"
           style={{
@@ -147,7 +147,7 @@ function MyWishesPage() {
             gap: '16px',
           }}
         >
-          {/* Main Large Item: Local Video Embedding */}
+          {/* Main Large Item: Local Video Autoplay Tracking */}
           <div
             className="main-large-item"
             style={{
@@ -160,7 +160,7 @@ function MyWishesPage() {
             }}
           >
             <video
-              src="https://www.youtube.com/watch?v=GsbU9hQSC_I&pp=ygUcbmV0ZmxpeCBzdHlsZSBiaXJ0aGRheSB2aWRlbw%3D%3D"
+              src="/images/video.mp4"
               autoPlay
               loop
               muted
@@ -171,7 +171,7 @@ function MyWishesPage() {
                 height: '100%',
                 objectFit: 'cover',
                 display: 'block',
-                filter: 'brightness(0.9) contrast(1.05)'
+                filter: 'brightness(0.95) contrast(1.02)'
               }}
             />
             <div
@@ -191,24 +191,44 @@ function MyWishesPage() {
             </div>
           </div>
 
-          {/* Secondary Carousel Memory Assets */}
+          {/* Secondary Gallery Memory Assets using Local Public Files */}
           {[
             {
-              src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80',
+              src: '/images/lakshmi\'s-dream-photo.png',
+              label: 'The Dream',
+            },
+            {
+              src: '/images/lakshmi\'s-dream-photo2.png',
+              label: 'The Horizon',
+            },
+            {
+              src: '/images/lakshmi\'s-weird-photo.jpg',
+              label: 'The Weird Moments',
+            },
+            {
+              src: '/images/lakshmi-and-me-in-museum.jpg',
+              label: 'The Museum',
+            },
+            {
+              src: '/images/lakshmi-and-me-temple-bw-photo.jpg',
+              label: 'The Temple (B&W)',
+            },
+            {
+              src: '/images/lakshmi-and-me-temple-photo.jpg',
               label: 'The Journey',
             },
             {
-              src: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=600&q=80',
-              label: 'The Moments',
+              src: '/images/lakshmi-and-me-temple-photo2.jpg',
+              label: 'The Shared Paths',
             },
             {
-              src: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80',
-              label: 'The Dreams',
+              src: '/images/lakshmi-temple.jpg',
+              label: 'The Sanctuary',
             },
             {
-              src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80',
-              label: 'The Horizon',
-            },
+              src: '/images/lakshmiintemple.png',
+              label: 'The Core Memory',
+            }
           ].map((photo, i) => (
             <div
               key={i}
@@ -229,7 +249,7 @@ function MyWishesPage() {
                   height: '100%',
                   objectFit: 'cover',
                   display: 'block',
-                  filter: 'brightness(0.75) saturate(1.1)',
+                  filter: 'brightness(0.8) saturate(1.05)',
                   transition: 'transform 0.4s ease, filter 0.4s ease',
                 }}
                 onMouseEnter={(e) => {
@@ -240,7 +260,7 @@ function MyWishesPage() {
                 onMouseLeave={(e) => {
                   const img = e.currentTarget as HTMLImageElement
                   img.style.transform = ''
-                  img.style.filter = 'brightness(0.75) saturate(1.1)'
+                  img.style.filter = 'brightness(0.8) saturate(1.05)'
                 }}
               />
               <div
@@ -252,8 +272,8 @@ function MyWishesPage() {
                   fontWeight: 600,
                   letterSpacing: '0.15em',
                   textTransform: 'uppercase',
-                  color: 'rgba(255,255,255,0.75)',
-                  textShadow: '0 2px 4px rgba(0,0,0,0.8)'
+                  color: 'rgba(255,255,255,0.85)',
+                  textShadow: '0 2px 4px rgba(0,0,0,0.9)'
                 }}
               >
                 {photo.label}
@@ -398,7 +418,7 @@ function MyWishesPage() {
           grid-column: 1 / 3;
           grid-row: 1 / 3;
         }
-        @media (max-width: 850px) {
+        @media (max-width: 950px) {
           .gallery-responsive-grid {
             grid-template-columns: repeat(2, 1fr) !important;
           }
@@ -407,7 +427,7 @@ function MyWishesPage() {
             grid-row: auto !important;
           }
         }
-        @media (max-width: 480px) {
+        @media (max-width: 520px) {
           .gallery-responsive-grid {
             grid-template-columns: 1fr !important;
           }
