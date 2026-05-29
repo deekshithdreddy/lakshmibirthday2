@@ -9,8 +9,6 @@ interface SpecialParticle {
   x: number
   y: number
   size: number
-  type: 'star' | 'emoji'
-  char?: string
   color: string
   speedX: number
   speedY: number
@@ -33,78 +31,95 @@ function MyWishesPage() {
     return `${window.location.origin}${path}`
   }
 
-  // High-Energy Particle Pipeline Engine
+  // Unified High-Velocity Particle Pipeline Engine
   const executeRatingImpact = (selectedScore: number) => {
     setRating(selectedScore)
     if (!canvasRef.current) return
-    const canvas = canvasRef.current
     
     const startX = window.innerWidth / 2
     const startY = window.innerHeight * 0.72
     const clusterQueue: SpecialParticle[] = []
+    
+    // Standardized velocity constant for uniform speed experience
+    const baseMinVelocity = 7
+    const baseMaxVelocity = 15
 
+    // TIER 1: 1 & 2 Stars — Blazing Red & Solid Deep Black Stars from center
     if (selectedScore === 1 || selectedScore === 2) {
       setFlashActive(true)
-      setTimeout(() => setFlashActive(false), 800)
+      setTimeout(() => setFlashActive(false), 500)
 
-      const redTones = ['#E50914', '#b20710', '#ff4d4d', '#ff1a1a']
+      const monochromeRedTones = ['#E50914', '#000000', '#111111', '#ff3333']
       for (let i = 0; i < 80; i++) {
         const angle = Math.random() * Math.PI * 2
-        const velocity = 6 + Math.random() * 14
+        const velocity = baseMinVelocity + Math.random() * baseMaxVelocity
         clusterQueue.push({
           x: startX,
           y: startY,
-          size: 10 + Math.random() * 12,
-          type: 'star',
-          color: redTones[Math.floor(Math.random() * redTones.length)],
+          size: 9 + Math.random() * 10,
+          color: monochromeRedTones[Math.floor(Math.random() * monochromeRedTones.length)],
           speedX: Math.cos(angle) * velocity,
-          speedY: (Math.sin(angle) * velocity) - 5,
+          speedY: (Math.sin(angle) * velocity) - 4,
           rotation: Math.random() * 360,
           rotationSpeed: -15 + Math.random() * 30,
           opacity: 1
         })
       }
     } 
+    // TIER 2: 3 & 4 Stars — Delicate Decreased Size Gold & Silver Fields from center
     else if (selectedScore === 3 || selectedScore === 4) {
-      const cosmicTones = ['#ffcc02', '#ffea00', '#fffc7f', '#4fc3f7', '#e040fb', '#ffffff']
+      const metallicTones = ['#ffcc02', '#ffd700', '#e6e6e6', '#ffffff', '#aaaaaa']
       for (let i = 0; i < 180; i++) {
         const angle = Math.random() * Math.PI * 2
-        const velocity = 8 + Math.random() * 16
+        const velocity = baseMinVelocity + Math.random() * baseMaxVelocity
         clusterQueue.push({
           x: startX,
           y: startY,
-          size: 8 + Math.random() * 14,
-          type: 'star',
-          color: cosmicTones[Math.floor(Math.random() * cosmicTones.length)],
+          size: 3 + Math.random() * 5, // Decreased micro-sizing structural modification
+          color: metallicTones[Math.floor(Math.random() * metallicTones.length)],
           speedX: Math.cos(angle) * velocity,
-          speedY: (Math.sin(angle) * velocity) - 6,
+          speedY: (Math.sin(angle) * velocity) - 5,
           rotation: Math.random() * 360,
           rotationSpeed: -20 + Math.random() * 40,
           opacity: 1
         })
       }
     } 
+    // TIER 3: 5 Stars — High Density Birthday Bomb Glittering Stars from Corners
     else if (selectedScore === 5) {
-      // 🐋 TIER 5: MAXIMUM SPEED CELEBRATION BLAST
-      const seaEmojis = ['🥳', '🎉', '✨']
-      for (let i = 0; i < 140; i++) {
-        const angle = Math.random() * Math.PI * 2
-        
-        // --- HIGH-SPEED TUNING PARAMETERS ---
-        const velocity = 32 + Math.random() * 35 // Hyper-drive horizontal push vectors
-        const upwardKick = 26 // Forceful initial upward explosion vertical lift
-        
+      const glowingGoldTones = ['#ffcc02', '#ffea00', '#fffb99', '#ffffff', '#ffe066']
+      const groundY = window.innerHeight
+
+      // Left Party Popper Cannon: Cross-fires upwards and rightwards
+      for (let i = 0; i < 150; i++) {
+        const angle = -Math.PI / 6 - Math.random() * (Math.PI / 3) // Angles matching -30 to -90 degrees
+        const velocity = 10 + Math.random() * 16
         clusterQueue.push({
-          x: startX,
-          y: startY,
-          size: 26 + Math.random() * 20,
-          type: 'emoji',
-          char: seaEmojis[Math.floor(Math.random() * seaEmojis.length)],
-          color: '#ffffff',
+          x: 0,
+          y: groundY,
+          size: 4 + Math.random() * 6, // Small glistening particles
+          color: glowingGoldTones[Math.floor(Math.random() * glowingGoldTones.length)],
           speedX: Math.cos(angle) * velocity,
-          speedY: (Math.sin(angle) * velocity) - upwardKick,
+          speedY: Math.sin(angle) * velocity,
           rotation: Math.random() * 360,
-          rotationSpeed: -30 + Math.random() * 60, // Snappy hyper spin mechanics
+          rotationSpeed: -25 + Math.random() * 50,
+          opacity: 1
+        })
+      }
+
+      // Right Party Popper Cannon: Cross-fires upwards and leftwards
+      for (let i = 0; i < 150; i++) {
+        const angle = -Math.PI * 0.5 - Math.random() * (Math.PI / 3) // Angles matching -90 to -150 degrees
+        const velocity = 10 + Math.random() * 16
+        clusterQueue.push({
+          x: window.innerWidth,
+          y: groundY,
+          size: 4 + Math.random() * 6,
+          color: glowingGoldTones[Math.floor(Math.random() * glowingGoldTones.length)],
+          speedX: Math.cos(angle) * velocity,
+          speedY: Math.sin(angle) * velocity,
+          rotation: Math.random() * 360,
+          rotationSpeed: -25 + Math.random() * 50,
           opacity: 1
         })
       }
@@ -138,7 +153,7 @@ function MyWishesPage() {
     ctx.fill()
   }
 
-  // High-DPI Anti-Aliasing Canvas Controller Loop
+  // Fluid Performance Canvas Update Architecture Lifecycle
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -146,13 +161,9 @@ function MyWishesPage() {
     if (!ctx) return
 
     const handleResize = () => {
-      if (canvas && ctx) {
-        const dpr = window.devicePixelRatio || 1
-        canvas.width = window.innerWidth * dpr
-        canvas.height = window.innerHeight * dpr
-        canvas.style.width = `${window.innerWidth}px`
-        canvas.style.height = `${window.innerHeight}px`
-        ctx.scale(dpr, dpr)
+      if (canvas) {
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
       }
     }
     window.addEventListener('resize', handleResize)
@@ -164,10 +175,10 @@ function MyWishesPage() {
       particlesRef.current = particlesRef.current.filter((p) => {
         p.x += p.speedX
         p.y += p.speedY
-        p.speedY += 0.42 // Crisp snappier acceleration fall rate
-        p.speedX *= 0.97 // Smooth friction dampening matrix
+        p.speedY += 0.34 // Uniform responsive down-fall acceleration
+        p.speedX *= 0.972 // Clean air dampening factor
         p.rotation += p.rotationSpeed
-        p.opacity -= 0.016 // Faster fade decay timeline for responsiveness
+        p.opacity -= 0.015
 
         if (p.opacity <= 0) return false
 
@@ -176,14 +187,7 @@ function MyWishesPage() {
         ctx.rotate((p.rotation * Math.PI) / 180)
         ctx.globalAlpha = p.opacity
 
-        if (p.type === 'star') {
-          renderVectorStar(ctx, 0, 0, 5, p.size, p.size / 2, p.color)
-        } else if (p.type === 'emoji' && p.char) {
-          ctx.font = `bold ${p.size}px Arial, sans-serif`
-          ctx.textAlign = 'center'
-          ctx.textBaseline = 'middle'
-          ctx.fillText(p.char, 0, 0)
-        }
+        renderVectorStar(ctx, 0, 0, 5, p.size, p.size / 2, p.color)
 
         ctx.restore()
         return true
@@ -203,7 +207,7 @@ function MyWishesPage() {
   return (
     <div style={{ minHeight: '100vh', background: '#0a0a0a', color: 'white', overflowX: 'hidden' }}>
       
-      {/* High-DPI Overlay Canvas Element */}
+      {/* High-Performance Canvas Overlay Sheet */}
       <canvas ref={canvasRef} style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 9999, width: '100%', height: '100%' }} />
 
       {/* Tier 1 Flash Overlay Block Widget */}
@@ -211,14 +215,14 @@ function MyWishesPage() {
         <div style={{
           position: 'fixed',
           inset: 0,
-          background: 'linear-gradient(135deg, rgba(229,9,20,0.4) 0%, rgba(10,10,10,0.98) 100%)',
+          background: 'linear-gradient(135deg, rgba(229,9,20,0.3) 0%, rgba(10,10,10,0.98) 100%)',
           zIndex: 9998,
           pointerEvents: 'none',
-          animation: 'flashFadeOverlay 0.8s cubic-bezier(0.1, 0.8, 0.2, 1) forwards'
+          animation: 'flashFadeOverlay 0.5s ease-out forwards'
         }} />
       )}
 
-      {/* Style Interceptor Layer */}
+      {/* Style Layer */}
       <style>{`
         @keyframes subtleGlow {
           0% { box-shadow: 0 0 15px rgba(229, 9, 20, 0.4), 0 4px 20px rgba(0,0,0,0.8); }
@@ -697,7 +701,7 @@ function MyWishesPage() {
               <div style={{ flex: 1, height: '1px', background: '#222' }} />
             </div>
 
-            {/* Premium HD Anti-Aliased Interactive Star Node Matrix */}
+            {/* Interactive Rating Cluster Setup */}
             <div style={{ display: 'flex', gap: '8px', marginTop: '14px', justifyContent: 'center' }}>
               {[1, 2, 3, 4, 5].map((starValue) => {
                 const isLit = starValue <= (hoverRating || rating)
