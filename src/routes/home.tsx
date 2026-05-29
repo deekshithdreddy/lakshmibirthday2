@@ -11,7 +11,7 @@ function Navbar() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20)
+    const handler = () => setScrolled(window.scrollY > 50)
     window.addEventListener('scroll', handler)
     return () => window.removeEventListener('scroll', handler)
   }, [])
@@ -34,27 +34,59 @@ function Navbar() {
       display: 'flex', 
       alignItems: 'center', 
       justifyContent: 'space-between',
-      padding: 'clamp(12px, 2vw, 18px) clamp(16px, 4vw, 40px)',
+      padding: scrolled ? '12px clamp(16px, 4vw, 60px)' : '24px clamp(16px, 4vw, 60px)',
       position: 'fixed',
       top: 0,
       left: 0,
       right: 0,
       zIndex: 100,
-      transition: 'background-color 0.3s, backdrop-filter 0.3s'
+      background: scrolled ? '#141414' : 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%)',
+      transition: 'background-color 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease',
+      boxShadow: scrolled ? '0 4px 20px rgba(0,0,0,0.5)' : 'none'
     }}>
-      <div className="lx-logo" style={{ cursor: 'pointer', fontSize: 'clamp(1.1rem, 3vw, 1.4rem)', fontWeight: 900, color: '#E50914', letterSpacing: '1px' }} onClick={() => navigate({ to: '/home' })}>
-        LAKSHMIX
-      </div>
-      
-      {/* Mobile-Optimized Navigation Link Bar */}
-      <div className="lx-nav-links responsive-mobile-nav" style={{ display: 'flex', gap: 'clamp(12px, 2vw, 24px)' }}>
-        <span className="lx-nav-link" style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600, color: '#eee' }} onClick={() => handleScrollToSection('characters')}>Universe</span>
-        <span className="lx-nav-link" style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600, color: '#eee' }} onClick={() => handleScrollToSection('wishes')}>Wishes</span>
-        <span className="lx-nav-link" style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600, color: '#E50914' }} onClick={() => navigate({ to: '/my-wishes' })}>My Wishes</span>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '45px' }}>
+        <div 
+          className="lx-logo" 
+          style={{ 
+            cursor: 'pointer', 
+            fontSize: 'clamp(1.3rem, 3.5vw, 1.8rem)', 
+            fontWeight: 900, 
+            color: '#E50914', 
+            letterSpacing: '0.5px',
+            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
+          }} 
+          onClick={() => navigate({ to: '/home' })}
+        >
+          LAKSHMIX
+        </div>
+        
+        {/* Flat Netflix Style Primary Navigation Row */}
+        <div className="responsive-mobile-nav" style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+          <span className="netflix-nav-link" style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 500, color: '#e5e5e5', transition: 'color 0.25s' }} onClick={() => handleScrollToSection('characters')}>Universe</span>
+          <span className="netflix-nav-link" style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 500, color: '#e5e5e5', transition: 'color 0.25s' }} onClick={() => handleScrollToSection('wishes')}>Wishes</span>
+          <span className="netflix-nav-link" style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 700, color: '#ffffff', transition: 'color 0.25s' }} onClick={() => navigate({ to: '/my-wishes' })}>My Wishes</span>
+        </div>
       </div>
       
       <div className="lx-nav-right" style={{ display: 'flex', alignItems: 'center' }}>
-        <div className="lx-nav-avatar" onClick={() => navigate({ to: '/' })} style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#E50914', color: 'white', fontWeight: 800, borderRadius: '4px', cursor: 'pointer', fontSize: '0.85rem' }}>
+        <div 
+          className="lx-nav-avatar" 
+          onClick={() => navigate({ to: '/' })} 
+          style={{ 
+            width: '32px', 
+            height: '32px', 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            background: '#E50914', 
+            color: 'white', 
+            fontWeight: 700, 
+            borderRadius: '4px', 
+            cursor: 'pointer', 
+            fontSize: '0.9rem',
+            fontFamily: 'sans-serif'
+          }}
+        >
           L
         </div>
       </div>
@@ -63,7 +95,9 @@ function Navbar() {
 }
 
 function Hero() {
-  const heroImg = '/images/lakshmi-temple-bluedress.jpg'; 
+  const navigate = useNavigate()
+  const heroImg = '/images/lakshmi-temple-bluedress.jpg'
+  
   return (
     <section
       className="hero saga-hero"
@@ -74,35 +108,35 @@ function Hero() {
         right: '50%',
         marginLeft: '-50vw',
         marginRight: '-50vw',
-        minHeight: '85vh',
+        height: '92vh',
         display: 'flex',
-        alignItems: 'flex-end', // Pushes text down onto the smooth fade zone
-        background: '#0a0a0a',
+        alignItems: 'center',
+        background: '#141414',
         overflow: 'hidden'
       }}
     >
-      {/* Crisp, Beautifully Clear Centerpiece Image Frame */}
-      <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: '#0a0a0a' }}>
+      {/* High Definition Clean Asset Underlay */}
+      <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: '#141414' }}>
         <img
           src={heroImg}
-          alt="Season 23 Clear Main Artwork"
+          alt="Main Artwork"
           style={{
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            objectPosition: 'center center', // Centers the whole graphic canvas perfectly
-            filter: 'brightness(0.85) contrast(1.05)' // Removed muddy dimming filters for ultimate clarity
+            objectPosition: 'center 20%',
+            filter: 'brightness(0.85)'
           }}
         />
       </div>
 
-      {/* Cinematic Soft Bottom Vignette Gradient Only */}
+      {/* True Netflix Double-Veil Vignette: Sharp text masking + cinematic asset fade */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
           zIndex: 2,
-          background: 'linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.6) 35%, transparent 75%)',
+          background: 'linear-gradient(to right, rgba(20,20,20,0.92) 0%, rgba(20,20,20,0.7) 35%, rgba(20,20,20,0) 70%), linear-gradient(to top, #141414 0%, rgba(20,20,20,0.4) 15%, transparent 45%)',
         }}
       />
 
@@ -112,41 +146,72 @@ function Hero() {
           position: 'relative',
           zIndex: 5,
           color: 'white',
-          padding: 'clamp(120px, 20vh, 200px) clamp(1rem, 4vw, 4%) clamp(1.5rem, 4vw, 3rem)',
-          maxWidth: '750px',
+          padding: '0 clamp(16px, 4vw, 60px)',
+          maxWidth: '800px',
           width: '100%',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.4rem' }}>
-          <span style={{ fontSize: 'clamp(0.7rem, 2vw, 0.85rem)', color: '#E50914', fontWeight: 800, letterSpacing: '2px', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>LAKSHMI: Under Exploration</span>
-          <span style={{ fontSize: '0.65rem', background: 'rgba(229, 9, 20, 0.35)', border: '1px solid rgba(229, 9, 20, 0.5)', padding: '2px 6px', borderRadius: '2px', fontWeight: 700, color: '#fff' }}>Est. 2003</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
+          <span style={{ fontSize: 'clamp(0.75rem, 2vw, 0.9rem)', color: '#a3a3a3', fontWeight: 700, letterSpacing: '3px', textTransform: 'uppercase' }}>LAKSHMI SAGA</span>
+          <span style={{ fontSize: '0.7rem', border: '1px solid rgba(255,255,255,0.4)', padding: '1px 6px', borderRadius: '2px', fontWeight: 600, color: '#ffffff', letterSpacing: '0.5px' }}>Est. 2003</span>
         </div>
         
-        <h1 style={{ fontSize: 'clamp(2.5rem, 7.5vw, 4.5rem)', fontWeight: 900, letterSpacing: '-1.5px', margin: '0 0 4px 0', lineHeight: 1.1, textShadow: '0 4px 12px rgba(0,0,0,0.9)' }}>
+        <h1 style={{ fontSize: 'clamp(2.8rem, 8vw, 5.5rem)', fontWeight: 900, letterSpacing: '-1.5px', margin: '0 0 8px 0', lineHeight: 1.05, fontFamily: 'Arial, Helvetica, sans-serif' }}>
           Season 23
         </h1>
         
-        <div style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', fontFamily: 'var(--font-serif)', fontStyle: 'italic', color: '#ffcc02', marginBottom: '1.25rem', fontWeight: 600, textShadow: '0 2px 8px rgba(0,0,0,0.9)' }}>
+        <div style={{ fontSize: 'clamp(1.1rem, 2.8vw, 1.45rem)', fontWeight: 600, color: '#46d369', marginBottom: '16px', letterSpacing: '0.2px' }}>
           The Story is Still being Written...
         </div>
 
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.5rem' }}>
+        {/* Authentic Netflix CTA Buttons Mapping */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '22px' }}>
           <button
-            style={{ fontSize: '0.9rem', padding: '0.65em 1.5em', borderRadius: '4px', fontWeight: 700, background: '#E50914', color: 'white', border: 'none', display: 'flex', alignItems: 'center', cursor: 'pointer', boxShadow: '0 4px 14px rgba(229,9,20,0.45)' }}
+            className="netflix-btn-white"
+            style={{ 
+              fontSize: '1rem', 
+              padding: '0.55em 1.7em', 
+              borderRadius: '4px', 
+              fontWeight: 700, 
+              background: '#ffffff', 
+              color: '#000000', 
+              border: 'none', 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '10px',
+              cursor: 'pointer', 
+              transition: 'background-color 0.2s ease, transform 0.2s' 
+            }}
             onClick={() => document.getElementById('characters')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            <span style={{ marginRight: 6 }}>▶</span> Explore Multitudes
+            <span style={{ fontSize: '1.15rem' }}>▶</span> Explore Multitudes
           </button>
           <button
-            style={{ fontSize: '0.9rem', padding: '0.65em 1.5em', borderRadius: '4px', fontWeight: 700, background: 'rgba(10, 10, 10, 0.65)', backdropFilter: 'blur(12px)', color: 'white', border: '1px solid rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', cursor: 'pointer', boxShadow: '0 4px 12px rgba(0,0,0,0.5)' }}
+            className="netflix-btn-gray"
+            style={{ 
+              fontSize: '1rem', 
+              padding: '0.55em 1.7em', 
+              borderRadius: '4px', 
+              fontWeight: 700, 
+              background: 'rgba(109, 109, 110, 0.4)', 
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              color: '#ffffff', 
+              border: 'none', 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '10px',
+              cursor: 'pointer', 
+              transition: 'background-color 0.2s ease, transform 0.2s' 
+            }}
             onClick={() => navigate({ to: '/my-wishes' })}
           >
-            🎴 Premium Gallery
+            <span style={{ fontSize: '1.15rem' }}>🎴</span> Premium Gallery
           </button>
         </div>
 
-        <p style={{ fontSize: 'clamp(0.85rem, 2.2vw, 0.95rem)', opacity: 0.9, lineHeight: 1.6, margin: 0, color: '#f0f0f0', maxWidth: '600px', fontWeight: 500, textShadow: '0 2px 10px rgba(0,0,0,0.95), 0 1px 3px rgba(0,0,0,0.95)' }}>
-          one day it's beach. Another day it's a new city. Some days feel like side quests. Some feel like the beginning of something bigger. No one nows where the story goes next. Including the main character.
+        <p style={{ fontSize: 'clamp(0.9rem, 2.3vw, 1.1rem)', opacity: 1, lineHeight: 1.5, margin: 0, color: '#e5e5e5', maxWidth: '620px', fontWeight: 400 }}>
+          One day it&apos;s a beach. Another day it&apos;s a new city. Some days feel like side quests. Some feel like the beginning of something bigger. No one knows where the story goes next. Including the main character.
         </p>
       </div>
     </section>
@@ -159,64 +224,59 @@ function CharacterCarousel() {
 
   const scroll = (dir: 'left' | 'right') => {
     if (!trackRef.current) return
-    const amount = window.innerWidth > 768 ? 600 : 260
+    const amount = window.innerWidth > 768 ? 750 : 280
     trackRef.current.scrollBy({ left: dir === 'right' ? amount : -amount, behavior: 'smooth' })
   }
 
   return (
-    <div id="characters" style={{ paddingTop: '2.5rem' }}>
-      <div className="content-section" style={{ marginBottom: '1.5rem' }}>
-        <h2 className="section-title" style={{ padding: '0 clamp(1rem, 4vw, 4%)', fontSize: 'clamp(1.3rem, 3.5vw, 2rem)', fontWeight: 800, letterSpacing: '-0.5px', color: 'white' }}>
+    <div id="characters" style={{ paddingTop: '3rem', background: '#141414' }}>
+      <div className="content-section" style={{ marginBottom: '2rem' }}>
+        <h2 className="section-title" style={{ padding: '0 clamp(16px, 4vw, 60px)', fontSize: 'clamp(1.2rem, 3.5vw, 1.6rem)', fontWeight: 700, letterSpacing: '0px', color: '#e5e5e5', margin: '0 0 12px 0' }}>
           She Contains Multitudes
-          <span style={{ color: '#E50914', fontSize: '0.7em', marginLeft: '8px', fontWeight: 500 }}>· Icons of Strength</span>
         </h2>
-        <p style={{ padding: '0 clamp(1rem, 4vw, 4%)', fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: '0.85rem', color: '#888', marginBottom: '1.25rem' }}>
-          Click any card overlay to unlock how each distinct legend reflects Lakshmi&apos;s story
-        </p>
         
         <div className="carousel-container" style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
-          <button className="carousel-btn carousel-btn-left desktop-only-btn" onClick={() => scroll('left')} style={{ position: 'absolute', left: '1.5vw', zIndex: 10, background: 'rgba(0,0,0,0.75)', border: '1px solid #222', color: 'white', borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+          <button className="carousel-btn carousel-btn-left desktop-only-btn" onClick={() => scroll('left')} style={{ position: 'absolute', left: 0, zIndex: 10, background: 'rgba(0,0,0,0.5)', border: 'none', color: 'white', width: '45px', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', transition: 'background-color 0.2s' }}>
             ❮
           </button>
 
-          <div className="carousel-track hide-scrollbar touch-scroll-enabled" ref={trackRef} style={{ display: 'flex', overflowX: 'auto', gap: '14px', padding: '10px clamp(1rem, 4vw, 4%)', scrollBehavior: 'smooth' }}>
+          <div className="carousel-track hide-scrollbar touch-scroll-enabled" ref={trackRef} style={{ display: 'flex', overflowX: 'auto', gap: '8px', padding: '10px clamp(16px, 4vw, 60px)', scrollBehavior: 'smooth' }}>
             {characters.map((char) => (
               <div
                 key={char.id}
-                className="char-card cinematic-card"
+                className="char-card netflix-card"
                 onClick={() => navigate({ to: '/character/$id', params: { id: char.id } })}
                 style={{ 
                   cursor: 'pointer', 
                   position: 'relative', 
                   overflow: 'hidden', 
-                  borderRadius: '6px', 
-                  background: '#121212', 
-                  flex: '0 0 clamp(190px, 45vw, 250px)', 
-                  aspectRatio: '2/3',
-                  transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s', 
-                  border: '1px solid #222',
+                  borderRadius: '4px', 
+                  background: '#181818', 
+                  flex: '0 0 clamp(160px, 24vw, 230px)', 
+                  aspectRatio: '16/10', // True platform landscape aspect alignment matrix
+                  transition: 'transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease',
+                  boxShadow: '0 4px 10px rgba(0,0,0,0.3)'
                 }}
               >
                 <img
                   src={char.thumbnail}
                   alt={char.name}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.8) contrast(1.02)' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   loading="lazy"
                 />
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(0deg, rgba(10,10,10,1) 0%, rgba(10,10,10,0.4) 60%, transparent 100%)', zIndex: 2 }} />
-                <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, zIndex: 3, padding: '12px' }}>
-                  <div style={{ fontSize: '0.65rem', color: '#E50914', fontWeight: 800, letterSpacing: '1px', textTransform: 'uppercase' }}>{char.type}</div>
-                  <div style={{ fontWeight: 800, fontSize: 'clamp(1.05rem, 2.5vw, 1.25rem)', margin: '2px 0', color: '#fff' }}>{char.name}</div>
-                  <div style={{ fontSize: '0.75rem', color: '#aaa', marginBottom: '6px' }}>{char.series}</div>
-                  <div style={{ fontStyle: 'italic', fontSize: '0.75rem', color: '#888', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', lineHeight: 1.35 }}>
-                    &ldquo;{char.quote}&rdquo;
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(20,20,20,0.95) 0%, rgba(20,20,20,0.3) 40%, transparent 100%)', zIndex: 2 }} />
+                <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, zIndex: 3, padding: '10px' }}>
+                  <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#ffffff' }}>{char.name}</div>
+                  <div style={{ fontSize: '0.65rem', color: '#a3a3a3', display: 'flex', alignItems: 'center', gap: '6px', marginTop: '2px' }}>
+                    <span style={{ color: '#46d369', fontWeight: 700 }}>98% Match</span>
+                    <span>{char.year}</span>
                   </div>
                 </div>
               </div>
             ))}
           </div>
 
-          <button className="carousel-btn carousel-btn-right desktop-only-btn" onClick={() => scroll('right')} style={{ position: 'absolute', right: '1.5vw', zIndex: 10, background: 'rgba(0,0,0,0.75)', border: '1px solid #222', color: 'white', borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+          <button className="carousel-btn carousel-btn-right desktop-only-btn" onClick={() => scroll('right')} style={{ position: 'absolute', right: 0, zIndex: 10, background: 'rgba(0,0,0,0.5)', border: 'none', color: 'white', width: '45px', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', transition: 'background-color 0.2s' }}>
             ❯
           </button>
         </div>
@@ -274,26 +334,26 @@ Enjoy every moment, making a lot of friends, exploring as far as it goes, and ne
   ]
 
   return (
-    <section id="wishes" style={{ padding: '3rem clamp(1rem, 4vw, 4%) 4rem', background: '#0a0a0a' }}>
-      <h2 style={{ fontSize: 'clamp(1.6rem, 4.5vw, 2.5rem)', color: 'white', textAlign: 'center', marginBottom: '6px', fontWeight: 800, letterSpacing: '-0.5px' }}>
-        <span style={{ color: '#E50914' }}>W</span>ishes From Around The World
+    <section id="wishes" style={{ padding: '4rem clamp(16px, 4vw, 60px)', background: '#141414' }}>
+      <h2 style={{ fontSize: 'clamp(1.3rem, 3.5vw, 1.8rem)', color: '#ffffff', marginBottom: '20px', fontWeight: 700 }}>
+        Wishes From Around The World
       </h2>
-      <p style={{ color: '#666', textAlign: 'center', fontSize: '0.9rem', marginBottom: '2.5rem' }}>
-        The ocean, the sky, the crab, the whale, and Jesus — they all showed up
-      </p>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(clamp(250px, 30vw, 340px), 1fr))', gap: '14px', marginBottom: '3rem' }}>
+      {/* Flat Structured Grid Interface */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(clamp(260px, 22vw, 320px), 1fr))', gap: '16px', marginBottom: '3.5rem' }}>
         {wishes.map((wish, i) => (
-          <div key={i} style={{ background: '#111113', padding: '1.25rem', borderRadius: '6px', border: '1px solid #1c1c1e', boxShadow: '0 4px 12px rgba(0,0,0,0.15)' }}>
-            <div style={{ fontSize: '1.6rem', marginBottom: '8px' }}>{wish.icon}</div>
-            <div style={{ color: 'white', fontSize: '1rem', fontWeight: 700, marginBottom: '6px' }}>{wish.title}</div>
-            <p style={{ color: '#a0a0a0', fontSize: '0.85rem', lineHeight: 1.5 }}>{wish.text}</p>
+          <div key={i} style={{ background: '#181818', padding: '1.5rem', borderRadius: '4px', border: '1px solid #2f2f2f', transition: 'border-color 0.3s', boxShadow: '0 4px 12px rgba(0,0,0,0.4)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
+              <span style={{ fontSize: '1.5rem' }}>{wish.icon}</span>
+              <div style={{ color: '#ffffff', fontSize: '0.95rem', fontWeight: 700 }}>{wish.title}</div>
+            </div>
+            <p style={{ color: '#a3a3a3', fontSize: '0.85rem', lineHeight: 1.5, margin: 0, whiteSpace: 'pre-line' }}>{wish.text}</p>
           </div>
         ))}
       </div>
 
-      <div style={{ background: 'linear-gradient(135deg, #120303, #050505)', padding: 'clamp(1.5rem, 4vw, 2.5rem)', borderRadius: '6px', border: '1px solid #220606', textAlign: 'center' }}>
-        <p style={{ color: '#dcdcdc', fontSize: 'clamp(0.95rem, 2.5vw, 1.15rem)', lineHeight: 1.65, fontStyle: 'italic', maxWidth: '700px', margin: '0 auto' }}>
+      <div style={{ background: '#181818', padding: '2.5rem clamp(16px, 4vw, 40px)', borderRadius: '4px', border: '1px solid #2f2f2f', textAlign: 'center', maxWidth: '900px', margin: '0 auto', boxShadow: '0 6px 20px rgba(0,0,0,0.5)' }}>
+        <p style={{ color: '#ffffff', fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', lineHeight: 1.7, maxWidth: '750px', margin: '0 auto', fontFamily: 'inherit', fontWeight: 500 }}>
           The crab walked sideways to get here.<br />
           The ocean sent its deepest waves.<br />
           The shell held its breath and whispered your name.<br />
@@ -302,12 +362,12 @@ Enjoy every moment, making a lot of friends, exploring as far as it goes, and ne
           The brain sent a 47-tab report.<br />
           And Jesus Christ personally confirmed:<br />
           <br />
-          <span style={{ fontSize: '1.1em', fontWeight: 800, color: '#E50914' }}>You are the miracle this year.</span><br />
+          <span style={{ fontSize: '1.15em', fontWeight: 900, color: '#E50914' }}>You are the miracle this year.</span><br />
           <br />
           Happy Birthday, Lakshmi.<br />
           The universe is taking notes.
         </p>
-        <div style={{ color: '#444', marginTop: '1.5rem', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 700 }}>— From Everyone Who Watched You Become This —</div>
+        <div style={{ color: '#777777', marginTop: '1.75rem', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 700 }}>— From Everyone Who Watched You Become This —</div>
       </div>
     </section>
   )
@@ -316,14 +376,14 @@ Enjoy every moment, making a lot of friends, exploring as far as it goes, and ne
 function Footer() {
   const navigate = useNavigate()
   return (
-    <footer style={{ background: '#050505', padding: '2rem 4%', textAlign: 'center', borderTop: '1px solid #111' }}>
-      <div onClick={() => navigate({ to: '/home' })} style={{ cursor: 'pointer', color: '#E50914', fontSize: '1.2rem', fontWeight: 900, marginBottom: '0.4rem', letterSpacing: '0.5px' }}>
+    <footer style={{ background: '#141414', padding: '4rem 4% 2.5rem', textAlign: 'center', borderTop: '1px solid #282828' }}>
+      <div onClick={() => navigate({ to: '/home' })} style={{ cursor: 'pointer', color: '#E50914', fontSize: '1.3rem', fontWeight: 900, marginBottom: '1rem', letterSpacing: '0.5px' }}>
         LAKSHMIX
       </div>
-      <div style={{ color: '#444', fontSize: '0.8rem', marginBottom: '0.2rem' }}>
+      <div style={{ color: '#777777', fontSize: '0.8rem', marginBottom: '0.4rem', maxWidth: '500px', margin: '0 auto 0.5rem' }}>
         A cinematic tribute to courage, intelligence, and the decade&apos;s highest package.
       </div>
-      <div style={{ color: '#252525', fontSize: '0.7rem' }}>
+      <div style={{ color: '#555555', fontSize: '0.75rem', marginTop: '1rem' }}>
         Made with love · 2026 · Lakshmi&apos;s Universe
       </div>
     </footer>
@@ -332,7 +392,7 @@ function Footer() {
 
 export default function HomePage() {
   return (
-    <div style={{ minHeight: '100vh', background: '#0a0a0a', overflowX: 'hidden' }}>
+    <div style={{ minHeight: '100vh', background: '#141414', overflowX: 'hidden' }}>
       <style>{`
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
@@ -344,10 +404,19 @@ export default function HomePage() {
         .touch-scroll-enabled {
           -webkit-overflow-scrolling: touch;
         }
-        .cinematic-card:hover {
-          transform: scale(1.03) translateY(-2px);
-          box-shadow: 0 6px 20px rgba(229, 9, 20, 0.3) !important;
-          border-color: rgba(229, 9, 20, 0.35) !important;
+        .netflix-card:hover {
+          transform: scale(1.06) !important;
+          box-shadow: 0 12px 25px rgba(0,0,0,0.8) !important;
+          zIndex: 10 !important;
+        }
+        .netflix-btn-white:hover {
+          background-color: #e5e5e5 !important;
+        }
+        .netflix-btn-gray:hover {
+          background-color: rgba(109, 109, 110, 0.25) !important;
+        }
+        .netflix-nav-link:hover {
+          color: #b3b3b3 !important;
         }
         @media (max-width: 768px) {
           .responsive-mobile-nav {
@@ -357,10 +426,12 @@ export default function HomePage() {
             display: none !important;
           }
           .lx-nav {
-            padding: 12px 16px !important;
-            background-color: rgba(10, 10, 10, 0.8) !important;
-            backdrop-filter: blur(12px) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 14px 16px !important;
+            background-color: #141414 !important;
+            border-bottom: 1px solid #252525;
+          }
+          .saga-hero-content {
+            padding: 100px 16px 20px !important;
           }
         }
       `}</style>
