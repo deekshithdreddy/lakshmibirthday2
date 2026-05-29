@@ -559,7 +559,7 @@ function MyWishesPage() {
             { src: '/images/lakshmi-temple.jpg', label: 'The Sanctuary' },
             { src: '/images/lakshmilaugh.jpg', label: 'Pure Laughter' },
             { src: '/images/lakshmi-beach.jpg', label: 'The Sunset Waves' },
-            { src: '/images/lakshmiinteemple.png', label: 'The Core Memory' }
+            { src: '/images/lakshmiintemple.png', label: 'The Core Memory' }
           ].map((photo, i) => (
             <div
               key={i}
