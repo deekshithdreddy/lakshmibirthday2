@@ -118,7 +118,7 @@ function Hero() {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.4rem' }}>
-          <span style={{ fontSize: 'clamp(0.7rem, 2vw, 0.85rem)', color: '#E50914', fontWeight: 800, letterSpacing: '2px', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>LAKSHMI SAGA</span>
+          <span style={{ fontSize: 'clamp(0.7rem, 2vw, 0.85rem)', color: '#E50914', fontWeight: 800, letterSpacing: '2px', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>LAKSHMI: Under Exploration</span>
           <span style={{ fontSize: '0.65rem', background: 'rgba(229, 9, 20, 0.35)', border: '1px solid rgba(229, 9, 20, 0.5)', padding: '2px 6px', borderRadius: '2px', fontWeight: 700, color: '#fff' }}>Est. 2003</span>
         </div>
         
@@ -127,7 +127,7 @@ function Hero() {
         </h1>
         
         <div style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', fontFamily: 'var(--font-serif)', fontStyle: 'italic', color: '#ffcc02', marginBottom: '1.25rem', fontWeight: 600, textShadow: '0 2px 8px rgba(0,0,0,0.9)' }}>
-          Still Under Exploration...
+          The Story is Still being Written...
         </div>
 
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.5rem' }}>
@@ -146,7 +146,7 @@ function Hero() {
         </div>
 
         <p style={{ fontSize: 'clamp(0.85rem, 2.2vw, 0.95rem)', opacity: 0.9, lineHeight: 1.6, margin: 0, color: '#f0f0f0', maxWidth: '600px', fontWeight: 500, textShadow: '0 2px 10px rgba(0,0,0,0.95), 0 1px 3px rgba(0,0,0,0.95)' }}>
-          A real-time cinematic sequence featuring structural plot twists, extreme empathy traits, outstanding dressing combinations, corporate package miracles, and unparalleled main-character energy.
+          one day it's beach. Another day it's a new city. Some days feel like side quests. Some feel like the beginning of something bigger. No one nows where the story goes next. Including the main character.
         </p>
       </div>
     </section>
