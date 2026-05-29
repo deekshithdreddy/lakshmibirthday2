@@ -1,6 +1,18 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
 
+// FORCE VITE TO IMPORT IMAGES DIRECTLY AS MODULES
+import dream1 from '../../public/images/lakshmi-dream-photo.png'
+import dream2 from '../../public/images/lakshmi-dream-photo2.png'
+import weird from '../../public/images/lakshmi-weird-photo.jpg'
+import museum from '../../public/images/lakshmi-and-me-in-museum.jpg'
+import templeBw from '../../public/images/lakshmi-and-me-temple-bw-photo.jpg'
+import temple1 from '../../public/images/lakshmi-and-me-temple-photo.jpg'
+import temple2 from '../../public/images/lakshmi-and-me-temple-photo2.jpg'
+import sanctuary from '../../public/images/lakshmi-temple.jpg'
+import coreMemory from '../../public/images/lakshmiintemple.png'
+import backgroundVideo from '../../public/images/video.mp4'
+
 export const Route = createFileRoute('/my-wishes')({
   component: MyWishesPage,
 })
@@ -139,7 +151,7 @@ function MyWishesPage() {
           </h2>
         </div>
 
-        {/* CSS GRID SYSTEM: Responsive Layout */}
+        {/* Responsive CSS Grid */}
         <div
           className="gallery-responsive-grid"
           style={{
@@ -147,7 +159,7 @@ function MyWishesPage() {
             gap: '16px',
           }}
         >
-          {/* Main Large Item: Local Video Autoplay Tracking */}
+          {/* Main Large Video Box */}
           <div
             className="main-large-item"
             style={{
@@ -160,7 +172,7 @@ function MyWishesPage() {
             }}
           >
             <video
-              src="/images/video.mp4"
+              src={backgroundVideo}
               autoPlay
               loop
               muted
@@ -191,44 +203,17 @@ function MyWishesPage() {
             </div>
           </div>
 
-          {/* Secondary Gallery Memory Assets using Local Public Files */}
+          {/* Render compiled image modules directly */}
           {[
-            {
-              src: '/images/lakshmi\'s-dream-photo.png',
-              label: 'The Dream',
-            },
-            {
-              src: '/images/lakshmi\'s-dream-photo2.png',
-              label: 'The Horizon',
-            },
-            {
-              src: '/images/lakshmi\'s-weird-photo.jpg',
-              label: 'The Weird Moments',
-            },
-            {
-              src: '/images/lakshmi-and-me-in-museum.jpg',
-              label: 'The Museum',
-            },
-            {
-              src: '/images/lakshmi-and-me-temple-bw-photo.jpg',
-              label: 'The Temple (B&W)',
-            },
-            {
-              src: '/images/lakshmi-and-me-temple-photo.jpg',
-              label: 'The Journey',
-            },
-            {
-              src: '/images/lakshmi-and-me-temple-photo2.jpg',
-              label: 'The Shared Paths',
-            },
-            {
-              src: '/images/lakshmi-temple.jpg',
-              label: 'The Sanctuary',
-            },
-            {
-              src: '/images/lakshmiintemple.png',
-              label: 'The Core Memory',
-            }
+            { src: dream1, label: 'The Dream' },
+            { src: dream2, label: 'The Horizon' },
+            { src: weird, label: 'The Weird Moments' },
+            { src: museum, label: 'The Museum' },
+            { src: templeBw, label: 'The Temple (B&W)' },
+            { src: temple1, label: 'The Journey' },
+            { src: temple2, label: 'The Shared Paths' },
+            { src: sanctuary, label: 'The Sanctuary' },
+            { src: coreMemory, label: 'The Core Memory' }
           ].map((photo, i) => (
             <div
               key={i}
@@ -409,7 +394,7 @@ function MyWishesPage() {
         </button>
       </section>
 
-      {/* Injection of Global Layout Styles */}
+      {/* Injected Grid Styles */}
       <style>{`
         .gallery-responsive-grid {
           grid-template-columns: repeat(4, 1fr);
