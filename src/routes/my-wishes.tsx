@@ -315,7 +315,7 @@ function MyWishesPage() {
             { src: '/images/lakshmi-temple.jpg', label: 'The Sanctuary' },
             { src: '/images/lakshmilaugh.jpg', label: 'Pure Laughter' },
             { src: '/images/lakshmi-beach.jpg', label: 'The Sunset Waves' },
-            { src: '/images/lakshmiintemple.png', label: 'The Core Memory' } // FIXED: Double 'ee' typo fixed to match file name
+            { src: '/images/lakshmiintemple.png', label: 'The Core Memory' }
           ].map((photo, i) => (
             <div
               key={i}
@@ -379,7 +379,7 @@ function MyWishesPage() {
         </div>
       </section>
 
-      {/* Speech Section */}
+      {/* Speech Section with Your Beautiful New Message Mapped Safely */}
       <section
         style={{
           padding: '3rem clamp(1rem, 4vw, 4%) 5rem',
@@ -431,30 +431,43 @@ function MyWishesPage() {
             &ldquo;
           </div>
 
+          <p style={{ fontFamily: 'var(--font-body, inherit)', fontSize: '1.15rem', fontWeight: 'bold', color: 'white', marginBottom: '1.5rem' }}>
+            Happy Birthday Lakshmi ❤️
+          </p>
+
           {[
-            'I\'ve been trying to write this for weeks. Every draft felt either too short for what you mean, or too long for what a birthday message is supposed to be. So let me just say it plainly.',
-            'You are one of the most quietly remarkable people I\'ve ever known. Not quietly in the sense of small — quiet in the sense of a storm that doesn\'t announce itself before it rearranges everything.',
-            'You\'ve had bad days that would have broken most people. You\'ve sat in rooms where you were doubted, dismissed, or simply invisible — and you didn\'t flinch. You just waited. And then you delivered. That specific kind of patience — the kind that isn\'t passive but precise — that\'s a superpower most people never develop.',
-            'The highest package of the decade is brilliant. I mean that. But it\'s also the least interesting thing about you. What\'s interesting is the version of you that existed before the title. The one who showed up anyway. The one who kept going when going felt impossible.',
-            'So today, on your birthday — I want to celebrate that person. Not just the achievement, but the whole messy, brilliant, hilarious, kind, occasionally chaotic, deeply generous human being behind it.',
-            'You have my full respect, my admiration, and my sincere wish that every single thing ahead of you is as extraordinary as you deserve. And you deserve a lot.',
-            'Happy Birthday, Lakshmi. May this year be your most ridiculous, beautiful, and victorious one yet.',
+            "After my sister Ramani, when someone talks about studies, marks, and ranks, you're one of the first people that comes to my mind. Growing up, you were almost like a celebrity in our village when it came to academics 😄. People knew Lakshmi because of marks before they knew Lakshmi as a person.",
+            "Honestly, I still believe your story is much bigger than what life has shown so far. That's probably why it hurts sometimes. I know how much effort you've put in, how many expectations you've carried, and how many responsibilities come with being from a middle-class family. Meeting those expectations and giving meaning to every rupee our parents spend on us is never a small thing.",
+            "You and Ramani akka have already achieved things many people only talk about. But somewhere, I still feel both of you deserve bigger stages, better recognition, and opportunities that match your potential.",
+            "So this birthday, one thing I'm genuinely wishing for is this:\nMay both my akkalu end up exactly where they belong. May your hard work finally meet the opportunities it deserves. And may the coming years surprise you in the best possible way.",
+            "Also... trip ki miss aynanduku nijanga chaala chaala miss avtunna 😭. Photos choostunte inka ekkuva miss avtunna.",
+            "Keep travelling. Keep collecting memories. Keep taking random photos. Keep being Peeta. Keep being the female version of Gajini 😭.",
+            "Most importantly, keep being Lakshmi.",
+            "Life lo eppudaina oka choice vaste, fear valla vadulukoku. Take risks. Try new things. Explore new places. Explore new careers. Explore new versions of yourself.",
+            "Because temporary failures kante lifelong regrets chaala painful.",
+            "And if there is one thing I've learned from watching your journey, it's this:\nYou always keep moving forward.",
+            "So here's to better opportunities, better adventures, better memories, and a much happier Season 23."
           ].map((para, i) => (
             <p
               key={i}
               style={{
-                fontFamily: i === 0 ? 'var(--font-body, inherit)' : 'var(--font-serif)',
-                fontStyle: i === 0 ? 'normal' : 'italic',
-                fontSize: i === 0 ? '1rem' : 'clamp(0.95rem, 1.8vw, 1.2rem)',
+                fontFamily: 'var(--font-serif)',
+                fontStyle: 'italic',
+                fontSize: 'clamp(0.95rem, 1.8vw, 1.2rem)',
                 fontWeight: 300,
                 lineHeight: 1.75,
-                color: i === 6 ? 'white' : 'rgba(220,220,220,0.85)',
-                marginBottom: i === 6 ? 0 : '1.5rem',
+                color: 'rgba(230,230,230,0.9)',
+                marginBottom: '1.5rem',
+                whiteSpace: 'pre-line' // Respect text layout returns inside the arrays safely
               }}
             >
               {para}
             </p>
           ))}
+
+          <p style={{ fontFamily: 'var(--font-body, inherit)', fontSize: '1.1rem', fontWeight: 'bold', color: '#E50914', marginTop: '1.5rem' }}>
+            Happy Birthday Lakshmi ❤️
+          </p>
 
           <div
             style={{
@@ -469,11 +482,12 @@ function MyWishesPage() {
               style={{
                 fontFamily: 'var(--font-serif)',
                 fontStyle: 'italic',
-                fontSize: '0.9rem',
+                fontSize: '1rem',
+                fontWeight: 'bold',
                 color: '#E50914',
               }}
             >
-              — With everything —
+              — Lakshman
             </span>
             <div style={{ flex: 1, height: '1px', background: '#222' }} />
           </div>
@@ -504,40 +518,6 @@ function MyWishesPage() {
           ← Back to Lakshmi&apos;s Universe
         </button>
       </section>
-
-      {/* Injected Grid Styles */}
-      <style>{`
-        .gallery-responsive-grid {
-          grid-template-columns: repeat(4, 1fr);
-        }
-        .main-large-item {
-          grid-column: 1 / 3;
-          grid-row: 1 / 3;
-        }
-        .featured-dream-item {
-          grid-column: 1 / 5;
-          margin-bottom: 8px;
-        }
-        @media (max-width: 950px) {
-          .gallery-responsive-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 12px !important;
-          }
-          .main-large-item, .featured-dream-item {
-            grid-column: 1 / 3 !important;
-            grid-row: auto !important;
-          }
-        }
-        @media (max-width: 520px) {
-          .gallery-responsive-grid {
-            grid-template-columns: 1fr !important;
-            gap: 14px !important;
-          }
-          .main-large-item, .featured-dream-item {
-            grid-column: auto !important;
-          }
-        }
-      `}</style>
 
       {/* Footer */}
       <footer style={{ background: '#000', padding: '2.5rem 4%', textAlign: 'center', borderTop: '1px solid #161616' }}>
