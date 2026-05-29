@@ -62,7 +62,7 @@ function Navbar() {
       
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <div 
-          onClick={() => window.location.reload()}
+          onClick={() => navigate({ to: '/' })} // FIXED: Navigates straight from /home back to the root application link
           style={{ 
             width: '32px', 
             height: '32px', 
@@ -105,7 +105,7 @@ function Hero() {
         overflow: 'hidden'
       }}
     >
-      {/* Restored to original stable framing configurations */}
+      {/* Background Frame Setup */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: '#141414' }}>
         <img
           src={heroImg}
@@ -114,8 +114,8 @@ function Hero() {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            objectPosition: 'right 20%', // RESTORED: Locks framing properties back down to your screenshot layout parameters
-            filter: 'brightness(0.85) contrast(1.05)'
+            objectPosition: '42% 15%', // FIXED: Tweak parameters to shift her face cleanly to the right side of the viewport screen layout away from text
+            filter: 'brightness(0.85) contrast(1.03)'
           }}
         />
       </div>
