@@ -302,7 +302,7 @@ function MyWishesPage() {
             </div>
           </div>
 
-          {/* Secondary Photo Matrix - Proportioned cleanly for vertical scanning on mobile screens */}
+          {/* Secondary Photo Matrix */}
           {[
             { src: '/images/lakshmi-dream2.png', label: 'The Horizon' },
             { src: '/images/lakshmi-weird-photo.jpg', label: 'The Weird Moments' },
@@ -315,7 +315,7 @@ function MyWishesPage() {
             { src: '/images/lakshmi-temple.jpg', label: 'The Sanctuary' },
             { src: '/images/lakshmilaugh.jpg', label: 'Pure Laughter' },
             { src: '/images/lakshmi-beach.jpg', label: 'The Sunset Waves' },
-            { src: '/images/lakshmiinteemple.png', label: 'The Core Memory' }
+            { src: '/images/lakshmiintemple.png', label: 'The Core Memory' } // FIXED: Double 'ee' typo fixed to match file name
           ].map((photo, i) => (
             <div
               key={i}
@@ -324,7 +324,7 @@ function MyWishesPage() {
                 overflow: 'hidden',
                 position: 'relative',
                 boxShadow: '0 4px 15px rgba(0,0,0,0.4)',
-                aspectRatio: '4/3', // Perfect mobile display box ratio
+                aspectRatio: '4/3',
                 background: '#141416',
                 border: '1px solid rgba(255,255,255,0.04)'
               }}
@@ -504,6 +504,40 @@ function MyWishesPage() {
           ← Back to Lakshmi&apos;s Universe
         </button>
       </section>
+
+      {/* Injected Grid Styles */}
+      <style>{`
+        .gallery-responsive-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        .main-large-item {
+          grid-column: 1 / 3;
+          grid-row: 1 / 3;
+        }
+        .featured-dream-item {
+          grid-column: 1 / 5;
+          margin-bottom: 8px;
+        }
+        @media (max-width: 950px) {
+          .gallery-responsive-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 12px !important;
+          }
+          .main-large-item, .featured-dream-item {
+            grid-column: 1 / 3 !important;
+            grid-row: auto !important;
+          }
+        }
+        @media (max-width: 520px) {
+          .gallery-responsive-grid {
+            grid-template-columns: 1fr !important;
+            gap: 14px !important;
+          }
+          .main-large-item, .featured-dream-item {
+            grid-column: auto !important;
+          }
+        }
+      `}</style>
 
       {/* Footer */}
       <footer style={{ background: '#000', padding: '2.5rem 4%', textAlign: 'center', borderTop: '1px solid #161616' }}>
