@@ -85,26 +85,26 @@ function MyWishesPage() {
       }
     } 
     else if (selectedScore === 5) {
-      // 🐋 TIER 5: MAXIMUM SPEED WHALE ENERGY BLAST
+      // 🐋 TIER 5: MAXIMUM SPEED CELEBRATION BLAST
       const seaEmojis = ['🥳', '🎉', '✨']
-      for (let i = 0; i < 120; i++) {
+      for (let i = 0; i < 140; i++) {
         const angle = Math.random() * Math.PI * 2
         
-        // --- SPEED TUNING PARAMETERS ---
-        const velocity = 38 + Math.random() * 16 // MASSIVE base speed velocity boost
-        const upwardKick = 14 // Forceful launch upward factor
+        // --- HIGH-SPEED TUNING PARAMETERS ---
+        const velocity = 32 + Math.random() * 35 // Hyper-drive horizontal push vectors
+        const upwardKick = 26 // Forceful initial upward explosion vertical lift
         
         clusterQueue.push({
           x: startX,
           y: startY,
-          size: 24 + Math.random() * 18,
+          size: 26 + Math.random() * 20,
           type: 'emoji',
           char: seaEmojis[Math.floor(Math.random() * seaEmojis.length)],
           color: '#ffffff',
           speedX: Math.cos(angle) * velocity,
           speedY: (Math.sin(angle) * velocity) - upwardKick,
           rotation: Math.random() * 360,
-          rotationSpeed: -15 + Math.random() * 30, // Faster spinning action
+          rotationSpeed: -30 + Math.random() * 60, // Snappy hyper spin mechanics
           opacity: 1
         })
       }
