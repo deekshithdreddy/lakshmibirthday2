@@ -74,7 +74,7 @@ export const characters: Character[] = [
     quote: 'Random moments make the best memories.',
     shortDesc: 'The straight-faced anchor of accidental legendary comedy.',
     youtubeId: 'Fy5dSwJNLjM',
-    thumbnail: 'https://www.imdb.com/title/tt11306376/mediaviewer/rm1658377729/?ref_=ttmi_mi_2?auto=format&fit=crop&w=600&q=80',
+    thumbnail: 'https://www.imdb.com/title/tt11306376/mediaviewer/rm1658377729?auto=format&fit=crop&w=600&q=80',
     qualities: [
       { title: 'Accidental Comedy', description: 'You look serious sometimes. But random moments become funny around you. Unintentionally creates comedy scenes.' }
     ],
