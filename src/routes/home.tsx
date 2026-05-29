@@ -75,7 +75,7 @@ function Navbar() {
 }
 
 function Hero() {
-  const heroImg = '/images/lakshmiintemple.png'; 
+  const heroImg = '/images/lakshmi-dream.png'; 
   return (
     <section
       className="hero saga-hero"
