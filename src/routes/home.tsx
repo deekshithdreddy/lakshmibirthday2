@@ -260,12 +260,16 @@ function WishesSection() {
     {
       icon: '🧠',
       title: 'Brain Report: Outstanding',
-      text: 'Your brain currently runs: 47 open tabs, a mental archive of every conversation since 2019, three interview answers loaded and ready, a full emotional support system for 6 people, AND a running list of memes to send. Scientists call this galaxy-brain. We call it Lakshmi. Peer reviewed. Published. Cited. 🧠',
+      text: `23 years... I don't know how fast time went. I'm still missing those small fights with Praveen and Madhan a lot, actually. Now we are some employees, next whatever it will be. I know the struggles and the hard work you put on for yourself to become something, but right now, this odd job is really frustrating.
+
+But I know your spirit. We faced the worst—this is just a small thing. We're gonna have a great comeback this year. I'm saying this with a genuine gut feeling: you will laugh hard from the heart, as usual.
+
+Enjoy every moment, making a lot of friends, exploring as far as it goes, and never stop anywhere. I wish you a very happy birthday. May this chapter surprise you, outgrow the struggles, and turn into your most beautiful, victorious season yet. Happy Birthday, Lakshmi! ❤️✨. 🧠`,
     },
     {
       icon: '✝️',
       title: 'Jesus Christ (He Sent Word)',
-      text: 'When Jesus turned water into wine, people were absolutely shook for centuries. You turned doubt, wrong jobs, waiting, and "you\'re overqualified" into the decade\'s highest package. He sent a message: "Respect. The miracles committee is taking notes. Also — the whale, the crab, and the ocean say hi. Happy Birthday, queen." ✝️',
+      text: 'When Jesus turned water into wine, people were absolutely shook for centuries. You too will turn doubt, wrong jobs, waiting, and "you\'re overqualified" into the decade\'s highest package. He sent a message: "Respect. The miracles committee is taking notes. Also — the whale, the crab, and the ocean say hi. Happy Birthday, queen." ✝️',
     },
   ]
 
