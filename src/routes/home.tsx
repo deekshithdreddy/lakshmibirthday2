@@ -114,7 +114,7 @@ function Hero() {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            objectPosition: '60% 40%', // Shifts her face nicely to the right-center while keeping it centered vertically
+            objectPosition: '55% 45%', // Shifts her face nicely to the right-center while keeping it centered vertically
             filter: 'brightness(0.85) contrast(1.03)'
           }}
         />
