@@ -15,6 +15,7 @@ interface SpecialParticle {
   rotation: number
   rotationSpeed: number
   opacity: number
+  glow?: boolean
 }
 
 function MyWishesPage() {
@@ -22,6 +23,7 @@ function MyWishesPage() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const particlesRef = useRef<SpecialParticle[]>([])
   const animationFrameRef = useRef<number | null>(null)
+  const streamIntervalRef = useRef<number | null>(null)
   
   const [rating, setRating] = useState<number>(0)
   const [hoverRating, setHoverRating] = useState<number>(0)
@@ -35,12 +37,16 @@ function MyWishesPage() {
   const executeRatingImpact = (selectedScore: number) => {
     setRating(selectedScore)
     if (!canvasRef.current) return
+
+    // Clear any previously running streams instantly
+    if (streamIntervalRef.current) {
+      clearInterval(streamIntervalRef.current)
+      streamIntervalRef.current = null
+    }
     
     const startX = window.innerWidth / 2
     const startY = window.innerHeight * 0.72
-    const clusterQueue: SpecialParticle[] = []
     
-    // Standardized velocity constant for uniform speed experience
     const baseMinVelocity = 7
     const baseMaxVelocity = 15
 
@@ -50,6 +56,7 @@ function MyWishesPage() {
       setTimeout(() => setFlashActive(false), 500)
 
       const monochromeRedTones = ['#E50914', '#000000', '#111111', '#ff3333']
+      const clusterQueue: SpecialParticle[] = []
       for (let i = 0; i < 80; i++) {
         const angle = Math.random() * Math.PI * 2
         const velocity = baseMinVelocity + Math.random() * baseMaxVelocity
@@ -65,17 +72,19 @@ function MyWishesPage() {
           opacity: 1
         })
       }
+      particlesRef.current = [...particlesRef.current, ...clusterQueue]
     } 
     // TIER 2: 3 & 4 Stars — Delicate Decreased Size Gold & Silver Fields from center
     else if (selectedScore === 3 || selectedScore === 4) {
       const metallicTones = ['#ffcc02', '#ffd700', '#e6e6e6', '#ffffff', '#aaaaaa']
+      const clusterQueue: SpecialParticle[] = []
       for (let i = 0; i < 180; i++) {
         const angle = Math.random() * Math.PI * 2
         const velocity = baseMinVelocity + Math.random() * baseMaxVelocity
         clusterQueue.push({
           x: startX,
           y: startY,
-          size: 3 + Math.random() * 5, // Decreased micro-sizing structural modification
+          size: 3 + Math.random() * 5,
           color: metallicTones[Math.floor(Math.random() * metallicTones.length)],
           speedX: Math.cos(angle) * velocity,
           speedY: (Math.sin(angle) * velocity) - 5,
@@ -84,48 +93,66 @@ function MyWishesPage() {
           opacity: 1
         })
       }
+      particlesRef.current = [...particlesRef.current, ...clusterQueue]
     } 
-    // TIER 3: 5 Stars — High Density Birthday Bomb Glittering Stars from Corners
+    // 🐋 TIER 3: 5 Stars — 2.5-Second High-Density Continuous Birthday Bomb
     else if (selectedScore === 5) {
       const glowingGoldTones = ['#ffcc02', '#ffea00', '#fffb99', '#ffffff', '#ffe066']
       const groundY = window.innerHeight
+      let runtimeCounter = 0
 
-      // Left Party Popper Cannon: Cross-fires upwards and rightwards
-      for (let i = 0; i < 150; i++) {
-        const angle = -Math.PI / 6 - Math.random() * (Math.PI / 3) // Angles matching -30 to -90 degrees
-        const velocity = 10 + Math.random() * 16
-        clusterQueue.push({
-          x: 0,
-          y: groundY,
-          size: 4 + Math.random() * 6, // Small glistening particles
-          color: glowingGoldTones[Math.floor(Math.random() * glowingGoldTones.length)],
-          speedX: Math.cos(angle) * velocity,
-          speedY: Math.sin(angle) * velocity,
-          rotation: Math.random() * 360,
-          rotationSpeed: -25 + Math.random() * 50,
-          opacity: 1
-        })
-      }
+      // Fire the popper loops continuously on a 75ms loop cycle track
+      streamIntervalRef.current = window.setInterval(() => {
+        const streamQueue: SpecialParticle[] = []
 
-      // Right Party Popper Cannon: Cross-fires upwards and leftwards
-      for (let i = 0; i < 150; i++) {
-        const angle = -Math.PI * 0.5 - Math.random() * (Math.PI / 3) // Angles matching -90 to -150 degrees
-        const velocity = 10 + Math.random() * 16
-        clusterQueue.push({
-          x: window.innerWidth,
-          y: groundY,
-          size: 4 + Math.random() * 6,
-          color: glowingGoldTones[Math.floor(Math.random() * glowingGoldTones.length)],
-          speedX: Math.cos(angle) * velocity,
-          speedY: Math.sin(angle) * velocity,
-          rotation: Math.random() * 360,
-          rotationSpeed: -25 + Math.random() * 50,
-          opacity: 1
-        })
-      }
+        // Left Party Popper Cannon Stream
+        for (let i = 0; i < 8; i++) {
+          const angle = -Math.PI / 6 - Math.random() * (Math.PI / 3) 
+          const velocity = 11 + Math.random() * 16
+          streamQueue.push({
+            x: 0,
+            y: groundY,
+            size: 4 + Math.random() * 6,
+            color: glowingGoldTones[Math.floor(Math.random() * glowingGoldTones.length)],
+            speedX: Math.cos(angle) * velocity,
+            speedY: Math.sin(angle) * velocity,
+            rotation: Math.random() * 360,
+            rotationSpeed: -25 + Math.random() * 50,
+            opacity: 1,
+            glow: true // Activates high-intensity brightness filter
+          })
+        }
+
+        // Right Party Popper Cannon Stream
+        for (let i = 0; i < 8; i++) {
+          const angle = -Math.PI * 0.5 - Math.random() * (Math.PI / 3) 
+          const velocity = 11 + Math.random() * 16
+          streamQueue.push({
+            x: window.innerWidth,
+            y: groundY,
+            size: 4 + Math.random() * 6,
+            color: glowingGoldTones[Math.floor(Math.random() * glowingGoldTones.length)],
+            speedX: Math.cos(angle) * velocity,
+            speedY: Math.sin(angle) * velocity,
+            rotation: Math.random() * 360,
+            rotationSpeed: -25 + Math.random() * 50,
+            opacity: 1,
+            glow: true
+          })
+        }
+
+        particlesRef.current = [...particlesRef.current, ...streamQueue]
+        runtimeCounter += 75
+
+        // Safely unmount and kill stream loop after 2.5 seconds complete
+        if (runtimeCounter >= 2500) {
+          if (streamIntervalRef.current) {
+            clearInterval(streamIntervalRef.current)
+            streamIntervalRef.current = null
+          }
+        }
+      }, 75)
     }
-
-    particlesRef.current = [...particlesRef.current, ...clusterQueue]
   }
 
   const renderVectorStar = (ctx: CanvasRenderingContext2D, cx: number, cy: number, points: number, outer: number, inner: number, fillStyle: string) => {
@@ -161,9 +188,13 @@ function MyWishesPage() {
     if (!ctx) return
 
     const handleResize = () => {
-      if (canvas) {
-        canvas.width = window.innerWidth
-        canvas.height = window.innerHeight
+      if (canvas && ctx) {
+        const dpr = window.devicePixelRatio || 1
+        canvas.width = window.innerWidth * dpr
+        canvas.height = window.innerHeight * dpr
+        canvas.style.width = `${window.innerWidth}px`
+        canvas.style.height = `${window.innerHeight}px`
+        ctx.scale(dpr, dpr)
       }
     }
     window.addEventListener('resize', handleResize)
@@ -175,10 +206,10 @@ function MyWishesPage() {
       particlesRef.current = particlesRef.current.filter((p) => {
         p.x += p.speedX
         p.y += p.speedY
-        p.speedY += 0.34 // Uniform responsive down-fall acceleration
-        p.speedX *= 0.972 // Clean air dampening factor
+        p.speedY += 0.36 
+        p.speedX *= 0.975 
         p.rotation += p.rotationSpeed
-        p.opacity -= 0.015
+        p.opacity -= 0.014
 
         if (p.opacity <= 0) return false
 
@@ -186,6 +217,14 @@ function MyWishesPage() {
         ctx.translate(p.x, p.y)
         ctx.rotate((p.rotation * Math.PI) / 180)
         ctx.globalAlpha = p.opacity
+
+        // 🌟 ILLUMINATION BLOOM TRIGGER FOR 5 STARS
+        if (p.glow) {
+          ctx.shadowBlur = 16
+          ctx.shadowColor = p.color
+        } else {
+          ctx.shadowBlur = 0
+        }
 
         renderVectorStar(ctx, 0, 0, 5, p.size, p.size / 2, p.color)
 
@@ -201,6 +240,7 @@ function MyWishesPage() {
     return () => {
       window.removeEventListener('resize', handleResize)
       if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current)
+      if (streamIntervalRef.current) clearInterval(streamIntervalRef.current)
     }
   }, [])
 
@@ -224,17 +264,14 @@ function MyWishesPage() {
 
       {/* Style Layer */}
       <style>{`
+        @animations matrix...
+        .grand-featured-card {
+          animation: subtleGlow 4s infinite ease-in-out;
+        }
         @keyframes subtleGlow {
           0% { box-shadow: 0 0 15px rgba(229, 9, 20, 0.4), 0 4px 20px rgba(0,0,0,0.8); }
           50% { box-shadow: 0 0 30px rgba(229, 9, 20, 0.75), 0 4px 30px rgba(229, 9, 20, 0.2); }
           100% { box-shadow: 0 0 15px rgba(229, 9, 20, 0.4), 0 4px 20px rgba(0,0,0,0.8); }
-        }
-        @keyframes flashFadeOverlay {
-          0% { opacity: 1; }
-          100% { opacity: 0; }
-        }
-        .grand-featured-card {
-          animation: subtleGlow 4s infinite ease-in-out;
         }
         .gallery-responsive-grid {
           display: grid;
