@@ -679,59 +679,12 @@ function MyWishesPage() {
               gap: '0.5rem',
             }}
           >
-            <div style={{ display: 'flex', width: '100%', alignItems: 'center', gap: '1rem' }}>
-              <div style={{ flex: 1, height: '1px', background: '#222' }} />
-              <span
-                style={{
-                  fontFamily: 'var(--font-serif)',
-                  fontStyle: 'italic',
-                  fontSize: '1rem',
-                  fontWeight: 'bold',
-                  color: '#E50914',
-                }}
-              >
-                — Lakshman
-              </span>
-              <div style={{ flex: 1, height: '1px', background: '#222' }} />
-            </div>
-
-            {/* Premium, High Definition Interactive Review Node Array */}
-            <div style={{ display: 'flex', gap: '8px', marginTop: '14px', justifyContent: 'center' }}>
-              {[1, 2, 3, 4, 5].map((starValue) => {
-                const isLit = starValue <= (hoverRating || rating)
-                let starColor = '#222'
-                if (isLit) {
-                  if (hoverRating <= 2 && rating <= 2 && starValue <= 2 && hoverRating > 0) {
-                    starColor = '#E50914'
-                  } else if (rating === 1 || rating === 2) {
-                    starColor = '#E50914'
-                  } else {
-                    starColor = '#ffcc02'
-                  }
-                }
-                
-                return (
-                  <span
-                    key={starValue}
-                    onClick={() => executeRatingImpact(starValue)}
-                    onMouseEnter={() => setHoverRating(starValue)}
-                    onMouseLeave={() => setHoverRating(0)}
-                    style={{
-                      fontSize: '2.4rem',
-                      cursor: 'pointer',
-                      color: starColor,
-                      transition: 'color 0.15s, transform 0.1s',
-                      transform: starValue === hoverRating ? 'scale(1.18)' : 'scale(1)',
-                      textShadow: isLit ? '0 0 12px rgba(255,204,2,0.4)' : 'none'
-                    }}
-                  >
-                    ★
-                  </span>
-                )
-              })}
-            </div>
-            <div style={{ color: '#444', fontSize: '#444', fontSize: '0.68rem', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '4px' }}>[ CELEBRATE SEASON 23 ]</div>
-          </div>
+           { /* your comment here
+           
+           
+           
+           
+           */}
         </div>
       </section>
 
