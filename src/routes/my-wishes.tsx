@@ -5,11 +5,13 @@ export const Route = createFileRoute('/my-wishes')({
   component: MyWishesPage,
 })
 
-// Custom interface tracking state arrays for structural particle rendering loops
-interface Particle {
+// Structured programmatic data schema for particle physics tracking matrix
+interface SpecialParticle {
   x: number
   y: number
   size: number
+  type: 'star' | 'emoji'
+  char?: string
   color: string
   speedX: number
   speedY: number
@@ -21,56 +23,125 @@ interface Particle {
 function MyWishesPage() {
   const navigate = useNavigate()
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
-  const particlesRef = useRef<Particle[]>([])
+  const particlesRef = useRef<SpecialParticle[]>([])
   const animationFrameRef = useRef<number | null>(null)
+  
+  // Custom interactive states tracking
+  const [rating, setRating] = useState<number>(0)
+  const [hoverRating, setHoverRating] = useState<number>(0)
+  const [flashActive, setFlashActive] = useState<boolean>(false)
 
-  // Base URL fallback handler to prevent router routing nesting path breaks
   const getAssetPath = (path: string) => {
     return `${window.location.origin}${path}`
   }
 
-  // Pure Canvas Particle Engine: Triggers a cinematic burst of custom styled colors
-  const triggerConfettiExplosion = () => {
+  // 🎭 Programmatic Multi-Tier Asset Particle Engine Pipeline Trigger
+  const executeRatingImpact = (selectedScore: number) => {
+    setRating(selectedScore)
     if (!canvasRef.current) return
     const canvas = canvasRef.current
     
-    // Set particle origins exactly to match her viewport dimensions dynamically
     const startX = canvas.width / 2
-    const startY = window.innerHeight * 0.65 // Explodes directly around the signature section area
+    const startY = window.innerHeight * 0.72 // Coordinates centered straight behind the tracking node array
+    const clusterQueue: SpecialParticle[] = []
 
-    const premiumColors = [
-      '#E50914', // Netflix Red
-      '#ffcc02', // Premium Gold
-      '#ff8a65', // Sunset Orange
-      '#b39ddb', // Lavender Orchid
-      '#ffffff', // Sparkle Highlight White
-      '#ef5350'  // Coral Rose
-    ]
+    // TIER 1: Level 1 & 2 — Red Warning Matrix Sparklers + Screen Gradient Flash
+    if (selectedScore === 1 || selectedScore === 2) {
+      setFlashActive(true)
+      setTimeout(() => setFlashActive(false), 1600) // Self-cleaning timeout callback loop
 
-    // Generate 120 dynamic vector coordinates
-    const newParticles: Particle[] = []
-    for (let i = 0; i < 120; i++) {
-      const angle = Math.random() * Math.PI * 2
-      const velocity = 4 + Math.random() * 8
-      
-      newParticles.push({
-        x: startX,
-        y: startY,
-        size: 6 + Math.random() * 8,
-        color: premiumColors[Math.floor(Math.random() * premiumColors.length)],
-        speedX: Math.cos(angle) * velocity,
-        speedY: (Math.sin(angle) * velocity) - 3, // Initial vertical upward pop direction velocity
-        rotation: Math.random() * 360,
-        rotationSpeed: -10 + Math.random() * 20,
-        opacity: 1
-      })
+      const redTones = ['#E50914', '#b20710', '#ff4d4d', '#ff1a1a']
+      for (let i = 0; i < 100; i++) {
+        const angle = Math.random() * Math.PI * 2
+        const velocity = 3 + Math.random() * 7
+        clusterQueue.push({
+          x: startX,
+          y: startY,
+          size: 8 + Math.random() * 10,
+          type: 'star',
+          color: redTones[Math.floor(Math.random() * redTones.length)],
+          speedX: Math.cos(angle) * velocity,
+          speedY: (Math.sin(angle) * velocity) - 2,
+          rotation: Math.random() * 360,
+          rotationSpeed: -8 + Math.random() * 16,
+          opacity: 1
+        })
+      }
+    } 
+    
+    // TIER 2: Level 3 & 4 — Massive Sparkling Cosmic Star Fields
+    else if (selectedScore === 3 || selectedScore === 4) {
+      const cosmicTones = ['#ffcc02', '#ffea00', '#fffc7f', '#4fc3f7', '#e040fb', '#ffffff']
+      for (let i = 0; i < 220; i++) { // Boosted density particle allocation fields
+        const angle = Math.random() * Math.PI * 2
+        const velocity = 4 + Math.random() * 10
+        clusterQueue.push({
+          x: startX,
+          y: startY,
+          size: 6 + Math.random() * 12,
+          type: 'star',
+          color: cosmicTones[Math.floor(Math.random() * cosmicTones.length)],
+          speedX: Math.cos(angle) * velocity,
+          speedY: (Math.sin(angle) * velocity) - 4,
+          rotation: Math.random() * 360,
+          rotationSpeed: -12 + Math.random() * 24,
+          opacity: 1
+        })
+      }
+    } 
+    
+    // TIER 3: Level 5 — The Whale Energy Marine Blast
+    else if (selectedScore === 5) {
+      const seaEmojis = ['🐋', '🐚', '🦀', '🌊', '🐳', '⭐']
+      for (let i = 0; i < 120; i++) {
+        const angle = Math.random() * Math.PI * 2
+        const velocity = 5 + Math.random() * 9
+        clusterQueue.push({
+          x: startX,
+          y: startY,
+          size: 20 + Math.random() * 18, // Enlarged scale bounding layout matrices for clear visibility
+          type: 'emoji',
+          char: seaEmojis[Math.floor(Math.random() * seaEmojis.length)],
+          color: '#ffffff',
+          speedX: Math.cos(angle) * velocity,
+          speedY: (Math.sin(angle) * velocity) - 5,
+          rotation: Math.random() * 360,
+          rotationSpeed: -5 + Math.random() * 10,
+          opacity: 1
+        })
+      }
     }
 
-    // Append to existing array queue so she can spam click it for multiple bursts!
-    particlesRef.current = [...particlesRef.current, ...newParticles]
-  };
+    particlesRef.current = [...particlesRef.current, ...clusterQueue]
+  }
 
-  // Dedicated Background Animation Vector Tracker
+  // Helper geometric script mapping five-point vectors inside canvas tracking slots
+  const renderVectorStar = (ctx: CanvasRenderingContext2D, cx: number, cy: number, points: number, outer: number, inner: number, fillStyle: string) => {
+    let rotationAngle = (Math.PI / 2) * 3
+    let x = cx
+    let y = cy
+    const step = Math.PI / points
+
+    ctx.beginPath()
+    ctx.moveTo(cx, cy - outer)
+    for (let i = 0; i < points; i++) {
+      x = cx + Math.cos(rotationAngle) * outer
+      y = cy + Math.sin(rotationAngle) * outer
+      ctx.lineTo(x, y)
+      rotationAngle += step
+
+      x = cx + Math.cos(rotationAngle) * inner
+      y = cy + Math.sin(rotationAngle) * inner
+      ctx.lineTo(x, y)
+      rotationAngle += step
+    }
+    ctx.lineTo(cx, cy - outer)
+    ctx.closePath()
+    ctx.fillStyle = fillStyle
+    ctx.fill()
+  }
+
+  // Master Particle Update Lifecycle Vector Loop Configuration
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -83,21 +154,19 @@ function MyWishesPage() {
         canvas.height = window.innerHeight
       }
     }
-
     window.addEventListener('resize', handleResize)
     handleResize()
 
-    const updateAndDrawParticles = () => {
+    const processingFrameUpdate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       
       particlesRef.current = particlesRef.current.filter((p) => {
-        // Gravity, wind deceleration metrics, and opacity fade steps
         p.x += p.speedX
         p.y += p.speedY
-        p.speedY += 0.22 // Simulated gravity rate calculation matching mobile touch velocity
-        p.speedX *= 0.98 // Air resistance friction multiplier
+        p.speedY += 0.22 // Simulated gravity acceleration factor constant
+        p.speedX *= 0.975 // Structural wind drag multiplier
         p.rotation += p.rotationSpeed
-        p.opacity -= 0.012 // Smooth programmatic alpha degradation step
+        p.opacity -= 0.012
 
         if (p.opacity <= 0) return false
 
@@ -105,25 +174,24 @@ function MyWishesPage() {
         ctx.translate(p.x, p.y)
         ctx.rotate((p.rotation * Math.PI) / 180)
         ctx.globalAlpha = p.opacity
-        ctx.fillStyle = p.color
-        
-        // Randomly render rectangular streamer cuts or squared flakes for variability
-        if (p.size % 2 === 0) {
-          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 1.6)
-        } else {
-          ctx.beginPath()
-          ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2)
-          ctx.fill()
+
+        if (p.type === 'star') {
+          renderVectorStar(ctx, 0, 0, 5, p.size, p.size / 2, p.color)
+        } else if (p.type === 'emoji' && p.char) {
+          ctx.font = `${p.size}px Arial, sans-serif`
+          ctx.textAlign = 'center'
+          ctx.textBaseline = 'middle'
+          ctx.fillText(p.char, 0, 0)
         }
-        
+
         ctx.restore()
         return true
       })
 
-      animationFrameRef.current = requestAnimationFrame(updateAndDrawParticles)
+      animationFrameRef.current = requestAnimationFrame(processingFrameUpdate)
     }
 
-    animationFrameRef.current = requestAnimationFrame(updateAndDrawParticles)
+    animationFrameRef.current = requestAnimationFrame(processingFrameUpdate)
 
     return () => {
       window.removeEventListener('resize', handleResize)
@@ -134,35 +202,34 @@ function MyWishesPage() {
   return (
     <div style={{ minHeight: '100vh', background: '#0a0a0a', color: 'white', overflowX: 'hidden' }}>
       
-      {/* Immersive Overlay Particle Canvas Layer */}
-      <canvas 
-        ref={canvasRef} 
-        style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 9999 }} 
-      />
+      {/* Immersive Graphics Node Overlapping Canvas Elements Container */}
+      <canvas ref={canvasRef} style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 9999 }} />
 
-      {/* Dynamic Keyframe Animations for that Grand Cinematic Vibe */}
+      {/* Tier 1 Level Red Pulse Gradient Matrix Layout Overlay */}
+      {flashActive && (
+        <div style={{
+          position: 'fixed',
+          inset: 0,
+          background: 'linear-gradient(135deg, rgba(229,9,20,0.55) 0%, rgba(15,10,10,0.95) 100%)',
+          zIndex: 9998,
+          pointerEvents: 'none',
+          animation: 'flashFadeOverlay 1.6s cubic-bezier(0.1, 0.8, 0.2, 1) forwards'
+        }} />
+      )}
+
+      {/* Embedded Application Layout Animations Keyframe Matrix */}
       <style>{`
         @keyframes subtleGlow {
           0% { box-shadow: 0 0 15px rgba(229, 9, 20, 0.4), 0 4px 20px rgba(0,0,0,0.8); }
           50% { box-shadow: 0 0 30px rgba(229, 9, 20, 0.75), 0 4px 30px rgba(229, 9, 20, 0.2); }
           100% { box-shadow: 0 0 15px rgba(229, 9, 20, 0.4), 0 4px 20px rgba(0,0,0,0.8); }
         }
-        @keyframes pulseHeart {
-          0% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(229,9,20,0.6)); }
-          50% { transform: scale(1.15); filter: drop-shadow(0 0 16px rgba(229,9,20,1)); }
-          100% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(229,9,20,0.6)); }
+        @keyframes flashFadeOverlay {
+          0% { opacity: 1; filter: saturate(1.5); }
+          100% { opacity: 0; filter: saturate(1); }
         }
         .grand-featured-card {
           animation: subtleGlow 4s infinite ease-in-out;
-        }
-        .pulse-heart-trigger {
-          animation: pulseHeart 1.8s infinite ease-in-out;
-          cursor: pointer;
-          user-select: none;
-          transition: transform 0.2s;
-        }
-        .pulse-heart-trigger:active {
-          transform: scale(0.9) !important;
         }
         .gallery-responsive-grid {
           display: grid;
@@ -286,7 +353,7 @@ function MyWishesPage() {
           style={{
             fontFamily: 'var(--font-serif)',
             fontStyle: 'italic',
-            fontSize: 'clamp(0.9rem, 1.6vw, 1.1rem)',
+            fontSize: 'clamp(0.95rem, 1.8vw, 1.2rem)',
             fontWeight: 300,
             lineHeight: 1.7,
             color: 'rgba(200,200,200,0.6)',
@@ -450,7 +517,7 @@ function MyWishesPage() {
             { src: '/images/lakshmi-temple.jpg', label: 'The Sanctuary' },
             { src: '/images/lakshmilaugh.jpg', label: 'Pure Laughter' },
             { src: '/images/lakshmi-beach.jpg', label: 'The Sunset Waves' },
-            { src: '/images/lakshmiinteemple.png', label: 'The Core Memory' }
+            { src: '/images/lakshmiintemple.png', label: 'The Core Memory' }
           ].map((photo, i) => (
             <div
               key={i}
@@ -514,7 +581,7 @@ function MyWishesPage() {
         </div>
       </section>
 
-      {/* Speech Section with Your Beautiful New Message Mapped Safely */}
+      {/* Speech Section with Your Beautiful Message */}
       <section
         style={{
           padding: '3rem clamp(1rem, 4vw, 4%) 5rem',
@@ -604,14 +671,14 @@ function MyWishesPage() {
             Happy Birthday Lakshmi ❤️
           </p>
 
-          {/* 🌟 EASTER EGG PULSING HEART BUTTON: Triggers the Confetti Streams */}
+          {/* 🌟 PREMIUM INTERACTIVE TIED RATING COMPONENT BLOCK */}
           <div
             style={{
               marginTop: '2.5rem',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              gap: '0.75rem',
+              gap: '0.5rem',
             }}
           >
             <div style={{ display: 'flex', width: '100%', alignItems: 'center', gap: '1rem' }}>
@@ -629,16 +696,42 @@ function MyWishesPage() {
               </span>
               <div style={{ flex: 1, height: '1px', background: '#222' }} />
             </div>
-            
-            <div 
-              className="pulse-heart-trigger" 
-              onClick={triggerConfettiExplosion}
-              style={{ fontSize: '2.2rem', marginTop: '10px' }}
-              title="Click for a surprise!"
-            >
-              ❤️
+
+            {/* Interactive Rating Stars Row Vector Matrix */}
+            <div style={{ display: 'flex', gap: '6px', marginTop: '14px', justifyContent: 'center' }}>
+              {[1, 2, 3, 4, 5].map((starValue) => {
+                const isLit = starValue <= (hoverRating || rating)
+                let starColor = '#222'
+                if (isLit) {
+                  if (hoverRating <= 2 && rating <= 2 && starValue <= 2 && hoverRating > 0) {
+                    starColor = '#E50914' // Crimson highlight indicators for low values
+                  } else if (rating === 1 || rating === 2) {
+                    starColor = '#E50914'
+                  } else {
+                    starColor = '#ffcc02' // Elegant gold indicators
+                  }
+                }
+                
+                return (
+                  <span
+                    key={starValue}
+                    onClick={() => executeRatingImpact(starValue)}
+                    onMouseEnter={() => setHoverRating(starValue)}
+                    onMouseLeave={() => setHoverRating(0)}
+                    style={{
+                      fontSize: '2.4rem',
+                      cursor: 'pointer',
+                      color: starColor,
+                      transition: 'color 0.15s, transform 0.1s',
+                      transform: starValue === hoverRating ? 'scale(1.2)' : 'scale(1)'
+                    }}
+                  >
+                    ★
+                  </span>
+                )
+              })}
             </div>
-            <div style={{ color: '#444', fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 700 }}>Tap heart for surprise</div>
+            <div style={{ color: '#444', fontSize: '0.62rem', textTransform: 'uppercase', letterSpacing: '1.5px', fontWeight: 800, marginTop: '2px' }}>Rate Season 23 for a custom surprise</div>
           </div>
         </div>
       </section>
