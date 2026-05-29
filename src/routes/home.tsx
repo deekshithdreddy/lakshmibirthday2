@@ -28,7 +28,7 @@ function Navbar() {
       display: 'flex', 
       alignItems: 'center', 
       justifyContent: 'space-between',
-      padding: scrolled ? '10px 4%' : '20px 4%',
+      padding: scrolled ? '12px 4%' : '24px 4%',
       position: 'fixed',
       top: 0,
       left: 0,
@@ -52,11 +52,11 @@ function Navbar() {
           LAKSHMIX
         </div>
         
-        {/* Unbreakable Android Navbar Navigation Link Stream */}
-        <div style={{ display: 'flex', gap: 'clamp(10px, 3vw, 20px)', alignItems: 'center' }}>
-          <span className="netflix-nav-item" style={{ cursor: 'pointer', fontSize: '0.82rem', fontWeight: 600, color: '#e5e5e5' }} onClick={() => handleScrollToSection('characters')}>Universe</span>
-          <span className="netflix-nav-item" style={{ cursor: 'pointer', fontSize: '0.82rem', fontWeight: 600, color: '#e5e5e5' }} onClick={() => handleScrollToSection('wishes')}>Wishes</span>
-          <span className="netflix-nav-item" style={{ cursor: 'pointer', fontSize: '0.82rem', fontWeight: 700, color: '#E50914' }} onClick={() => navigate({ to: '/my-wishes' })}>My Wishes</span>
+        {/* Unbreakable Android Navbar Navigation links row */}
+        <div style={{ display: 'flex', gap: 'clamp(12px, 3vw, 22px)', alignItems: 'center' }}>
+          <span className="netflix-nav-item" style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600, color: '#e5e5e5' }} onClick={() => handleScrollToSection('characters')}>Universe</span>
+          <span className="netflix-nav-item" style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600, color: '#e5e5e5' }} onClick={() => handleScrollToSection('wishes')}>Wishes</span>
+          <span className="netflix-nav-item" style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 700, color: '#E50914' }} onClick={() => navigate({ to: '/my-wishes' })}>My Wishes</span>
         </div>
       </div>
       
@@ -64,8 +64,8 @@ function Navbar() {
         <div 
           onClick={() => window.location.reload()}
           style={{ 
-            width: '30px', 
-            height: '30px', 
+            width: '32px', 
+            height: '32px', 
             display: 'flex', 
             alignItems: 'center', 
             justifyContent: 'center', 
@@ -74,7 +74,7 @@ function Navbar() {
             fontWeight: 800, 
             borderRadius: '4px', 
             cursor: 'pointer', 
-            fontSize: '0.82rem'
+            fontSize: '0.85rem'
           }}
         >
           L
@@ -90,6 +90,7 @@ function Hero() {
   
   return (
     <section
+      className="hero saga-hero"
       style={{
         position: 'relative',
         width: '100vw',
@@ -104,22 +105,22 @@ function Hero() {
         overflow: 'hidden'
       }}
     >
-      {/* High-Definition Underlay cropped to keep her face fully visible on portrait Android viewports */}
+      {/* High-Definition Underlay centered on her profile line */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: '#141414' }}>
         <img
           src={heroImg}
-          alt="Lakshmi Portrait Display Frame"
+          alt="Lakshmi Main Viewport Presentation"
           style={{
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            objectPosition: 'right 20%', // Keeps her face perfectly clear and positioned in the top-right to middle quadrant
-            filter: 'brightness(0.85) contrast(1.02)'
+            objectPosition: 'right 10%', // Pushes the background frame down slightly to frame her face up clearly in the workspace
+            filter: 'brightness(0.88) contrast(1.02)'
           }}
         />
       </div>
 
-      {/* Netflix Cinematic Multi-Axis Shadow Scrim Overlay Mask */}
+      {/* Netflix Cinematic Multi-Stage Shadow Gradient Scrim */}
       <div
         style={{
           position: 'absolute',
@@ -142,7 +143,7 @@ function Hero() {
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
           <span style={{ fontSize: '0.72rem', color: '#aaa', fontWeight: 800, letterSpacing: '2px' }}>LAKSHMI SAGA</span>
-          <span style={{ fontSize: '0.65rem', border: '1px solid rgba(255,255,255,0.35)', padding: '1px 6px', borderRadius: '2px', fontWeight: 700, color: '#fff' }}>Est. 2003</span>
+          <span style={{ fontSize: '0.65rem', background: 'rgba(229, 9, 20, 0.35)', border: '1px solid rgba(229, 9, 20, 0.5)', padding: '1px 6px', borderRadius: '2px', fontWeight: 700, color: '#fff' }}>Est. 2003</span>
         </div>
         
         <h1 style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', fontWeight: 900, letterSpacing: '-1.5px', margin: '0 0 6px 0', lineHeight: 1.05 }}>
@@ -153,7 +154,7 @@ function Hero() {
           The Story is Still being Written...
         </div>
 
-        {/* Translucent & High-Contrast CTA Buttons Row */}
+        {/* Action Call Grid Trigger Panel Row */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '20px' }}>
           <button
             className="netflix-btn-white"
@@ -189,6 +190,9 @@ function CharacterCarousel() {
     trackRef.current.scrollBy({ left: dir === 'right' ? amount : -amount, behavior: 'smooth' })
   }
 
+  // Localized array tracking platform match metric variations
+  const platformMatches = ['99% Match', '96% Match', '100% Match', '95% Match', '98% Match', '97% Match', '99% Match']
+
   return (
     <div id="characters" style={{ paddingTop: '2.5rem', background: '#141414' }}>
       <div style={{ marginBottom: '1.5rem' }}>
@@ -199,8 +203,8 @@ function CharacterCarousel() {
         <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
           <button className="carousel-btn-nav desktop-only-btn" onClick={() => scroll('left')} style={{ position: 'absolute', left: 0, zIndex: 10, background: 'rgba(0,0,0,0.5)', border: 'none', color: 'white', width: '40px', height: '100%', cursor: 'pointer' }}>❮</button>
 
-          <div className="carousel-track hide-scrollbar touch-scroll-enabled" ref={trackRef} style={{ display: 'flex', overflowX: 'auto', gap: '8px', padding: '10px 4%', scrollBehavior: 'smooth' }}>
-            {characters.map((char) => (
+          <div className="carousel-track hide-scrollbar touch-scroll-enabled" ref={trackRef} style={{ display: 'flex', overflowX: 'auto', gap: '10px', padding: '10px 4%', scrollBehavior: 'smooth' }}>
+            {characters.map((char, i) => (
               <div
                 key={char.id}
                 className="netflix-thumbnail-card"
@@ -211,10 +215,11 @@ function CharacterCarousel() {
                   overflow: 'hidden', 
                   borderRadius: '4px', 
                   background: '#181818', 
-                  flex: '0 0 clamp(155px, 24vw, 220px)', 
-                  aspectRatio: '16/10',
+                  // RESTORED: Grand Portrait Aspect parameters requested by user
+                  flex: '0 0 clamp(190px, 45vw, 250px)', 
+                  aspectRatio: '2/3',
                   transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease',
-                  boxShadow: '0 4px 10px rgba(0,0,0,0.4)'
+                  boxShadow: '0 4px 14px rgba(0,0,0,0.55)'
                 }}
               >
                 <img
@@ -223,12 +228,14 @@ function CharacterCarousel() {
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   loading="lazy"
                 />
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(20,20,20,0.95) 0%, rgba(20,20,20,0.2) 50%, transparent 100%)', zIndex: 2 }} />
-                <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, zIndex: 3, padding: '8px' }}>
-                  <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#ffffff' }}>{char.name}</div>
-                  <div style={{ fontSize: '0.62rem', color: '#a3a3a3', display: 'flex', alignItems: 'center', gap: '6px', marginTop: '1px' }}>
-                    <span style={{ color: '#46d369', fontWeight: 700 }}>98% Match</span>
-                    <span>{char.year}</span>
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(15,15,15,1) 0%, rgba(15,15,15,0.4) 45%, transparent 100%)', zIndex: 2 }} />
+                <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, zIndex: 3, padding: '14px' }}>
+                  <div style={{ fontSize: '0.7rem', color: '#E50914', fontWeight: 800, letterSpacing: '1px', textTransform: 'uppercase' }}>{char.type}</div>
+                  <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#ffffff', margin: '2px 0' }}>{char.name}</div>
+                  <div style={{ fontSize: '#a3a3a3', fontSize: '0.72rem', display: 'flex', alignItems: 'center', gap: '8px', marginTop: '2px' }}>
+                    {/* RESTORED: Dynamic Percentage calculations */}
+                    <span style={{ color: '#46d369', fontWeight: 800 }}>{platformMatches[i % platformMatches.length]}</span>
+                    <span style={{ color: '#e5e5e5' }}>{char.year}</span>
                   </div>
                 </div>
               </div>
@@ -296,7 +303,7 @@ Enjoy every moment, making a lot of friends, exploring as far as it goes, and ne
         Wishes From Around The World
       </h2>
 
-      {/* Floating Masonry Grid Panel */}
+      {/* Floating Masonry Layout Matrix Cards with hardware lifters */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(clamp(250px, 22vw, 310px), 1fr))', gap: '14px', marginBottom: '3.5rem' }}>
         {wishes.map((wish, i) => (
           <div 
@@ -320,26 +327,37 @@ Enjoy every moment, making a lot of friends, exploring as far as it goes, and ne
         ))}
       </div>
 
-      {/* 🎬 HIGH-END NETFLIX ORIGINAL FEATURED BILLBOARD SECTION */}
+      {/* 🎬 REMODALED PREMIUM SUMMARY INTERFACE PANEL BOX */}
       <div 
         className="netflix-billboard-container"
         style={{ 
-          background: 'linear-gradient(135deg, #1f1f23 0%, #0d0d0e 100%)', 
+          background: 'linear-gradient(135deg, #1d1d20 0%, #09090a 100%)', 
           padding: '2.5rem clamp(16px, 4vw, 40px)', 
           borderRadius: '6px', 
-          border: '1px solid rgba(229, 9, 20, 0.55)', 
+          border: '1px solid rgba(229, 9, 20, 0.6)', 
           textAlign: 'center', 
           maxWidth: '850px', 
           margin: '0 auto', 
           position: 'relative',
-          boxShadow: '0 0 25px rgba(229, 9, 20, 0.25), 0 8px 32px rgba(0,0,0,0.7)' 
+          boxShadow: '0 0 30px rgba(229, 9, 20, 0.22), 0 8px 32px rgba(0,0,0,0.75)' 
         }}
       >
         <div style={{ position: 'absolute', top: '12px', left: '12px', background: '#E50914', color: '#fff', fontSize: '0.6rem', fontWeight: 800, padding: '2px 8px', borderRadius: '2px', letterSpacing: '1px' }}>
           TOP 10 SUMMARY FEATURE
         </div>
         
-        <p style={{ color: '#ffffff', fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', lineHeight: 1.75, maxWidth: '720px', margin: '15px auto 0', fontWeight: 500, letterSpacing: '0.2px' }}>
+        {/* RESTORED: Custom Serif Font Style applied cleanly over the blocks requested */}
+        <p style={{ 
+          color: '#ffffff', 
+          fontSize: 'clamp(1.05rem, 2.5vw, 1.35rem)', 
+          lineHeight: 1.85, 
+          maxWidth: '720px', 
+          margin: '18px auto 0', 
+          fontWeight: 300, 
+          letterSpacing: '0.5px',
+          fontFamily: '"Georgia", "Times New Roman", serif', 
+          fontStyle: 'italic' 
+        }}>
           The crab walked sideways to get here.<br />
           The ocean sent its deepest waves.<br />
           The shell held its breath and whispered your name.<br />
@@ -348,12 +366,12 @@ Enjoy every moment, making a lot of friends, exploring as far as it goes, and ne
           The brain sent a 47-tab report.<br />
           And Jesus Christ personally confirmed:<br />
           <br />
-          <span style={{ fontSize: '1.2em', fontWeight: 900, color: '#E50914', textShadow: '0 0 15px rgba(229,9,20,0.4)' }}>You are the miracle this year.</span><br />
+          <span style={{ fontSize: '1.2em', fontWeight: 900, color: '#E50914', fontStyle: 'normal', fontFamily: 'sans-serif', textShadow: '0 0 15px rgba(229,9,20,0.35)' }}>You are the miracle this year.</span><br />
           <br />
           Happy Birthday, Lakshmi.<br />
           The universe is taking notes.
         </p>
-        <div style={{ color: '#666666', marginTop: '1.75rem', fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 700 }}>— From Everyone Who Watched You Become This —</div>
+        <div style={{ color: '#555555', marginTop: '1.75rem', fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 700 }}>— From Everyone Who Watched You Become This —</div>
       </div>
     </section>
   )
@@ -378,23 +396,30 @@ function Footer() {
 
 export default function HomePage() {
   const [profileScreen, setProfileScreen] = useState<boolean>(true)
-  const [guestToast, setGuestToast] = useState<boolean>(false)
+  const [toastMessage, setToastMessage] = useState<string>('')
   const [profileAnimate, setProfileAnimate] = useState<boolean>(false)
 
-  // Handlers managing access loops safely
-  const triggerLakshmiProfile = () => {
+  const handleLakshmiProfile = () => {
     setProfileAnimate(true)
     setTimeout(() => {
       setProfileScreen(false)
     }, 600)
   }
 
-  const triggerGuestProfile = () => {
-    setGuestToast(true)
-    setTimeout(() => setGuestToast(false), 2400)
+  const triggerToast = (msg: string) => {
+    setToastMessage(msg)
+    setTimeout(() => setToastMessage(''), 2400)
   }
 
-  // Gateway Interface matching standard profile wall frameworks
+  // Master Dashboard profiles mapping configuration requested
+  const profilesList = [
+    { id: 'lakshmi', name: 'Lakshmi', bg: '#E50914', label: 'L', marker: '[ Main Character ]', action: handleLakshmiProfile },
+    { id: 'peetha', name: 'Peetha', bg: '#1565c0', label: 'P', marker: '[ Core Memory partner ]', action: () => triggerToast('Trip content missing but memories loaded, Peeta! 😭') },
+    { id: 'gajini-sister', name: "Gajini's Sister", bg: '#6a1b9a', label: 'G', marker: '[ Short-term Memory ]', action: () => triggerToast('Memory refresh required... Gajini 2.0 node detected! 😭') },
+    { id: 'nolan', name: 'Photographer Nolan', bg: '#2e7d32', label: 'N', marker: '[ Director of Photo ]', action: () => triggerToast('Cinematic framing metrics clear... ◉') },
+    { id: 'guest', name: 'Guest Account', bg: '#333333', label: '?', marker: '[ Stranger Danger ]', action: () => triggerToast('Evanivi ra nuvvu... 😂') }
+  ]
+
   if (profileScreen) {
     return (
       <div style={{ 
@@ -409,62 +434,54 @@ export default function HomePage() {
         justifyContent: 'center',
         fontFamily: 'sans-serif',
         opacity: profileAnimate ? 0 : 1,
-        transform: profileAnimate ? 'scale(1.1)' : 'scale(1)',
-        transition: 'all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)'
+        transform: profileAnimate ? 'scale(1.08)' : 'scale(1)',
+        transition: 'all 0.55s cubic-bezier(0.2, 0.8, 0.2, 1)'
       }}>
         
-        {/* Localized Guest Warning Popup Node */}
-        {guestToast && (
+        {/* High Gloss Custom Toast Alerts Display Container */}
+        {toastMessage && (
           <div style={{
             position: 'absolute',
             top: '8%',
-            background: '#b20710',
+            background: toastMessage.includes('Evanivi') ? '#b20710' : '#222225',
             color: 'white',
             padding: '12px 24px',
             borderRadius: '4px',
             fontSize: '0.95rem',
             fontWeight: 700,
-            boxShadow: '0 8px 24px rgba(0,0,0,0.5)',
-            animation: 'flashFadeOverlay 0.3s ease-out'
+            border: toastMessage.includes('Evanivi') ? 'none' : '1px solid #444',
+            boxShadow: '0 8px 24px rgba(0,0,0,0.6)',
+            animation: 'subtleGlow 0.3s ease-out'
           }}>
-            Evanivi ra nuvvu... 😂
+            {toastMessage}
           </div>
         )}
 
-        <h1 style={{ fontSize: 'clamp(1.5rem, 5vw, 2.5rem)', fontWeight: 500, color: '#fff', marginBottom: '2.5rem', textAlign: 'center', letterSpacing: '0.5px' }}>
+        <h1 style={{ fontSize: 'clamp(1.4rem, 4.5vw, 2.4rem)', fontWeight: 500, color: '#fff', marginBottom: '2.5rem', textAlign: 'center', letterSpacing: '0.5px' }}>
           Who&apos;s watching LAKSHMIX?
         </h1>
 
-        <div style={{ display: 'flex', gap: 'clamp(20px, 5vw, 35px)', justifyContent: 'center', flexWrap: 'wrap', padding: '0 20px' }}>
-          
-          {/* Target Profile: Lakshmi */}
-          <div onClick={triggerLakshmiProfile} style={{ textAlign: 'center', cursor: 'pointer' }} className="profile-box-card">
-            <div style={{ width: 'clamp(90px, 15vw, 120px)', aspectRatio: '1/1', background: '#E50914', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3rem', fontWeight: 900, color: 'white', boxShadow: '0 4px 15px rgba(0,0,0,0.4)', transition: 'outline 0.1s' }} className="p-box-glow">
-              L
+        <div style={{ display: 'flex', gap: 'clamp(15px, 3.5vw, 30px)', justifyContent: 'center', flexWrap: 'wrap', padding: '0 24px', maxWidth: '800px' }}>
+          {profilesList.map((prof) => (
+            <div key={prof.id} onClick={prof.action} style={{ textAlign: 'center', cursor: 'pointer' }} className="profile-box-card">
+              <div style={{ width: 'clamp(85px, 12vw, 110px)', aspectRatio: '1/1', background: prof.bg, borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.6rem', fontWeight: 900, color: 'white', boxShadow: '0 4px 15px rgba(0,0,0,0.5)', transition: 'all 0.15s ease' }} className="p-box-glow">
+                {prof.label}
+              </div>
+              <div style={{ marginTop: '10px', fontSize: '0.85rem', color: '#808080', fontWeight: 600, transition: 'color 0.2s' }} className="p-text-glow">{prof.name}</div>
+              <div style={{ fontSize: '0.62rem', color: prof.id === 'lakshmi' ? '#46d369' : '#555', fontWeight: 700, marginTop: '2px' }}>{prof.marker}</div>
             </div>
-            <div style={{ marginTop: '12px', fontSize: '0.9rem', color: '#808080', fontWeight: 600 }} className="p-text-glow">Lakshmi</div>
-            <div style={{ fontSize: '0.65rem', color: '#46d369', fontWeight: 700, marginTop: '2px' }}>[ Main Character ]</div>
-          </div>
-
-          {/* Fallback Profile: Guest */}
-          <div onClick={triggerGuestProfile} style={{ textAlign: 'center', cursor: 'pointer' }} className="profile-box-card">
-            <div style={{ width: 'clamp(90px, 15vw, 120px)', aspectRatio: '1/1', background: '#333333', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3rem', fontWeight: 900, color: '#666', boxShadow: '0 4px 15px rgba(0,0,0,0.4)' }}>
-              ?
-            </div>
-            <div style={{ marginTop: '12px', fontSize: '0.9rem', color: '#808080', fontWeight: 500 }}>Guest Account</div>
-          </div>
-
+          ))}
         </div>
 
         <button 
-          onClick={triggerLakshmiProfile}
+          onClick={handleLakshmiProfile}
           style={{ 
-            marginTop: '4.5rem', 
+            marginTop: '4rem', 
             background: 'none', 
-            border: '1px solid #808080', 
-            color: '#808080', 
-            padding: '8px 26px', 
-            fontSize: '0.85rem', 
+            border: '1px solid #666', 
+            color: '#666', 
+            padding: '8px 24px', 
+            fontSize: '0.8rem', 
             letterSpacing: '1px', 
             textTransform: 'uppercase',
             fontWeight: 600,
@@ -480,16 +497,15 @@ export default function HomePage() {
   return (
     <div style={{ minHeight: '100vh', background: '#141414', overflowX: 'hidden' }}>
       
-      {/* Structural Hardware Accelerated Animation Rules */}
+      {/* Structural Hardware Accelerated Animation Rules Interceptor Block */}
       <style>{`
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .touch-scroll-enabled { -webkit-overflow-scrolling: touch; }
         
-        /* 3D Hardware Accelerated Lifting Styles Matrix */
         .netflix-thumbnail-card:hover {
-          transform: translate3d(0, -6px, 0) scale(1.06) !important;
-          box-shadow: 0 12px 25px rgba(0,0,0,0.8) !important;
+          transform: translate3d(0, -6px, 0) scale(1.05) !important;
+          box-shadow: 0 14px 28px rgba(0,0,0,0.85) !important;
           z-index: 99;
         }
         .netflix-wish-card:hover {
@@ -499,22 +515,26 @@ export default function HomePage() {
         }
         .profile-box-card:hover .p-box-glow {
           outline: 3px solid #ffffff;
+          transform: scale(1.04);
         }
         .profile-box-card:hover .p-text-glow {
           color: #ffffff !important;
         }
         .netflix-btn-white:active, .netflix-btn-gray:active {
-          transform: scale(0.95);
+          transform: scale(0.96);
         }
         @media (max-width: 768px) {
           .desktop-only-btn { display: none !important; }
           .lx-nav {
-            padding: 12px 16px !important;
+            padding: 14px 16px !important;
             background-color: #141414 !important;
             border-bottom: 1px solid #222;
           }
           .netflix-thumbnail-card:hover {
-            transform: translate3d(0, -4px, 0) scale(1.04) !important;
+            transform: translate3d(0, -4px, 0) scale(1.03) !important;
+          }
+          .saga-hero-content {
+            padding: 100px 16px 30px !important;
           }
         }
       `}</style>
