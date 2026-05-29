@@ -91,7 +91,7 @@ function MyWishesPage() {
         const angle = Math.random() * Math.PI * 2
         
         // --- SPEED TUNING PARAMETERS ---
-        const velocity = 8 + Math.random() * 16 // MASSIVE base speed velocity boost
+        const velocity = 18 + Math.random() * 16 // MASSIVE base speed velocity boost
         const upwardKick = 14 // Forceful launch upward factor
         
         clusterQueue.push({
