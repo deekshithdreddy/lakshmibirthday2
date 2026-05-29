@@ -52,11 +52,11 @@ function Navbar() {
           LAKSHMIX
         </div>
         
-        {/* Unbreakable Android Navbar Navigation links row */}
-        <div style={{ display: 'flex', gap: 'clamp(12px, 3vw, 22px)', alignItems: 'center' }}>
-          <span className="netflix-nav-item" style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600, color: '#e5e5e5' }} onClick={() => handleScrollToSection('characters')}>Universe</span>
-          <span className="netflix-nav-item" style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600, color: '#e5e5e5' }} onClick={() => handleScrollToSection('wishes')}>Wishes</span>
-          <span className="netflix-nav-item" style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 700, color: '#E50914' }} onClick={() => navigate({ to: '/my-wishes' })}>My Wishes</span>
+        {/* Unbreakable Android Navbar Navigation Links */}
+        <div className="responsive-mobile-nav" style={{ display: 'flex', gap: 'clamp(12px, 3vw, 22px)', alignItems: 'center' }}>
+          <span style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600, color: '#e5e5e5' }} onClick={() => handleScrollToSection('characters')}>Universe</span>
+          <span style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600, color: '#e5e5e5' }} onClick={() => handleScrollToSection('wishes')}>Wishes</span>
+          <span style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 700, color: '#E50914' }} onClick={() => navigate({ to: '/my-wishes' })}>My Wishes</span>
         </div>
       </div>
       
@@ -105,16 +105,16 @@ function Hero() {
         overflow: 'hidden'
       }}
     >
-      {/* High-Definition Underlay centered on her profile line */}
+      {/* High-Definition Underlay aligned right-top to center her face clearly */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: '#141414' }}>
         <img
           src={heroImg}
-          alt="Lakshmi Main Viewport Presentation"
+          alt="Lakshmi Portrait Display Frame"
           style={{
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            objectPosition: 'right 10%', // Pushes the background frame down slightly to frame her face up clearly in the workspace
+            objectPosition: 'right top', // Pulled up perfectly to ensure her face stays prominent on mobile and laptop screens
             filter: 'brightness(0.88) contrast(1.02)'
           }}
         />
@@ -154,7 +154,7 @@ function Hero() {
           The Story is Still being Written...
         </div>
 
-        {/* Action Call Grid Trigger Panel Row */}
+        {/* CTA Buttons Row */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '20px' }}>
           <button
             className="netflix-btn-white"
@@ -190,7 +190,6 @@ function CharacterCarousel() {
     trackRef.current.scrollBy({ left: dir === 'right' ? amount : -amount, behavior: 'smooth' })
   }
 
-  // Localized array tracking platform match metric variations
   const platformMatches = ['99% Match', '96% Match', '100% Match', '95% Match', '98% Match', '97% Match', '99% Match']
 
   return (
@@ -215,7 +214,7 @@ function CharacterCarousel() {
                   overflow: 'hidden', 
                   borderRadius: '4px', 
                   background: '#181818', 
-                  // RESTORED: Grand Portrait Aspect parameters requested by user
+                  // Grand Portrait Aspect Ratio Formats Restored Perfectly
                   flex: '0 0 clamp(190px, 45vw, 250px)', 
                   aspectRatio: '2/3',
                   transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease',
@@ -232,8 +231,7 @@ function CharacterCarousel() {
                 <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, zIndex: 3, padding: '14px' }}>
                   <div style={{ fontSize: '0.7rem', color: '#E50914', fontWeight: 800, letterSpacing: '1px', textTransform: 'uppercase' }}>{char.type}</div>
                   <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#ffffff', margin: '2px 0' }}>{char.name}</div>
-                  <div style={{ fontSize: '#a3a3a3', fontSize: '0.72rem', display: 'flex', alignItems: 'center', gap: '8px', marginTop: '2px' }}>
-                    {/* RESTORED: Dynamic Percentage calculations */}
+                  <div style={{ fontSize: '0.72rem', display: 'flex', alignItems: 'center', gap: '8px', marginTop: '2px' }}>
                     <span style={{ color: '#46d369', fontWeight: 800 }}>{platformMatches[i % platformMatches.length]}</span>
                     <span style={{ color: '#e5e5e5' }}>{char.year}</span>
                   </div>
@@ -327,7 +325,7 @@ Enjoy every moment, making a lot of friends, exploring as far as it goes, and ne
         ))}
       </div>
 
-      {/* 🎬 REMODALED PREMIUM SUMMARY INTERFACE PANEL BOX */}
+      {/* 🎬 HIGH-END NETFLIX ORIGINAL FEATURED BILLBOARD SECTION */}
       <div 
         className="netflix-billboard-container"
         style={{ 
@@ -346,7 +344,7 @@ Enjoy every moment, making a lot of friends, exploring as far as it goes, and ne
           TOP 10 SUMMARY FEATURE
         </div>
         
-        {/* RESTORED: Custom Serif Font Style applied cleanly over the blocks requested */}
+        {/* Editorial Serif Layout Design */}
         <p style={{ 
           color: '#ffffff', 
           fontSize: 'clamp(1.05rem, 2.5vw, 1.35rem)', 
@@ -411,12 +409,12 @@ export default function HomePage() {
     setTimeout(() => setToastMessage(''), 2400)
   }
 
-  // Master Dashboard profiles mapping configuration requested
+  // Master Dashboard profiles mapping configuration
   const profilesList = [
     { id: 'lakshmi', name: 'Lakshmi', bg: '#E50914', label: 'L', marker: '[ Main Character ]', action: handleLakshmiProfile },
-    { id: 'peetha', name: 'Peetha', bg: '#1565c0', label: 'P', marker: '[ Core Memory partner ]', action: () => triggerToast('Trip content missing but memories loaded, Peeta! 😭') },
-    { id: 'gajini-sister', name: "Gajini's Sister", bg: '#6a1b9a', label: 'G', marker: '[ Short-term Memory ]', action: () => triggerToast('Memory refresh required... Gajini 2.0 node detected! 😭') },
-    { id: 'nolan', name: 'Photographer Nolan', bg: '#2e7d32', label: 'N', marker: '[ Director of Photo ]', action: () => triggerToast('Cinematic framing metrics clear... ◉') },
+    { id: 'peetha', name: 'Peetha', bg: '#1565c0', label: 'P', marker: '[ Core Memory Partner ]', action: () => triggerToast('Nice try, Peetha! 😂') },
+    { id: 'gajini-sister', name: "Gajini's Sister", bg: '#6a1b9a', label: 'G', marker: '[ Short-term Memory ]', action: () => triggerToast("Nice try, Gajini's Sister! 😂") },
+    { id: 'nolan', name: 'Photographer Nolan', bg: '#2e7d32', label: 'N', marker: '[ Director of Photo ]', action: () => triggerToast('Nice try, Photographer Nolan! 😂') },
     { id: 'guest', name: 'Guest Account', bg: '#333333', label: '?', marker: '[ Stranger Danger ]', action: () => triggerToast('Evanivi ra nuvvu... 😂') }
   ]
 
@@ -438,7 +436,7 @@ export default function HomePage() {
         transition: 'all 0.55s cubic-bezier(0.2, 0.8, 0.2, 1)'
       }}>
         
-        {/* High Gloss Custom Toast Alerts Display Container */}
+        {/* Custom Toast Alerts Display Container */}
         {toastMessage && (
           <div style={{
             position: 'absolute',
@@ -450,7 +448,8 @@ export default function HomePage() {
             fontSize: '0.95rem',
             fontWeight: 700,
             border: toastMessage.includes('Evanivi') ? 'none' : '1px solid #444',
-            boxShadow: '0 8px 24px rgba(0,0,0,0.6)',
+            boxShadow: '0 8px 24px rgba(0,0,0,0.5)',
+            zIndex: 1000000,
             animation: 'subtleGlow 0.3s ease-out'
           }}>
             {toastMessage}
@@ -497,7 +496,7 @@ export default function HomePage() {
   return (
     <div style={{ minHeight: '100vh', background: '#141414', overflowX: 'hidden' }}>
       
-      {/* Structural Hardware Accelerated Animation Rules Interceptor Block */}
+      {/* Structural Hardware Accelerated Animation Rules */}
       <style>{`
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -527,8 +526,12 @@ export default function HomePage() {
           .desktop-only-btn { display: none !important; }
           .lx-nav {
             padding: 14px 16px !important;
-            background-color: #141414 !important;
-            border-bottom: 1px solid #222;
+            background-color: rgba(20, 20, 20, 0.98) !important;
+            border-bottom: 1px solid #252525 !important;
+          }
+          .responsive-mobile-nav {
+            display: flex !important;
+            gap: 14px !important;
           }
           .netflix-thumbnail-card:hover {
             transform: translate3d(0, -4px, 0) scale(1.03) !important;
