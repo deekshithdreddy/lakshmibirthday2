@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
-import { characters } from '../data/characters'
+import { characters } from '../../data/characters' // FIXED: Changed from '../' to '../../'
 
 export const Route = createFileRoute('/character/$id')({
   component: CharacterPage,
@@ -143,7 +143,7 @@ function CharacterPage() {
             padding: '4px 0',
             transition: 'color 0.2s'
           }}
-          onMouseEnter={(e) => e.currentTarget.style.color = '#white'}
+          onMouseEnter={(e) => e.currentTarget.style.color = 'white'}
           onMouseLeave={(e) => e.currentTarget.style.color = '#888'}
         >
           ❮ Back to Universe
