@@ -86,7 +86,7 @@ function Navbar() {
 
 function Hero() {
   const navigate = useNavigate()
-  const heroImg = '/images/lakshmi-temple-bluedress.jpg'
+  const heroImg = '/images/lakshmiintemple.png'
   
   return (
     <section
@@ -105,7 +105,7 @@ function Hero() {
         overflow: 'hidden'
       }}
     >
-      {/* Elevated clear focus asset backdrop framing her face up cleanly */}
+      {/* Restored to original stable framing configurations */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: '#141414' }}>
         <img
           src={heroImg}
@@ -114,8 +114,8 @@ function Hero() {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            objectPosition: 'right top', 
-            filter: 'brightness(0.88) contrast(1.02)'
+            objectPosition: 'right 20%', // RESTORED: Locks framing properties back down to your screenshot layout parameters
+            filter: 'brightness(0.85) contrast(1.05)'
           }}
         />
       </div>
@@ -214,7 +214,6 @@ function CharacterCarousel() {
                   overflow: 'hidden', 
                   borderRadius: '4px', 
                   background: '#181818', 
-                  // Premium Grand Portrait Aspect Dimensions Fixed Perfectly
                   flex: '0 0 clamp(190px, 45vw, 250px)', 
                   aspectRatio: '2/3',
                   transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease',
