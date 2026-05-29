@@ -5,17 +5,141 @@ export const Route = createFileRoute('/my-wishes')({
   component: MyWishesPage,
 })
 
+// Custom interface tracking state arrays for structural particle rendering loops
+interface Particle {
+  x: number
+  y: number
+  size: number
+  color: string
+  speedX: number
+  speedY: number
+  rotation: number
+  rotationSpeed: number
+  opacity: number
+}
+
 function MyWishesPage() {
   const navigate = useNavigate()
+  const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const particlesRef = useRef<Particle[]>([])
+  const animationFrameRef = useRef<number | null>(null)
 
   // Base URL fallback handler to prevent router routing nesting path breaks
   const getAssetPath = (path: string) => {
     return `${window.location.origin}${path}`
   }
 
+  // Pure Canvas Particle Engine: Triggers a cinematic burst of custom styled colors
+  const triggerConfettiExplosion = () => {
+    if (!canvasRef.current) return
+    const canvas = canvasRef.current
+    
+    // Set particle origins exactly to match her viewport dimensions dynamically
+    const startX = canvas.width / 2
+    const startY = window.innerHeight * 0.65 // Explodes directly around the signature section area
+
+    const premiumColors = [
+      '#E50914', // Netflix Red
+      '#ffcc02', // Premium Gold
+      '#ff8a65', // Sunset Orange
+      '#b39ddb', // Lavender Orchid
+      '#ffffff', // Sparkle Highlight White
+      '#ef5350'  // Coral Rose
+    ]
+
+    // Generate 120 dynamic vector coordinates
+    const newParticles: Particle[] = []
+    for (let i = 0; i < 120; i++) {
+      const angle = Math.random() * Math.PI * 2
+      const velocity = 4 + Math.random() * 8
+      
+      newParticles.push({
+        x: startX,
+        y: startY,
+        size: 6 + Math.random() * 8,
+        color: premiumColors[Math.floor(Math.random() * premiumColors.length)],
+        speedX: Math.cos(angle) * velocity,
+        speedY: (Math.sin(angle) * velocity) - 3, // Initial vertical upward pop direction velocity
+        rotation: Math.random() * 360,
+        rotationSpeed: -10 + Math.random() * 20,
+        opacity: 1
+      })
+    }
+
+    // Append to existing array queue so she can spam click it for multiple bursts!
+    particlesRef.current = [...particlesRef.current, ...newParticles]
+  };
+
+  // Dedicated Background Animation Vector Tracker
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    const handleResize = () => {
+      if (canvas) {
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    handleResize()
+
+    const updateAndDrawParticles = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      
+      particlesRef.current = particlesRef.current.filter((p) => {
+        // Gravity, wind deceleration metrics, and opacity fade steps
+        p.x += p.speedX
+        p.y += p.speedY
+        p.speedY += 0.22 // Simulated gravity rate calculation matching mobile touch velocity
+        p.speedX *= 0.98 // Air resistance friction multiplier
+        p.rotation += p.rotationSpeed
+        p.opacity -= 0.012 // Smooth programmatic alpha degradation step
+
+        if (p.opacity <= 0) return false
+
+        ctx.save()
+        ctx.translate(p.x, p.y)
+        ctx.rotate((p.rotation * Math.PI) / 180)
+        ctx.globalAlpha = p.opacity
+        ctx.fillStyle = p.color
+        
+        // Randomly render rectangular streamer cuts or squared flakes for variability
+        if (p.size % 2 === 0) {
+          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 1.6)
+        } else {
+          ctx.beginPath()
+          ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2)
+          ctx.fill()
+        }
+        
+        ctx.restore()
+        return true
+      })
+
+      animationFrameRef.current = requestAnimationFrame(updateAndDrawParticles)
+    }
+
+    animationFrameRef.current = requestAnimationFrame(updateAndDrawParticles)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current)
+    }
+  }, [])
+
   return (
     <div style={{ minHeight: '100vh', background: '#0a0a0a', color: 'white', overflowX: 'hidden' }}>
       
+      {/* Immersive Overlay Particle Canvas Layer */}
+      <canvas 
+        ref={canvasRef} 
+        style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 9999 }} 
+      />
+
       {/* Dynamic Keyframe Animations for that Grand Cinematic Vibe */}
       <style>{`
         @keyframes subtleGlow {
@@ -23,8 +147,22 @@ function MyWishesPage() {
           50% { box-shadow: 0 0 30px rgba(229, 9, 20, 0.75), 0 4px 30px rgba(229, 9, 20, 0.2); }
           100% { box-shadow: 0 0 15px rgba(229, 9, 20, 0.4), 0 4px 20px rgba(0,0,0,0.8); }
         }
+        @keyframes pulseHeart {
+          0% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(229,9,20,0.6)); }
+          50% { transform: scale(1.15); filter: drop-shadow(0 0 16px rgba(229,9,20,1)); }
+          100% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(229,9,20,0.6)); }
+        }
         .grand-featured-card {
           animation: subtleGlow 4s infinite ease-in-out;
+        }
+        .pulse-heart-trigger {
+          animation: pulseHeart 1.8s infinite ease-in-out;
+          cursor: pointer;
+          user-select: none;
+          transition: transform 0.2s;
+        }
+        .pulse-heart-trigger:active {
+          transform: scale(0.9) !important;
         }
         .gallery-responsive-grid {
           display: grid;
@@ -44,12 +182,9 @@ function MyWishesPage() {
             grid-template-columns: repeat(2, 1fr) !important;
             gap: 12px !important;
           }
-          .main-large-item {
+          .main-large-item, .featured-dream-item {
             grid-column: 1 / 3 !important;
             grid-row: auto !important;
-          }
-          .featured-dream-item {
-            grid-column: 1 / 3 !important;
           }
         }
         @media (max-width: 520px) {
@@ -315,7 +450,7 @@ function MyWishesPage() {
             { src: '/images/lakshmi-temple.jpg', label: 'The Sanctuary' },
             { src: '/images/lakshmilaugh.jpg', label: 'Pure Laughter' },
             { src: '/images/lakshmi-beach.jpg', label: 'The Sunset Waves' },
-            { src: '/images/lakshmiintemple.png', label: 'The Core Memory' }
+            { src: '/images/lakshmiinteemple.png', label: 'The Core Memory' }
           ].map((photo, i) => (
             <div
               key={i}
@@ -458,7 +593,7 @@ function MyWishesPage() {
                 lineHeight: 1.75,
                 color: 'rgba(230,230,230,0.9)',
                 marginBottom: '1.5rem',
-                whiteSpace: 'pre-line' // Respect text layout returns inside the arrays safely
+                whiteSpace: 'pre-line'
               }}
             >
               {para}
@@ -469,27 +604,41 @@ function MyWishesPage() {
             Happy Birthday Lakshmi ❤️
           </p>
 
+          {/* 🌟 EASTER EGG PULSING HEART BUTTON: Triggers the Confetti Streams */}
           <div
             style={{
               marginTop: '2.5rem',
               display: 'flex',
+              flexDirection: 'column',
               alignItems: 'center',
-              gap: '1rem',
+              gap: '0.75rem',
             }}
           >
-            <div style={{ flex: 1, height: '1px', background: '#222' }} />
-            <span
-              style={{
-                fontFamily: 'var(--font-serif)',
-                fontStyle: 'italic',
-                fontSize: '1rem',
-                fontWeight: 'bold',
-                color: '#E50914',
-              }}
+            <div style={{ display: 'flex', width: '100%', alignItems: 'center', gap: '1rem' }}>
+              <div style={{ flex: 1, height: '1px', background: '#222' }} />
+              <span
+                style={{
+                  fontFamily: 'var(--font-serif)',
+                  fontStyle: 'italic',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  color: '#E50914',
+                }}
+              >
+                — Lakshman
+              </span>
+              <div style={{ flex: 1, height: '1px', background: '#222' }} />
+            </div>
+            
+            <div 
+              className="pulse-heart-trigger" 
+              onClick={triggerConfettiExplosion}
+              style={{ fontSize: '2.2rem', marginTop: '10px' }}
+              title="Click for a surprise!"
             >
-              — Lakshman
-            </span>
-            <div style={{ flex: 1, height: '1px', background: '#222' }} />
+              ❤️
+            </div>
+            <div style={{ color: '#444', fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 700 }}>Tap heart for surprise</div>
           </div>
         </div>
       </section>
@@ -521,7 +670,7 @@ function MyWishesPage() {
 
       {/* Footer */}
       <footer style={{ background: '#000', padding: '2.5rem 4%', textAlign: 'center', borderTop: '1px solid #161616' }}>
-        <div className="lx-footer-logo" onClick={() => navigate({ to: '/' })} style={{ cursor: 'pointer', color: '#E50914', fontWeight: 'bold', fontSize: '1.2rem' }}>
+        <div className="lx-footer-logo" onClick={() => navigate({ to: '/home' })} style={{ cursor: 'pointer', color: '#E50914', fontWeight: 'bold', fontSize: '1.2rem' }}>
           LAKSHMIX
         </div>
         <div style={{ color: '#555', fontSize: '0.8rem', marginTop: '0.4rem' }}>Made with love · 2026 · Lakshmi&apos;s Universe</div>
