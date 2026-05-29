@@ -86,7 +86,7 @@ function MyWishesPage() {
     } 
     else if (selectedScore === 5) {
       // 🐋 TIER 5: MAXIMUM SPEED WHALE ENERGY BLAST
-      const seaEmojis = ['🥳', '🎉','🔥', '✨']
+      const seaEmojis = ['🥳', '🎉', '✨']
       for (let i = 0; i < 120; i++) {
         const angle = Math.random() * Math.PI * 2
         
